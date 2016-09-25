@@ -9,14 +9,43 @@
 /* Begin PBXBuildFile section */
 		3F8659061D9809DE00AEB39E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F8659081D9809DE00AEB39E /* LaunchScreen.storyboard */; };
 		3F8659091D9809E700AEB39E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F86590B1D9809E700AEB39E /* Main.storyboard */; };
+		3F86594B1D98166200AEB39E /* ActionRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F86594A1D98166200AEB39E /* ActionRequestHandler.swift */; };
+		3F8659511D98166200AEB39E /* FanSabisuActionExt.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3F8659481D98166200AEB39E /* FanSabisuActionExt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3FE448221D9808A0008E0B66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FE4481F1D9808A0008E0B66 /* Assets.xcassets */; };
 		3FE448271D98090A008E0B66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE448251D98090A008E0B66 /* AppDelegate.swift */; };
 		3FE448281D98090A008E0B66 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE448261D98090A008E0B66 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		3F86594F1D98166200AEB39E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3FE447DF1D980799008E0B66 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F8659471D98166200AEB39E;
+			remoteInfo = FanSabisuActionExt;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3F8659551D98166200AEB39E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3F8659511D98166200AEB39E /* FanSabisuActionExt.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		3F8659071D9809DE00AEB39E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F86590A1D9809E700AEB39E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3F8659481D98166200AEB39E /* FanSabisuActionExt.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FanSabisuActionExt.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F86594A1D98166200AEB39E /* ActionRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionRequestHandler.swift; sourceTree = "<group>"; };
+		3F86594E1D98166200AEB39E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FE447E71D980799008E0B66 /* FanSabisu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FanSabisu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FE4481D1D980866008E0B66 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Other sources/Info.plist"; sourceTree = "<group>"; };
 		3FE4481F1D9808A0008E0B66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Assets/Assets.xcassets; sourceTree = "<group>"; };
@@ -25,6 +54,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3F8659451D98166200AEB39E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3FE447E41D980799008E0B66 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -35,10 +71,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F8659491D98166200AEB39E /* FanSabisuActionExt */ = {
+			isa = PBXGroup;
+			children = (
+				3F86594A1D98166200AEB39E /* ActionRequestHandler.swift */,
+				3F86594E1D98166200AEB39E /* Info.plist */,
+			);
+			path = FanSabisuActionExt;
+			sourceTree = "<group>";
+		};
 		3FE447DE1D980799008E0B66 = {
 			isa = PBXGroup;
 			children = (
 				3FE447E91D980799008E0B66 /* FanSabisu */,
+				3F8659491D98166200AEB39E /* FanSabisuActionExt */,
 				3FE447E81D980799008E0B66 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				3FE447E71D980799008E0B66 /* FanSabisu.app */,
+				3F8659481D98166200AEB39E /* FanSabisuActionExt.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,6 +138,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3F8659471D98166200AEB39E /* FanSabisuActionExt */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F8659541D98166200AEB39E /* Build configuration list for PBXNativeTarget "FanSabisuActionExt" */;
+			buildPhases = (
+				3F8659441D98166200AEB39E /* Sources */,
+				3F8659451D98166200AEB39E /* Frameworks */,
+				3F8659461D98166200AEB39E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FanSabisuActionExt;
+			productName = FanSabisuActionExt;
+			productReference = 3F8659481D98166200AEB39E /* FanSabisuActionExt.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		3FE447E61D980799008E0B66 /* FanSabisu */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3FE447F91D980799008E0B66 /* Build configuration list for PBXNativeTarget "FanSabisu" */;
@@ -98,10 +162,12 @@
 				3FE447E31D980799008E0B66 /* Sources */,
 				3FE447E41D980799008E0B66 /* Frameworks */,
 				3FE447E51D980799008E0B66 /* Resources */,
+				3F8659551D98166200AEB39E /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3F8659501D98166200AEB39E /* PBXTargetDependency */,
 			);
 			name = FanSabisu;
 			productName = FanSabisu;
@@ -118,6 +184,11 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Renzo Crisóstomo";
 				TargetAttributes = {
+					3F8659471D98166200AEB39E = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = M2Z2C2JVN5;
+						ProvisioningStyle = Automatic;
+					};
 					3FE447E61D980799008E0B66 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = M2Z2C2JVN5;
@@ -140,11 +211,19 @@
 			projectRoot = "";
 			targets = (
 				3FE447E61D980799008E0B66 /* FanSabisu */,
+				3F8659471D98166200AEB39E /* FanSabisuActionExt */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3F8659461D98166200AEB39E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3FE447E51D980799008E0B66 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -158,6 +237,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3F8659441D98166200AEB39E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F86594B1D98166200AEB39E /* ActionRequestHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3FE447E31D980799008E0B66 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -168,6 +255,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3F8659501D98166200AEB39E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F8659471D98166200AEB39E /* FanSabisuActionExt */;
+			targetProxy = 3F86594F1D98166200AEB39E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3F8659081D9809DE00AEB39E /* LaunchScreen.storyboard */ = {
@@ -191,6 +286,32 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3F8659521D98166200AEB39E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = M2Z2C2JVN5;
+				INFOPLIST_FILE = FanSabisuActionExt/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ruenzuo.FanSabisu.FanSabisuActionExt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		3F8659531D98166200AEB39E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = M2Z2C2JVN5;
+				INFOPLIST_FILE = FanSabisuActionExt/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ruenzuo.FanSabisu.FanSabisuActionExt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		3FE447F71D980799008E0B66 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -287,6 +408,7 @@
 		3FE447FA1D980799008E0B66 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
@@ -304,6 +426,7 @@
 		3FE447FB1D980799008E0B66 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
@@ -320,6 +443,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3F8659541D98166200AEB39E /* Build configuration list for PBXNativeTarget "FanSabisuActionExt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F8659521D98166200AEB39E /* Debug */,
+				3F8659531D98166200AEB39E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		3FE447E21D980799008E0B66 /* Build configuration list for PBXProject "FanSabisu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
