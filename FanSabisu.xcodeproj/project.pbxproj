@@ -14,12 +14,13 @@
 		3F3544F01D983050003941CB /* TokenProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3544EF1D983050003941CB /* TokenProvider.swift */; };
 		3F8659061D9809DE00AEB39E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F8659081D9809DE00AEB39E /* LaunchScreen.storyboard */; };
 		3F8659091D9809E700AEB39E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F86590B1D9809E700AEB39E /* Main.storyboard */; };
-		3F86594B1D98166200AEB39E /* ActionRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F86594A1D98166200AEB39E /* ActionRequestHandler.swift */; };
-		3F8659511D98166200AEB39E /* FanSabisuActionExt.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3F8659481D98166200AEB39E /* FanSabisuActionExt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3FE448221D9808A0008E0B66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FE4481F1D9808A0008E0B66 /* Assets.xcassets */; };
 		3FE448271D98090A008E0B66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE448251D98090A008E0B66 /* AppDelegate.swift */; };
 		3FF9725D1D9917DA002B9D1A /* VideoProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9725C1D9917DA002B9D1A /* VideoProcessor.swift */; };
 		3FF9725F1D991DD0002B9D1A /* MediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9725E1D991DD0002B9D1A /* MediaViewController.swift */; };
+		3FF972671D992906002B9D1A /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF972661D992906002B9D1A /* ActionViewController.swift */; };
+		3FF9726A1D992906002B9D1A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FF972681D992906002B9D1A /* MainInterface.storyboard */; };
+		3FF9726E1D992906002B9D1A /* FanSabisuActionUIExt.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3FF972641D992906002B9D1A /* FanSabisuActionUIExt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,19 +31,19 @@
 			remoteGlobalIDString = 3F3544DD1D98213A003941CB;
 			remoteInfo = FanSabisuKit;
 		};
-		3F3544ED1D9821A8003941CB /* PBXContainerItemProxy */ = {
+		3FF9726C1D992906002B9D1A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3FE447DF1D980799008E0B66 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3FF972631D992906002B9D1A;
+			remoteInfo = FanSabisuActionUIExt;
+		};
+		3FF972721D99297D002B9D1A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3FE447DF1D980799008E0B66 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3F3544DD1D98213A003941CB;
 			remoteInfo = FanSabisuKit;
-		};
-		3F86594F1D98166200AEB39E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3FE447DF1D980799008E0B66 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3F8659471D98166200AEB39E;
-			remoteInfo = FanSabisuActionExt;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -64,7 +65,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				3F8659511D98166200AEB39E /* FanSabisuActionExt.appex in Embed App Extensions */,
+				3FF9726E1D992906002B9D1A /* FanSabisuActionUIExt.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -79,26 +80,20 @@
 		3F3544EF1D983050003941CB /* TokenProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenProvider.swift; sourceTree = "<group>"; };
 		3F8659071D9809DE00AEB39E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F86590A1D9809E700AEB39E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3F8659481D98166200AEB39E /* FanSabisuActionExt.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FanSabisuActionExt.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F86594A1D98166200AEB39E /* ActionRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionRequestHandler.swift; sourceTree = "<group>"; };
-		3F86594E1D98166200AEB39E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FE447E71D980799008E0B66 /* FanSabisu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FanSabisu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FE4481D1D980866008E0B66 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Other sources/Info.plist"; sourceTree = "<group>"; };
 		3FE4481F1D9808A0008E0B66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Assets/Assets.xcassets; sourceTree = "<group>"; };
 		3FE448251D98090A008E0B66 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Sources/AppDelegate.swift; sourceTree = "<group>"; };
 		3FF9725C1D9917DA002B9D1A /* VideoProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoProcessor.swift; sourceTree = "<group>"; };
 		3FF9725E1D991DD0002B9D1A /* MediaViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaViewController.swift; path = Sources/MediaViewController.swift; sourceTree = "<group>"; };
+		3FF972641D992906002B9D1A /* FanSabisuActionUIExt.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FanSabisuActionUIExt.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FF972661D992906002B9D1A /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
+		3FF972691D992906002B9D1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		3FF9726B1D992906002B9D1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		3F3544DA1D98213A003941CB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3F8659451D98166200AEB39E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -110,6 +105,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F3544E51D98213A003941CB /* FanSabisuKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3FF972611D992906002B9D1A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,21 +130,12 @@
 			path = FanSabisuKit;
 			sourceTree = "<group>";
 		};
-		3F8659491D98166200AEB39E /* FanSabisuActionExt */ = {
-			isa = PBXGroup;
-			children = (
-				3F86594A1D98166200AEB39E /* ActionRequestHandler.swift */,
-				3F86594E1D98166200AEB39E /* Info.plist */,
-			);
-			path = FanSabisuActionExt;
-			sourceTree = "<group>";
-		};
 		3FE447DE1D980799008E0B66 = {
 			isa = PBXGroup;
 			children = (
 				3FE447E91D980799008E0B66 /* FanSabisu */,
-				3F8659491D98166200AEB39E /* FanSabisuActionExt */,
 				3F3544DF1D98213A003941CB /* FanSabisuKit */,
+				3FF972651D992906002B9D1A /* FanSabisuActionUIExt */,
 				3FE447E81D980799008E0B66 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -151,8 +144,8 @@
 			isa = PBXGroup;
 			children = (
 				3FE447E71D980799008E0B66 /* FanSabisu.app */,
-				3F8659481D98166200AEB39E /* FanSabisuActionExt.appex */,
 				3F3544DE1D98213A003941CB /* FanSabisuKit.framework */,
+				3FF972641D992906002B9D1A /* FanSabisuActionUIExt.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -194,6 +187,16 @@
 			name = Assets;
 			sourceTree = "<group>";
 		};
+		3FF972651D992906002B9D1A /* FanSabisuActionUIExt */ = {
+			isa = PBXGroup;
+			children = (
+				3FF972661D992906002B9D1A /* ActionViewController.swift */,
+				3FF972681D992906002B9D1A /* MainInterface.storyboard */,
+				3FF9726B1D992906002B9D1A /* Info.plist */,
+			);
+			path = FanSabisuActionUIExt;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -226,24 +229,6 @@
 			productReference = 3F3544DE1D98213A003941CB /* FanSabisuKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		3F8659471D98166200AEB39E /* FanSabisuActionExt */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3F8659541D98166200AEB39E /* Build configuration list for PBXNativeTarget "FanSabisuActionExt" */;
-			buildPhases = (
-				3F8659441D98166200AEB39E /* Sources */,
-				3F8659451D98166200AEB39E /* Frameworks */,
-				3F8659461D98166200AEB39E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3F3544EE1D9821A8003941CB /* PBXTargetDependency */,
-			);
-			name = FanSabisuActionExt;
-			productName = FanSabisuActionExt;
-			productReference = 3F8659481D98166200AEB39E /* FanSabisuActionExt.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		3FE447E61D980799008E0B66 /* FanSabisu */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3FE447F91D980799008E0B66 /* Build configuration list for PBXNativeTarget "FanSabisu" */;
@@ -257,13 +242,31 @@
 			buildRules = (
 			);
 			dependencies = (
-				3F8659501D98166200AEB39E /* PBXTargetDependency */,
 				3F3544E41D98213A003941CB /* PBXTargetDependency */,
+				3FF9726D1D992906002B9D1A /* PBXTargetDependency */,
 			);
 			name = FanSabisu;
 			productName = FanSabisu;
 			productReference = 3FE447E71D980799008E0B66 /* FanSabisu.app */;
 			productType = "com.apple.product-type.application";
+		};
+		3FF972631D992906002B9D1A /* FanSabisuActionUIExt */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3FF9726F1D992906002B9D1A /* Build configuration list for PBXNativeTarget "FanSabisuActionUIExt" */;
+			buildPhases = (
+				3FF972601D992906002B9D1A /* Sources */,
+				3FF972611D992906002B9D1A /* Frameworks */,
+				3FF972621D992906002B9D1A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3FF972731D99297D002B9D1A /* PBXTargetDependency */,
+			);
+			name = FanSabisuActionUIExt;
+			productName = FanSabisuActionUIExt;
+			productReference = 3FF972641D992906002B9D1A /* FanSabisuActionUIExt.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -281,15 +284,15 @@
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
-					3F8659471D98166200AEB39E = {
-						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = M2Z2C2JVN5;
-						ProvisioningStyle = Automatic;
-					};
 					3FE447E61D980799008E0B66 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = M2Z2C2JVN5;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+					};
+					3FF972631D992906002B9D1A = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = M2Z2C2JVN5;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -308,21 +311,14 @@
 			projectRoot = "";
 			targets = (
 				3FE447E61D980799008E0B66 /* FanSabisu */,
-				3F8659471D98166200AEB39E /* FanSabisuActionExt */,
 				3F3544DD1D98213A003941CB /* FanSabisuKit */,
+				3FF972631D992906002B9D1A /* FanSabisuActionUIExt */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3F3544DC1D98213A003941CB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		3F8659461D98166200AEB39E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -339,6 +335,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3FF972621D992906002B9D1A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FF9726A1D992906002B9D1A /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -352,20 +356,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3F8659441D98166200AEB39E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3F86594B1D98166200AEB39E /* ActionRequestHandler.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3FE447E31D980799008E0B66 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				3FE448271D98090A008E0B66 /* AppDelegate.swift in Sources */,
 				3FF9725F1D991DD0002B9D1A /* MediaViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3FF972601D992906002B9D1A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FF972671D992906002B9D1A /* ActionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,15 +381,15 @@
 			target = 3F3544DD1D98213A003941CB /* FanSabisuKit */;
 			targetProxy = 3F3544E31D98213A003941CB /* PBXContainerItemProxy */;
 		};
-		3F3544EE1D9821A8003941CB /* PBXTargetDependency */ = {
+		3FF9726D1D992906002B9D1A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3FF972631D992906002B9D1A /* FanSabisuActionUIExt */;
+			targetProxy = 3FF9726C1D992906002B9D1A /* PBXContainerItemProxy */;
+		};
+		3FF972731D99297D002B9D1A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3F3544DD1D98213A003941CB /* FanSabisuKit */;
-			targetProxy = 3F3544ED1D9821A8003941CB /* PBXContainerItemProxy */;
-		};
-		3F8659501D98166200AEB39E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3F8659471D98166200AEB39E /* FanSabisuActionExt */;
-			targetProxy = 3F86594F1D98166200AEB39E /* PBXContainerItemProxy */;
+			targetProxy = 3FF972721D99297D002B9D1A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -406,6 +410,14 @@
 			);
 			name = Main.storyboard;
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		3FF972681D992906002B9D1A /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3FF972691D992906002B9D1A /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -459,34 +471,6 @@
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		3F8659521D98166200AEB39E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEVELOPMENT_TEAM = M2Z2C2JVN5;
-				INFOPLIST_FILE = FanSabisuActionExt/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ruenzuo.FanSabisu.FanSabisuActionExt;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		3F8659531D98166200AEB39E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				DEVELOPMENT_TEAM = M2Z2C2JVN5;
-				INFOPLIST_FILE = FanSabisuActionExt/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ruenzuo.FanSabisu.FanSabisuActionExt;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -618,6 +602,34 @@
 			};
 			name = Release;
 		};
+		3FF972701D992906002B9D1A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = M2Z2C2JVN5;
+				INFOPLIST_FILE = FanSabisuActionUIExt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ruenzuo.FanSabisu.FanSabisuActionUIExt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		3FF972711D992906002B9D1A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = M2Z2C2JVN5;
+				INFOPLIST_FILE = FanSabisuActionUIExt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ruenzuo.FanSabisu.FanSabisuActionUIExt;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -626,15 +638,6 @@
 			buildConfigurations = (
 				3F3544E81D98213A003941CB /* Debug */,
 				3F3544E91D98213A003941CB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		3F8659541D98166200AEB39E /* Build configuration list for PBXNativeTarget "FanSabisuActionExt" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3F8659521D98166200AEB39E /* Debug */,
-				3F8659531D98166200AEB39E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -656,6 +659,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		3FF9726F1D992906002B9D1A /* Build configuration list for PBXNativeTarget "FanSabisuActionUIExt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3FF972701D992906002B9D1A /* Debug */,
+				3FF972711D992906002B9D1A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};

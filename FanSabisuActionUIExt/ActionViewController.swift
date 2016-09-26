@@ -2,16 +2,17 @@ import UIKit
 import MobileCoreServices
 import FanSabisuKit
 
-class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
+class ActionViewController: UIViewController {
 
-    var extensionContext: NSExtensionContext?
+    @IBOutlet var activityIndicator: UIActivityIndicatorView?
     
-    func beginRequest(with context: NSExtensionContext) {
-        self.extensionContext = context
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    
         var found = false
         
         outer:
-            for item in context.inputItems as! [NSExtensionItem] {
+            for item in self.extensionContext!.inputItems as! [NSExtensionItem] {
                 if let attachments = item.attachments {
                     for itemProvider in attachments as! [NSItemProvider] {
                         if itemProvider.hasItemConformingToTypeIdentifier(String(kUTTypeURL)) {
@@ -34,6 +35,7 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
     }
     
     func itemLoadCompletedWithPreprocessingResults(_ urlPreprocessingResults: URL) {
+        self.activityIndicator?.startAnimating()
         let mediaDownloader = MediaDownloader()
         mediaDownloader.downloadMedia(tweetURLString: urlPreprocessingResults.absoluteString) { (url, error) in
             let videoProcessor = VideoProcessor()
@@ -43,9 +45,9 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
         }
     }
     
-    func done() {
+    @IBAction func done() {
+        self.activityIndicator?.stopAnimating()
         self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
-        self.extensionContext = nil
     }
 
 }
