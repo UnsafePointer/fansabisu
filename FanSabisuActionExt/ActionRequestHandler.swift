@@ -1,13 +1,6 @@
-//
-//  ActionRequestHandler.swift
-//  FanSabisuActionExt
-//
-//  Created by Renzo Crisóstomo on 25/09/16.
-//  Copyright © 2016 Renzo Crisóstomo. All rights reserved.
-//
-
 import UIKit
 import MobileCoreServices
+import FanSabisuKit
 
 class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
 
@@ -15,7 +8,6 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
     
     func beginRequest(with context: NSExtensionContext) {
         self.extensionContext = context
-        
         var found = false
         
         outer:
@@ -24,7 +16,7 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
                     for itemProvider in attachments as! [NSItemProvider] {
                         if itemProvider.hasItemConformingToTypeIdentifier(String(kUTTypeURL)) {
                             itemProvider.loadItem(forTypeIdentifier: String(kUTTypeURL), options: nil, completionHandler: { (item, error) in
-                                let URL = item as! NSURL
+                                let URL = item as! URL
                                 OperationQueue.main.addOperation {
                                     self.itemLoadCompletedWithPreprocessingResults(URL)
                                 }
@@ -37,15 +29,21 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
         }
         
         if !found {
-            self.doneWithResults(nil)
+            self.done()
         }
     }
     
-    func itemLoadCompletedWithPreprocessingResults(_ URLPreprocessingResults: NSURL?) {
-        self.doneWithResults(nil)
+    func itemLoadCompletedWithPreprocessingResults(_ urlPreprocessingResults: URL) {
+        let mediaDownloader = MediaDownloader()
+        mediaDownloader.downloadMedia(tweetURLString: urlPreprocessingResults.absoluteString) { (url, error) in
+            let videoProcessor = VideoProcessor()
+            videoProcessor.processVideo(fileURL: url!, completionHandler: { (error) in
+                self.done()
+            })
+        }
     }
     
-    func doneWithResults(_ results: UIImage?) {
+    func done() {
         self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
         self.extensionContext = nil
     }
