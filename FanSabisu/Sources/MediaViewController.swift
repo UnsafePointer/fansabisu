@@ -21,6 +21,15 @@ class MediaViewController: UIViewController {
         }
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "MediaDetail" {
+            let controller = segue.destination as! MediaDetailViewController
+            let indexPath = collectionView?.indexPath(for: sender as! UICollectionViewCell)
+            let asset = dataSource[indexPath!.row]
+            controller.asset = asset
+        }
+    }
+
     @IBAction func checkPasteboard() {
         if PHPhotoLibrary.authorizationStatus() != .authorized {
             // TO-DO: Present error
@@ -93,6 +102,14 @@ extension MediaViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AssetCell", for: indexPath) as! MediaCell
         cell.asset = dataSource[indexPath.row]
         return cell
+    }
+
+}
+
+extension MediaViewController: UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "MediaDetail", sender: collectionView.cellForItem(at: indexPath))
     }
 
 }
