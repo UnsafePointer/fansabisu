@@ -3,16 +3,27 @@ import Photos
 import FanSabisuKit
 
 class MediaViewController: UIViewController {
-    
+
+    @IBOutlet var collectionView: UICollectionView?
+    let itemsPerRow: CGFloat = 3
+    let sectionInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+    var dataSource: [PHAsset] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        automaticallyAdjustsScrollViewInsets = false
+        PHPhotoLibrary.requestAuthorization { (status) in
+            if status != .authorized {
+                // TO-DO: Present error
+            } else {
+                self.loadAssets()
+            }
+        }
     }
-    
+
     @IBAction func checkPasteboard() {
         if PHPhotoLibrary.authorizationStatus() != .authorized {
-            PHPhotoLibrary.requestAuthorization({ (status) in
-                self.processPasteboard()
-            })
+            // TO-DO: Present error
         } else {
             processPasteboard()
         }
@@ -47,4 +58,61 @@ class MediaViewController: UIViewController {
         }
     }
     
+    func loadAssets() {
+        let options = PHFetchOptions()
+        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        options.predicate = NSPredicate(format: "mediaType = %d", PHAssetMediaType.image.rawValue)
+        let fetchResult = PHAsset.fetchAssets(with: options)
+        fetchResult.enumerateObjects({ (asset, index, _) in
+            let resources = PHAssetResource.assetResources(for: asset)
+            for (_, resource) in resources.enumerated() {
+                if resource.uniformTypeIdentifier == "com.compuserve.gif" {
+                    self.dataSource.append(asset)
+                    break
+                }
+            }
+        })
+        DispatchQueue.main.async {
+            self.collectionView?.reloadData()
+        }
+    }
+
+}
+
+extension MediaViewController: UICollectionViewDataSource {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return dataSource.count
+    }
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AssetCell", for: indexPath) as! MediaCell
+        cell.asset = dataSource[indexPath.row]
+        return cell
+    }
+
+}
+
+extension MediaViewController: UICollectionViewDelegateFlowLayout {
+
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+        let availableWidth = view.frame.width - paddingSpace
+        let widthPerItem = availableWidth / itemsPerRow
+
+        return CGSize(width: widthPerItem, height: widthPerItem)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets.left
+    }
+
 }
