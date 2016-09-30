@@ -10,7 +10,7 @@
         <scene sceneID="yL9-E4-sWD">
             <objects>
                 <navigationController id="yJj-vd-MRo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" id="GNd-Nu-ZbW"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="Settings" id="GNd-Nu-ZbW"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qSa-vh-AED">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -65,7 +65,7 @@
         <scene sceneID="38k-IM-Wcq">
             <objects>
                 <navigationController id="lLZ-YO-Ews" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Media" id="C66-IW-vHx"/>
+                    <tabBarItem key="tabBarItem" title="Media" image="Media" id="C66-IW-vHx"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4RU-PM-frA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -135,7 +135,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Media" id="ux6-xU-utU">
-                        <barButtonItem key="rightBarButtonItem" title="Check" id="1wk-b4-b2n">
+                        <barButtonItem key="rightBarButtonItem" image="Clipboard" id="1wk-b4-b2n">
                             <connections>
                                 <action selector="checkPasteboard" destination="BYZ-38-t0r" id="SNu-w0-JzZ"/>
                             </connections>
@@ -188,4 +188,9 @@
             <point key="canvasLocation" x="1624.8" y="-476.31184407796104"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Clipboard" width="16" height="22"/>
+        <image name="Media" width="28" height="22"/>
+        <image name="Settings" width="28" height="28"/>
+    </resources>
 </document>
