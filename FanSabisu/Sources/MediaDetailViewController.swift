@@ -1,6 +1,7 @@
 import UIKit
 import Foundation
 import Photos
+import FanSabisuKit
 
 class MediaDetailViewController: UIViewController {
 
@@ -14,8 +15,8 @@ class MediaDetailViewController: UIViewController {
         let options = PHImageRequestOptions()
         options.version = .original
         options.isSynchronous = false
-        manager.requestImage(for: asset!, targetSize: imageView!.frame.size, contentMode: .default, options: options) { (image, info) in
-            self.imageView?.image = image
+        manager.requestImageData(for: asset!, options: options) { (data, dataUTI, orientation, info) in
+            self.imageView?.image = UIImage.animatedImage(with: data!)
         }
 
     }
