@@ -7,8 +7,12 @@ class MediaCell: UICollectionViewCell {
 
     var asset: PHAsset? {
         didSet {
+            let targetSize = CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
             let manager = PHImageManager.default()
-            manager.requestImage(for: self.asset!, targetSize: self.frame.size, contentMode: .aspectFill, options: nil) { (image, info) in
+            let options = PHImageRequestOptions()
+            options.version = .original
+            options.isSynchronous = false
+            manager.requestImage(for: self.asset!, targetSize: targetSize, contentMode: .default, options: options) { (image, info) in
                 self.imageView?.image = image
             }
         }

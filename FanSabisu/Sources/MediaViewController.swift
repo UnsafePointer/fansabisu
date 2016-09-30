@@ -6,7 +6,7 @@ class MediaViewController: UIViewController {
 
     @IBOutlet var collectionView: UICollectionView?
     let itemsPerRow: CGFloat = 3
-    let sectionInsets = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+    let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     var dataSource: [PHAsset] = []
 
     override func viewDidLoad() {
