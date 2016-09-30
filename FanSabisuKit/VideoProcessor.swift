@@ -9,7 +9,7 @@ public class VideoProcessor {
     public init() {
     }
     
-    public func processVideo(fileURL: URL, completionHandler: @escaping (NSError?) -> Void) {
+    public func processVideo(fileURL: URL, completionHandler: @escaping (URL?, NSError?) -> Void) {
         let asset = AVAsset(url: fileURL)
         let videoLength = CMTimeGetSeconds(asset.duration)
         let requiredFrames = Int(videoLength * 24)
@@ -31,7 +31,7 @@ public class VideoProcessor {
         }
         
         let temporaryDirectoryFilePath = URL(fileURLWithPath: NSTemporaryDirectory())
-        let temporaryURL = temporaryDirectoryFilePath.appendingPathComponent("temporal.gif")
+        let temporaryURL = temporaryDirectoryFilePath.appendingPathComponent(fileURL.lastPathComponent.replacingOccurrences(of: ".mp4", with: ".gif"))
         
         let fileProperties = [kCGImagePropertyGIFDictionary as String: [kCGImagePropertyGIFLoopCount as String: 0]]
         let gifProperties = [kCGImagePropertyGIFDictionary as String: [kCGImagePropertyGIFDelayTime as String: Float(videoLength) / Float(requiredFrames)]]
@@ -48,7 +48,7 @@ public class VideoProcessor {
         PHPhotoLibrary.shared().performChanges({ 
             PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: temporaryURL)
         }) { (success, error) in
-            completionHandler(nil)
+            completionHandler(temporaryURL, nil)
         }
     }
     

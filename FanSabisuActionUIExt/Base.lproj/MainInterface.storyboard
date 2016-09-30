@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ObA-dk-sSI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="x9K-Qj-RKW">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,42 +17,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="NOA-Dm-cuz">
-                                <items>
-                                    <navigationItem title="Downloading" id="3HJ-uW-3hn">
-                                        <barButtonItem key="leftBarButtonItem" title="Cancel" style="done" id="WYi-yp-eM6">
-                                            <connections>
-                                                <action selector="done" destination="ObA-dk-sSI" id="Qdu-qn-U6V"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dgT-HK-7wb">
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="dgT-HK-7wb">
+                                <frame key="frameInset" minX="150" minY="254"/>
                                 <subviews>
-                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="iex-pj-CDC"/>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="iex-pj-CDC">
+                                        <frame key="frameInset" minX="150" minY="-264" width="20"/>
+                                    </activityIndicatorView>
                                 </subviews>
                             </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hx4-5p-eJF"/>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="NOA-Dm-cuz" secondAttribute="trailing" id="A05-Pj-hrr"/>
+                            <constraint firstAttribute="trailing" secondItem="hx4-5p-eJF" secondAttribute="trailing" id="7EP-Iq-1yt"/>
+                            <constraint firstItem="hx4-5p-eJF" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" id="Al3-zH-VSz"/>
                             <constraint firstItem="dgT-HK-7wb" firstAttribute="centerY" secondItem="zMn-AG-sqS" secondAttribute="centerY" id="EAo-pw-SZo"/>
-                            <constraint firstItem="NOA-Dm-cuz" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leading" id="HxO-8t-aoh"/>
+                            <constraint firstItem="hx4-5p-eJF" firstAttribute="top" secondItem="qkL-Od-lgU" secondAttribute="bottom" id="PcC-HZ-BYm"/>
                             <constraint firstItem="iex-pj-CDC" firstAttribute="centerX" secondItem="zMn-AG-sqS" secondAttribute="centerX" id="nL6-ci-Zuf"/>
-                            <constraint firstItem="NOA-Dm-cuz" firstAttribute="top" secondItem="qkL-Od-lgU" secondAttribute="bottom" id="we0-1t-bgp"/>
+                            <constraint firstItem="n38-gi-rB5" firstAttribute="top" secondItem="hx4-5p-eJF" secondAttribute="bottom" id="tNv-UA-9ZB"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Downloading" id="erj-b7-gmd">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="S6A-oL-t3h"/>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="528"/>
                     <connections>
                         <outlet property="activityIndicator" destination="iex-pj-CDC" id="n1H-ei-P85"/>
+                        <outlet property="imageView" destination="hx4-5p-eJF" id="uC8-j9-uws"/>
                         <outlet property="view" destination="zMn-AG-sqS" id="Qma-de-2ek"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X47-rx-isc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="33.600000000000001" y="37.781109445277366"/>
+            <point key="canvasLocation" x="972.79999999999995" y="37.781109445277366"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Cvz-Hp-GnN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="x9K-Qj-RKW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dOl-UK-9hn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ObA-dk-sSI" kind="relationship" relationship="rootViewController" id="BzC-Ci-zTw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7DD-hZ-RsU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="37.331334332833585"/>
         </scene>
     </scenes>
 </document>

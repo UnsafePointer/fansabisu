@@ -5,6 +5,7 @@ import FanSabisuKit
 class ActionViewController: UIViewController {
 
     @IBOutlet var activityIndicator: UIActivityIndicatorView?
+    @IBOutlet var imageView: UIImageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,12 +40,28 @@ class ActionViewController: UIViewController {
         let mediaDownloader = MediaDownloader()
         mediaDownloader.downloadMedia(tweetURLString: urlPreprocessingResults.absoluteString) { (url, error) in
             let videoProcessor = VideoProcessor()
-            videoProcessor.processVideo(fileURL: url!, completionHandler: { (error) in
-                self.done()
+            videoProcessor.processVideo(fileURL: url!, completionHandler: { (temporaryUrl, error) in
+                if let data = try? Data(contentsOf: temporaryUrl!) {
+                    DispatchQueue.main.async {
+                        self.updateInterface(with: data)
+                    }
+                } else {
+                    self.done()
+                }
             })
         }
     }
-    
+
+    func updateInterface(with data: Data) {
+        self.title = "Complete"
+        self.activityIndicator?.stopAnimating()
+        self.imageView?.image = UIImage.animatedImage(with: data)
+
+        self.navigationItem.setLeftBarButton(nil, animated: true)
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
+        self.navigationItem.setRightBarButton(barButtonItem, animated: true)
+    }
+
     @IBAction func done() {
         self.activityIndicator?.stopAnimating()
         self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)

@@ -44,13 +44,13 @@ public class MediaDownloader {
     
     func downloadVideo(mediaUrl: String, completionHandler: @escaping (URL?, NSError?) -> Void) {
         let task = session.downloadTask(with: URL(string: mediaUrl)!) { (url, response, error) in
-            let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first! as NSURL
-            let destinationUrl = documentsUrl.appendingPathComponent(String(response!.suggestedFilename!))
-            if FileManager().fileExists(atPath: destinationUrl!.path) {
+            let temporaryDirectoryFilePath = URL(fileURLWithPath: NSTemporaryDirectory())
+            let destinationUrl = temporaryDirectoryFilePath.appendingPathComponent(String(response!.suggestedFilename!))
+            if FileManager().fileExists(atPath: destinationUrl.path) {
                 print("The file already exists at path")
             } else {
                 let data = try! Data(contentsOf: response!.url!)
-                try! data.write(to: destinationUrl!, options: Data.WritingOptions.atomic)
+                try! data.write(to: destinationUrl, options: Data.WritingOptions.atomic)
             }
             completionHandler(destinationUrl, nil)
         }
