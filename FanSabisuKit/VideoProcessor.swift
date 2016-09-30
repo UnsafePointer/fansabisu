@@ -48,7 +48,9 @@ public class VideoProcessor {
         PHPhotoLibrary.shared().performChanges({ 
             PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: temporaryURL)
         }) { (success, error) in
-            completionHandler(temporaryURL, nil)
+            DispatchQueue.main.async {
+                completionHandler(temporaryURL, nil)
+            }
         }
     }
     

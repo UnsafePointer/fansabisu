@@ -18,9 +18,13 @@ class ActionViewController: UIViewController {
                     for itemProvider in attachments as! [NSItemProvider] {
                         if itemProvider.hasItemConformingToTypeIdentifier(String(kUTTypeURL)) {
                             itemProvider.loadItem(forTypeIdentifier: String(kUTTypeURL), options: nil, completionHandler: { (item, error) in
-                                let URL = item as! URL
-                                OperationQueue.main.addOperation {
-                                    self.itemLoadCompletedWithPreprocessingResults(URL)
+                                let url = item as! URL
+                                if !url.isValidURL {
+                                    self.showError(with: url)
+                                } else {
+                                    OperationQueue.main.addOperation {
+                                        self.itemLoadCompletedWithPreprocessingResults(url)
+                                    }
                                 }
                             })
                             found = true
@@ -34,6 +38,15 @@ class ActionViewController: UIViewController {
             self.done()
         }
     }
+
+    func showError(with url: URL) {
+        let message = "Invalid URL found: \(url.absoluteString)"
+        let controller = UIAlertController(title: "An error has occurred", message: message, preferredStyle: .alert)
+        controller.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            self.done()
+        }))
+        present(controller, animated: true, completion: nil)
+    }
     
     func itemLoadCompletedWithPreprocessingResults(_ urlPreprocessingResults: URL) {
         self.activityIndicator?.startAnimating()
@@ -42,9 +55,7 @@ class ActionViewController: UIViewController {
             let videoProcessor = VideoProcessor()
             videoProcessor.processVideo(fileURL: url!, completionHandler: { (temporaryUrl, error) in
                 if let data = try? Data(contentsOf: temporaryUrl!) {
-                    DispatchQueue.main.async {
-                        self.updateInterface(with: data)
-                    }
+                    self.updateInterface(with: data)
                 } else {
                     self.done()
                 }

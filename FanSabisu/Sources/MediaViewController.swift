@@ -53,31 +53,34 @@ class MediaViewController: UIViewController {
 
     func processPasteboard() {
         guard let pasteboard = UIPasteboard.general.string else {
-            presentAlert(title: "Welp!", message: "Pasteboard contents not found", actionHandler: nil)
+            presentMessage(title: "An error has occurred", message: "Pasteboard contents not found", actionHandler: nil)
             return
         }
-        let message = "Found following URL ".appending(pasteboard).appending(". Procceed to download?")
-        presentAlert(title: "Great!", message: message) {
+        guard let url = URL(string: pasteboard) else {
+            presentMessage(title: "An error has occurred", message: "Suitable contents not found", actionHandler: nil)
+            return
+        }
+        if !url.isValidURL {
+            let message = "Invalid URL found: \(url.absoluteString)"
+            presentMessage(title: "An error has occurred", message: message, actionHandler: nil)
+            return
+        }
+        let message = "Following URL found: \(url.absoluteString)"
+        let controller = UIAlertController(title: "Suitable pasteboard", message: message, preferredStyle: .alert)
+        controller.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        controller.addAction(UIAlertAction(title: "Download", style: .default, handler: { (action) in
+            self.activityIndicatorView?.startAnimating()
             let mediaDownloader = MediaDownloader()
             mediaDownloader.downloadMedia(tweetURLString: pasteboard, completionHandler: { (url, error) in
                 let videoProcessor = VideoProcessor()
                 videoProcessor.processVideo(fileURL: url!, completionHandler: { (error) in
-                    self.presentAlert(title: "Success", message: "GIF stored in camera roll", actionHandler: nil)
+                    self.activityIndicatorView?.stopAnimating()
+                    self.presentMessage(title: "Finished", message: "GIF stored in camera roll", actionHandler: nil)
+                    self.loadAssets()
                 })
             })
-        }
-    }
-    
-    func presentAlert(title: String, message: String, actionHandler: (() -> ())?) {
-        DispatchQueue.main.async {
-            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            let alertAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                actionHandler?()
-                alertController.dismiss(animated: true, completion: nil)
-            })
-            alertController.addAction(alertAction)
-            self.present(alertController, animated: true, completion: nil)
-        }
+        }))
+        present(controller, animated: true, completion: nil)
     }
     
     func loadAssets() {
