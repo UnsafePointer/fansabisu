@@ -8,10 +8,12 @@ class MediaViewController: UIViewController {
     let itemsPerRow: CGFloat = 3
     let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     var dataSource: [PHAsset] = []
+    var activityIndicatorView: UIActivityIndicatorView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         automaticallyAdjustsScrollViewInsets = false
+        setupActivityIndicator()
         PHPhotoLibrary.requestAuthorization { (status) in
             if status != .authorized {
                 // TO-DO: Present error
@@ -19,6 +21,7 @@ class MediaViewController: UIViewController {
                 self.loadAssets()
             }
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(handleApplicationWillEnterForeground(notification:)), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -37,7 +40,17 @@ class MediaViewController: UIViewController {
             processPasteboard()
         }
     }
-    
+
+    func setupActivityIndicator() {
+        activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        activityIndicatorView?.startAnimating()
+        navigationItem.setLeftBarButton(UIBarButtonItem(customView: activityIndicatorView!), animated: true)
+    }
+
+    func handleApplicationWillEnterForeground(notification: Notification) {
+        loadAssets()
+    }
+
     func processPasteboard() {
         guard let pasteboard = UIPasteboard.general.string else {
             presentAlert(title: "Welp!", message: "Pasteboard contents not found", actionHandler: nil)
@@ -68,6 +81,7 @@ class MediaViewController: UIViewController {
     }
     
     func loadAssets() {
+        dataSource.removeAll()
         let options = PHFetchOptions()
         options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         options.predicate = NSPredicate(format: "mediaType = %d", PHAssetMediaType.image.rawValue)
@@ -82,6 +96,7 @@ class MediaViewController: UIViewController {
             }
         })
         DispatchQueue.main.async {
+            self.activityIndicatorView?.stopAnimating()
             self.collectionView?.reloadData()
         }
     }
