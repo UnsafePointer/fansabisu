@@ -21,9 +21,7 @@ extension UIImage {
         }
 
         let duration = delays.reduce(0, +)
-        let gcdResult = delays.reduce(0) { (result, value) -> Int in
-            return gcd(result, value)
-        }
+        let gcdResult = delays.reduce(0, gcd)
 
         var frames = [UIImage]()
         for index in 0..<count {
