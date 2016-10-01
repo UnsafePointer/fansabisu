@@ -7,6 +7,7 @@ class MediaDetailViewController: UIViewController {
 
     var asset: PHAsset?
     @IBOutlet var imageView: UIImageView?
+    var information: Dictionary<String, Any>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +19,9 @@ class MediaDetailViewController: UIViewController {
         options.isNetworkAccessAllowed = true
         manager.requestImageData(for: asset!, options: options) { (data, dataUTI, orientation, info) in
             if let data = data {
-                self.imageView?.image = UIImage.animatedImage(with: data)
+                let result = UIImage.animatedImage(with: data)
+                self.imageView?.image = result.0
+                self.information = result.1
             }
         }
 
@@ -28,7 +31,12 @@ class MediaDetailViewController: UIViewController {
         let manager = PHImageManager.default()
         manager.requestImageData(for: asset!, options: nil) { (data, dataUTI, orientation, info) in
             let size = ByteCountFormatter.string(fromByteCount: Int64(data!.count), countStyle: .file)
-            let message = String(format: String.localizedString(for: "FILE_SIZE"), size)
+            var message = String(format: String.localizedString(for: "FILE_SIZE"), size)
+            if let information = self.information {
+                message = message.appendingFormat(String.localizedString(for: "FILE_FRAMES"), information[UIImage.GIFInformationKey.frames.rawValue] as! Int)
+                message = message.appendingFormat(String.localizedString(for: "FILE_DURATION"), information[UIImage.GIFInformationKey.duration.rawValue] as! Double)
+                message = message.appendingFormat(String.localizedString(for: "FILE_FPS"), information[UIImage.GIFInformationKey.fps.rawValue] as! Double)
+            }
             let controller = UIAlertController(title: String.localizedString(for: "INFORMATION"), message: message, preferredStyle: .alert)
             controller.addAction(UIAlertAction(title: String.localizedString(for: "DISMISS"), style: .default, handler: nil))
             self.present(controller, animated: true, completion: nil)

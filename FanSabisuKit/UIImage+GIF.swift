@@ -3,11 +3,20 @@ import ImageIO
 
 extension UIImage {
 
-    public class func animatedImage(with data: Data) -> UIImage? {
+    public enum GIFInformationKey: String {
+        case frames = "Frames"
+        case fps = "FramesPerSecond"
+        case duration = "Duration"
+    }
+
+    public class func animatedImage(with data: Data) -> (UIImage?, Dictionary<String, Any>?) {
         guard let source = CGImageSourceCreateWithData(data as CFData, nil) else {
-            return nil
+            return (nil, nil)
         }
+        var information = Dictionary<String, Any>()
+
         let count = CGImageSourceGetCount(source)
+        information[GIFInformationKey.frames.rawValue] = count
 
         var images = [CGImage]()
         var delays = [Int]()
@@ -23,6 +32,10 @@ extension UIImage {
         let duration = delays.reduce(0, +)
         let gcdResult = delays.reduce(0, gcd)
 
+        let durationInSeconds = Double(duration) / 1000
+        information[GIFInformationKey.duration.rawValue] = durationInSeconds
+        information[GIFInformationKey.fps.rawValue] = Double(count) / Double(durationInSeconds)
+
         var frames = [UIImage]()
         for index in 0..<count {
             let frame = UIImage(cgImage: images[index])
@@ -31,7 +44,8 @@ extension UIImage {
                 frames.append(frame)
             }
         }
-        return UIImage.animatedImage(with: frames, duration: Double(duration) / 1000)
+        let animation = UIImage.animatedImage(with: frames, duration: durationInSeconds)
+        return (animation, information)
     }
 
     class func delay(at index: Int, from source: CGImageSource) -> Double {

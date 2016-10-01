@@ -21,3 +21,6 @@
 "SETTINGS" = "Settings";
 "DOWNLOADING" = "Downloading";
 "DELETE_ERROR" = "Couldn't delete image";
+"FILE_FRAMES" = "\nFrames %d";
+"FILE_DURATION" = "\nDuration %.2f";
+"FILE_FPS" = "\nFrames per second %.2f";

@@ -73,7 +73,7 @@ class ActionViewController: UIViewController {
     func updateInterface(with data: Data) {
         self.title = String.localizedString(for: "COMPLETE")
         self.activityIndicator?.stopAnimating()
-        self.imageView?.image = UIImage.animatedImage(with: data)
+        self.imageView?.image = UIImage.animatedImage(with: data).0
 
         self.navigationItem.setLeftBarButton(nil, animated: true)
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
