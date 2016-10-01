@@ -15,8 +15,11 @@ class MediaDetailViewController: UIViewController {
         let options = PHImageRequestOptions()
         options.version = .original
         options.isSynchronous = false
+        options.isNetworkAccessAllowed = true
         manager.requestImageData(for: asset!, options: options) { (data, dataUTI, orientation, info) in
-            self.imageView?.image = UIImage.animatedImage(with: data!)
+            if let data = data {
+                self.imageView?.image = UIImage.animatedImage(with: data)
+            }
         }
 
     }
@@ -41,6 +44,9 @@ class MediaDetailViewController: UIViewController {
         controller.addAction(UIAlertAction(title: String.localizedString(for: "INFORMATION"), style: .default, handler: { (action) in
             self.displayInformation()
         }))
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            controller.popoverPresentationController?.barButtonItem = sender
+        }
         present(controller, animated: true, completion: nil)
     }
 
