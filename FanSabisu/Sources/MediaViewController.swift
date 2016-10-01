@@ -12,6 +12,7 @@ class MediaViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = String.localizedString(for: "MEDIA")
         automaticallyAdjustsScrollViewInsets = false
         setupActivityIndicator()
         PHPhotoLibrary.requestAuthorization { (status) in

@@ -16,3 +16,7 @@
 "DELETE" = "Delete";
 "ACCEPT" = "OK";
 "COMPLETE" = "Complete";
+"MEDIA" = "Media";
+"DETAILS" = "Details";
+"SETTINGS" = "Settings";
+"DOWNLOADING" = "Downloading";

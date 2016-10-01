@@ -37,7 +37,7 @@
                             <constraint firstItem="n38-gi-rB5" firstAttribute="top" secondItem="hx4-5p-eJF" secondAttribute="bottom" id="tNv-UA-9ZB"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Downloading" id="erj-b7-gmd">
+                    <navigationItem key="navigationItem" id="erj-b7-gmd">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="S6A-oL-t3h"/>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

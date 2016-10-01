@@ -22,6 +22,7 @@
 		3FABB6301D9FBAA1003E4B02 /* ResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FABB62F1D9FBAA1003E4B02 /* ResponseParser.swift */; };
 		3FABB6331D9FD0E9003E4B02 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3FABB6351D9FD0E9003E4B02 /* Localizable.strings */; };
 		3FABB6371D9FD649003E4B02 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FABB6361D9FD649003E4B02 /* String+Localization.swift */; };
+		3FABB63B1D9FE0CA003E4B02 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FABB63A1D9FE0CA003E4B02 /* SettingsViewController.swift */; };
 		3FD87C0E1D9FB7BE00D778BA /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD87C0D1D9FB7BE00D778BA /* Result.swift */; };
 		3FE448221D9808A0008E0B66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FE4481F1D9808A0008E0B66 /* Assets.xcassets */; };
 		3FE448271D98090A008E0B66 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE448251D98090A008E0B66 /* AppDelegate.swift */; };
@@ -97,6 +98,7 @@
 		3FABB62F1D9FBAA1003E4B02 /* ResponseParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseParser.swift; sourceTree = "<group>"; };
 		3FABB6361D9FD649003E4B02 /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		3FABB6391D9FD7EF003E4B02 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3FABB63A1D9FE0CA003E4B02 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsViewController.swift; path = Sources/SettingsViewController.swift; sourceTree = "<group>"; };
 		3FD87C0D1D9FB7BE00D778BA /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		3FE447E71D980799008E0B66 /* FanSabisu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FanSabisu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FE4481D1D980866008E0B66 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Other sources/Info.plist"; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				3F78E8961D9D989B000361FF /* MediaCell.swift */,
 				3F78E8981D9DA573000361FF /* MediaDetailViewController.swift */,
 				3F5117F61D9F23BB00676E60 /* UIViewController+PresentMessage.swift */,
+				3FABB63A1D9FE0CA003E4B02 /* SettingsViewController.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				3F78E8971D9D989B000361FF /* MediaCell.swift in Sources */,
 				3FF9725F1D991DD0002B9D1A /* MediaViewController.swift in Sources */,
 				3F5117F71D9F23BB00676E60 /* UIViewController+PresentMessage.swift in Sources */,
+				3FABB63B1D9FE0CA003E4B02 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

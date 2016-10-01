@@ -6,11 +6,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Settings-->
+        <!--Navigation Controller-->
         <scene sceneID="yL9-E4-sWD">
             <objects>
                 <navigationController id="yJj-vd-MRo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="Settings" id="GNd-Nu-ZbW"/>
+                    <tabBarItem key="tabBarItem" title="" image="Settings" id="GNd-Nu-ZbW"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qSa-vh-AED">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -23,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="-258" y="280"/>
         </scene>
-        <!--Settings-->
+        <!--Settings View Controller-->
         <scene sceneID="eG0-wX-hs6">
             <objects>
-                <viewController title="Settings" id="aHt-u4-BbY" sceneMemberID="viewController">
+                <viewController id="aHt-u4-BbY" customClass="SettingsViewController" customModule="FanSabisu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cVR-tG-a5p"/>
                         <viewControllerLayoutGuide type="bottom" id="1q7-Wc-aOS"/>
@@ -36,8 +36,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Settings" id="vln-Sq-egI"/>
-                    <navigationItem key="navigationItem" title="Settings" id="zKu-l5-8ee"/>
+                    <navigationItem key="navigationItem" id="zKu-l5-8ee"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A0f-K6-fTR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -61,11 +60,11 @@
             </objects>
             <point key="canvasLocation" x="-1210" y="-66"/>
         </scene>
-        <!--Media-->
+        <!--Navigation Controller-->
         <scene sceneID="38k-IM-Wcq">
             <objects>
                 <navigationController id="lLZ-YO-Ews" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Media" image="Media" id="C66-IW-vHx"/>
+                    <tabBarItem key="tabBarItem" title="" image="Media" id="C66-IW-vHx"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="4RU-PM-frA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -78,10 +77,10 @@
             </objects>
             <point key="canvasLocation" x="-258" y="-476"/>
         </scene>
-        <!--Media-->
+        <!--Media View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Media" id="BYZ-38-t0r" customClass="MediaViewController" customModule="FanSabisu" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MediaViewController" customModule="FanSabisu" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -134,7 +133,7 @@
                             <constraint firstAttribute="leading" secondItem="xXH-1B-ZfW" secondAttribute="leading" id="ecV-HF-iex"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Media" id="ux6-xU-utU">
+                    <navigationItem key="navigationItem" id="ux6-xU-utU">
                         <barButtonItem key="rightBarButtonItem" image="Clipboard" id="1wk-b4-b2n">
                             <connections>
                                 <action selector="checkPasteboard" destination="BYZ-38-t0r" id="SNu-w0-JzZ"/>
@@ -150,7 +149,7 @@
             </objects>
             <point key="canvasLocation" x="680.79999999999995" y="-476.31184407796104"/>
         </scene>
-        <!--Details-->
+        <!--Media Detail View Controller-->
         <scene sceneID="Gva-ja-s7I">
             <objects>
                 <viewController id="ZZH-fC-8an" customClass="MediaDetailViewController" customModule="FanSabisu" customModuleProvider="target" sceneMemberID="viewController">
@@ -172,7 +171,7 @@
                             <constraint firstItem="ibp-JO-3NJ" firstAttribute="top" secondItem="EH3-Se-poS" secondAttribute="bottom" id="lh1-Iy-eV8"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Details" id="KGD-w4-61I">
+                    <navigationItem key="navigationItem" id="KGD-w4-61I">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="sYn-TU-1qJ">
                             <connections>
                                 <action selector="actionWithSender:" destination="ZZH-fC-8an" id="S0c-K6-Dir"/>

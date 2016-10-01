@@ -9,6 +9,7 @@ class ActionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.title = String.localizedString(for: "DOWNLOADING")
     
         var found = false
         

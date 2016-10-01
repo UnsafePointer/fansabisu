@@ -10,7 +10,7 @@ class MediaDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.title = String.localizedString(for: "DETAILS")
         let manager = PHImageManager.default()
         let options = PHImageRequestOptions()
         options.version = .original
