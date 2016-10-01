@@ -25,20 +25,20 @@ class MediaDetailViewController: UIViewController {
         let manager = PHImageManager.default()
         manager.requestImageData(for: asset!, options: nil) { (data, dataUTI, orientation, info) in
             let size = ByteCountFormatter.string(fromByteCount: Int64(data!.count), countStyle: .file)
-            let message = "File size: \(size)"
-            let controller = UIAlertController(title: "Information", message: message, preferredStyle: .alert)
-            controller.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+            let message = String(format: String.localizedString(for: "FILE_SIZE"), size)
+            let controller = UIAlertController(title: String.localizedString(for: "INFORMATION"), message: message, preferredStyle: .alert)
+            controller.addAction(UIAlertAction(title: String.localizedString(for: "DISMISS"), style: .default, handler: nil))
             self.present(controller, animated: true, completion: nil)
         }
     }
 
     @IBAction func action(sender: UIBarButtonItem) {
         let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        controller.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
+        controller.addAction(UIAlertAction(title: String.localizedString(for: "DELETE"), style: .destructive, handler: { (action) in
         }))
-        controller.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) in
+        controller.addAction(UIAlertAction(title: String.localizedString(for: "CANCEL"), style: .cancel, handler: { (action) in
         }))
-        controller.addAction(UIAlertAction(title: "Information", style: .default, handler: { (action) in
+        controller.addAction(UIAlertAction(title: String.localizedString(for: "INFORMATION"), style: .default, handler: { (action) in
             self.displayInformation()
         }))
         present(controller, animated: true, completion: nil)

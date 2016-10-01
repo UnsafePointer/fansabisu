@@ -20,7 +20,7 @@ class ActionViewController: UIViewController {
                             itemProvider.loadItem(forTypeIdentifier: String(kUTTypeURL), options: nil, completionHandler: { (item, error) in
                                 let url = item as! URL
                                 if !url.isValidURL {
-                                    let message = "Invalid URL found: \(url.absoluteString)"
+                                    let message = String(format: String.localizedString(for: "INVALID_URL"), url.absoluteString)
                                     self.showError(message: message)
                                 } else {
                                     OperationQueue.main.addOperation {
@@ -41,8 +41,8 @@ class ActionViewController: UIViewController {
     }
 
     func showError(message: String) {
-        let controller = UIAlertController(title: "An error has occurred", message: message, preferredStyle: .alert)
-        controller.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+        let controller = UIAlertController(title: String.localizedString(for: "ERROR_TITLE"), message: message, preferredStyle: .alert)
+        controller.addAction(UIAlertAction(title: String.localizedString(for: "ACCEPT"), style: .default, handler: { (action) in
             self.done()
         }))
         present(controller, animated: true, completion: nil)
@@ -53,12 +53,12 @@ class ActionViewController: UIViewController {
         let mediaDownloader = MediaDownloader()
         mediaDownloader.downloadMedia(with: urlPreprocessingResults, completionHandler: { (result) in
             guard let videoUrl = try? result.resolve() else {
-                return self.showError(message: "Couldn't download video")
+                return self.showError(message: String.localizedString(for: "DOWNLOAD_VIDEO_ERROR"))
             }
             let videoProcessor = VideoProcessor()
             videoProcessor.processVideo(with: videoUrl, completionHandler: { (result) in
                 guard let url = try? result.resolve() else {
-                    return self.showError(message: "Couldn't process video")
+                    return self.showError(message: String.localizedString(for: "PROCESS_VIDEO_ERROR"))
                 }
                 if let data = try? Data(contentsOf: url) {
                     self.updateInterface(with: data)
@@ -70,7 +70,7 @@ class ActionViewController: UIViewController {
     }
 
     func updateInterface(with data: Data) {
-        self.title = "Complete"
+        self.title = String.localizedString(for: "COMPLETE")
         self.activityIndicator?.stopAnimating()
         self.imageView?.image = UIImage.animatedImage(with: data)
 

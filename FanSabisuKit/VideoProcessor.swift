@@ -24,9 +24,9 @@ public class VideoProcessor {
             var frames = [UIImage]()
             for _ in 1...requiredFrames {
                 let generator = AVAssetImageGenerator(asset: asset)
-                generator.requestedTimeToleranceAfter = kCMTimeZero;
-                generator.requestedTimeToleranceBefore = kCMTimeZero;
-                generator.appliesPreferredTrackTransform = true;
+                generator.requestedTimeToleranceAfter = kCMTimeZero
+                generator.requestedTimeToleranceBefore = kCMTimeZero
+                generator.appliesPreferredTrackTransform = true
 
                 let time = CMTimeMake(currentTime, asset.duration.timescale)
                 if let imageRef = try? generator.copyCGImage(at: time, actualTime: nil) {

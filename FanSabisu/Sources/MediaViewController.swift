@@ -53,35 +53,37 @@ class MediaViewController: UIViewController {
 
     func processPasteboard() {
         guard let pasteboard = UIPasteboard.general.string else {
-            presentMessage(title: "An error has occurred", message: "Pasteboard contents not found", actionHandler: nil)
+            presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "PASTEBOARD_NOT_FOUND"), actionHandler: nil)
             return
         }
         guard let url = URL(string: pasteboard) else {
-            presentMessage(title: "An error has occurred", message: "Suitable contents not found", actionHandler: nil)
+            presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "CONTENTS_NOT_SUITABLE"), actionHandler: nil)
             return
         }
         if !url.isValidURL {
-            let message = "Invalid URL found: \(url.absoluteString)"
-            presentMessage(title: "An error has occurred", message: message, actionHandler: nil)
+            let message = String(format: String.localizedString(for: "INVALID_URL"), url.absoluteString)
+            presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: message, actionHandler: nil)
             return
         }
-        let message = "Following URL found: \(url.absoluteString)"
-        let controller = UIAlertController(title: "Suitable pasteboard", message: message, preferredStyle: .alert)
-        controller.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        controller.addAction(UIAlertAction(title: "Download", style: .default, handler: { (action) in
+        let message = String(format: String.localizedString(for: "URL_FOUND"), url.absoluteString)
+        let controller = UIAlertController(title: String.localizedString(for: "PASTEBOARD_FOUND"), message: message, preferredStyle: .alert)
+        controller.addAction(UIAlertAction(title: String.localizedString(for: "CANCEL"), style: .cancel, handler: nil))
+        controller.addAction(UIAlertAction(title: String.localizedString(for: "DOWNLOAD"), style: .default, handler: { (action) in
             self.activityIndicatorView?.startAnimating()
             let mediaDownloader = MediaDownloader()
             mediaDownloader.downloadMedia(with: url, completionHandler: { (result) in
                 guard let videoUrl = try? result.resolve() else {
-                    return self.presentMessage(title: "An error has occurred", message: "Couldn't download video", actionHandler: nil)
+                    self.activityIndicatorView?.stopAnimating()
+                    return self.presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "DOWNLOAD_VIDEO_ERROR"), actionHandler: nil)
                 }
                 let videoProcessor = VideoProcessor()
                 videoProcessor.processVideo(with: videoUrl, completionHandler: { (result) in
                     guard let _ = try? result.resolve() else {
-                        return self.presentMessage(title: "An error has occurred", message: "Couldn't process video", actionHandler: nil)
+                        self.activityIndicatorView?.stopAnimating()
+                        return self.presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "PROCESS_VIDEO_ERROR"), actionHandler: nil)
                     }
                     self.activityIndicatorView?.stopAnimating()
-                    self.presentMessage(title: "Finished", message: "GIF stored in camera roll", actionHandler: nil)
+                    self.presentMessage(title: String.localizedString(for: "FINISHED"), message: String.localizedString(for: "GIF_STORED"), actionHandler: nil)
                     self.loadAssets()
                 })
             })
