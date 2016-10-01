@@ -17,11 +17,11 @@ public class VideoProcessor {
     public func processVideo(with fileURL: URL, completionHandler: @escaping (Result<URL>) -> Void) {
         DispatchQueue.global().async {
             let asset = AVAsset(url: fileURL)
-            let videoLength = asset.duration.value
-            print(String(format: "Video length (value): %d", videoLength))
-            let requiredFrames = Int(videoLength / 24)
+            let videoLength = CMTimeGetSeconds(asset.duration)
+            print(String(format: "Video length (value): %.2f", videoLength))
+            let requiredFrames = Int64(videoLength * 24)
             print(String(format: "Required frames: %d", requiredFrames))
-            let step = 24
+            let step = asset.duration.value / requiredFrames
             print(String(format: "Step: %d", step))
             var currentTime: Int64 = 0
             var frames = [UIImage]()
@@ -45,7 +45,7 @@ public class VideoProcessor {
 
             let fileProperties = [kCGImagePropertyGIFDictionary as String: [kCGImagePropertyGIFLoopCount as String: 0]]
             let gifProperties = [kCGImagePropertyGIFDictionary as String: [kCGImagePropertyGIFDelayTime as String: CMTimeGetSeconds(asset.duration) / Double(requiredFrames)]]
-            guard let destination = CGImageDestinationCreateWithURL(temporaryURL as CFURL, kUTTypeGIF, requiredFrames, nil) else {
+            guard let destination = CGImageDestinationCreateWithURL(temporaryURL as CFURL, kUTTypeGIF, Int(requiredFrames), nil) else {
                 return DispatchQueue.main.async { completionHandler(Result.Failure(VideoProcessorError.InvalidDestination)) }
             }
             CGImageDestinationSetProperties(destination, fileProperties as CFDictionary)
