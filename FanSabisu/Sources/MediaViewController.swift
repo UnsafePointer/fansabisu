@@ -5,7 +5,7 @@ import FanSabisuKit
 class MediaViewController: UIViewController {
 
     @IBOutlet var collectionView: UICollectionView?
-    let itemsPerRow: CGFloat = 3
+    var itemsPerRow: CGFloat?
     let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     var dataSource: [PHAsset] = []
     var activityIndicatorView: UIActivityIndicatorView?
@@ -13,6 +13,11 @@ class MediaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = String.localizedString(for: "MEDIA")
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            itemsPerRow = 6
+        } else {
+            itemsPerRow = 3
+        }
         automaticallyAdjustsScrollViewInsets = false
         setupActivityIndicator()
         PHPhotoLibrary.requestAuthorization { (status) in
@@ -149,9 +154,9 @@ extension MediaViewController: UICollectionViewDelegate {
 extension MediaViewController: UICollectionViewDelegateFlowLayout {
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+        let paddingSpace = sectionInsets.left * (itemsPerRow! + 1)
         let availableWidth = view.frame.width - paddingSpace
-        let widthPerItem = availableWidth / itemsPerRow
+        let widthPerItem = availableWidth / itemsPerRow!
 
         return CGSize(width: widthPerItem, height: widthPerItem)
     }
