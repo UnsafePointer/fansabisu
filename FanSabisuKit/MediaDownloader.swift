@@ -34,20 +34,20 @@ public class MediaDownloader {
             request.addValue("Bearer ".appending(token), forHTTPHeaderField: "Authorization")
             let dataTask = self.session.dataTask(with: request) { (data, URLResponse, error) in
                 if let error = error {
-                    return completionHandler(Result.Failure(error))
+                    return DispatchQueue.main.async { completionHandler(Result.Failure(error)) }
                 }
                 guard let data = data else {
-                    return completionHandler(Result.Failure(MediaDownloaderError.RequestFailed))
+                    return DispatchQueue.main.async { completionHandler(Result.Failure(MediaDownloaderError.RequestFailed)) }
                 }
 
                 let url = self.responseParser.parseStatus(with: data)
                 switch url {
                 case .Success(let result):
                     self.downloadVideo(with: result, completionHandler: { (result) in
-                        completionHandler(result)
+                        DispatchQueue.main.async { completionHandler(result) }
                     })
                 case .Failure(let error):
-                    return completionHandler(Result.Failure(error))
+                    return DispatchQueue.main.async { completionHandler(Result.Failure(error)) }
                 }
 
 
