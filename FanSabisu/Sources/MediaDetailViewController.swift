@@ -38,6 +38,7 @@ class MediaDetailViewController: UIViewController {
     @IBAction func action(sender: UIBarButtonItem) {
         let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         controller.addAction(UIAlertAction(title: String.localizedString(for: "DELETE"), style: .destructive, handler: { (action) in
+            self.delete()
         }))
         controller.addAction(UIAlertAction(title: String.localizedString(for: "CANCEL"), style: .cancel, handler: { (action) in
         }))
@@ -48,6 +49,23 @@ class MediaDetailViewController: UIViewController {
             controller.popoverPresentationController?.barButtonItem = sender
         }
         present(controller, animated: true, completion: nil)
+    }
+
+    func delete() {
+        PHPhotoLibrary.shared().performChanges({
+            let array = NSArray(object: self.asset!)
+            PHAssetChangeRequest.deleteAssets(array)
+        }) { (success, error) in
+            if let _ = error {
+                DispatchQueue.main.async {
+                    self.presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "DELETE_ERROR"), actionHandler: nil)
+                }
+            } else if success {
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "UnwindToMedia", sender: nil)
+                }
+            }
+        }
     }
 
 }

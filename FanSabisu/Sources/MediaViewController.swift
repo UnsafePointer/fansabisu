@@ -113,6 +113,11 @@ class MediaViewController: UIViewController {
         }
     }
 
+    @IBAction func unwindToMedia(sender: UIStoryboardSegue) {
+        self.activityIndicatorView?.startAnimating()
+        self.loadAssets()
+    }
+
 }
 
 extension MediaViewController: UICollectionViewDataSource {

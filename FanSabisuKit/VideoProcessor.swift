@@ -59,7 +59,13 @@ public class VideoProcessor {
             PHPhotoLibrary.shared().performChanges({
                 PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: temporaryURL)
             }) { (success, error) in
-                DispatchQueue.main.async { completionHandler(Result.Success(temporaryURL)) }
+                let result: Result<URL>
+                if let error = error {
+                    result = Result.Failure(error)
+                } else {
+                    result = Result.Success(temporaryURL)
+                }
+                DispatchQueue.main.async { completionHandler(result) }
             }
         }
     }

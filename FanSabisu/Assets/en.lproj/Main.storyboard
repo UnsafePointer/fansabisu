@@ -146,6 +146,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="2Sc-bF-zbT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="680.79999999999995" y="-476.31184407796104"/>
         </scene>
@@ -180,6 +181,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="imageView" destination="EH3-Se-poS" id="h5v-37-HS0"/>
+                        <segue destination="2Sc-bF-zbT" kind="unwind" identifier="UnwindToMedia" unwindAction="unwindToMediaWithSender:" id="cwX-3X-aK9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1jM-Kt-vej" userLabel="First Responder" sceneMemberID="firstResponder"/>

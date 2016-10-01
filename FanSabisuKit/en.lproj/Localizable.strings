@@ -20,3 +20,4 @@
 "DETAILS" = "Details";
 "SETTINGS" = "Settings";
 "DOWNLOADING" = "Downloading";
+"DELETE_ERROR" = "Couldn't delete image";
