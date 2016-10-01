@@ -71,9 +71,15 @@ class MediaViewController: UIViewController {
         controller.addAction(UIAlertAction(title: "Download", style: .default, handler: { (action) in
             self.activityIndicatorView?.startAnimating()
             let mediaDownloader = MediaDownloader()
-            mediaDownloader.downloadMedia(tweetURLString: pasteboard, completionHandler: { (url, error) in
+            mediaDownloader.downloadMedia(with: url, completionHandler: { (result) in
+                guard let videoUrl = try? result.resolve() else {
+                    return self.presentMessage(title: "An error has occurred", message: "Couldn't download video", actionHandler: nil)
+                }
                 let videoProcessor = VideoProcessor()
-                videoProcessor.processVideo(fileURL: url!, completionHandler: { (error) in
+                videoProcessor.processVideo(with: videoUrl, completionHandler: { (result) in
+                    guard let _ = try? result.resolve() else {
+                        return self.presentMessage(title: "An error has occurred", message: "Couldn't process video", actionHandler: nil)
+                    }
                     self.activityIndicatorView?.stopAnimating()
                     self.presentMessage(title: "Finished", message: "GIF stored in camera roll", actionHandler: nil)
                     self.loadAssets()

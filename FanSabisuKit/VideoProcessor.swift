@@ -4,12 +4,17 @@ import ImageIO
 import MobileCoreServices
 import Photos
 
+enum VideoProcessorError: Error {
+    case InvalidDestination
+    case ProcessingFailed
+}
+
 public class VideoProcessor {
     
     public init() {
     }
     
-    public func processVideo(fileURL: URL, completionHandler: @escaping (URL?, NSError?) -> Void) {
+    public func processVideo(with fileURL: URL, completionHandler: @escaping (Result<URL>) -> Void) {
         let asset = AVAsset(url: fileURL)
         let videoLength = CMTimeGetSeconds(asset.duration)
         let requiredFrames = Int(videoLength * 24)
@@ -23,9 +28,10 @@ public class VideoProcessor {
             generator.appliesPreferredTrackTransform = true;
             
             let time = CMTimeMake(currentTime, asset.duration.timescale)
-            let imageRef = try! generator.copyCGImage(at: time, actualTime: nil)
-            let image = UIImage(cgImage: imageRef)
-            frames.append(image)
+            if let imageRef = try? generator.copyCGImage(at: time, actualTime: nil) {
+                let image = UIImage(cgImage: imageRef)
+                frames.append(image)
+            }
             
             currentTime += Int64(step)
         }
@@ -35,21 +41,25 @@ public class VideoProcessor {
         
         let fileProperties = [kCGImagePropertyGIFDictionary as String: [kCGImagePropertyGIFLoopCount as String: 0]]
         let gifProperties = [kCGImagePropertyGIFDictionary as String: [kCGImagePropertyGIFDelayTime as String: Float(videoLength) / Float(requiredFrames)]]
-        let destination = CGImageDestinationCreateWithURL(temporaryURL as CFURL, kUTTypeGIF, requiredFrames, nil)
-        CGImageDestinationSetProperties(destination!, fileProperties as CFDictionary)
+        guard let destination = CGImageDestinationCreateWithURL(temporaryURL as CFURL, kUTTypeGIF, requiredFrames, nil) else {
+            return completionHandler(Result.Failure(VideoProcessorError.InvalidDestination))
+        }
+        CGImageDestinationSetProperties(destination, fileProperties as CFDictionary)
         for frame in frames {
-            CGImageDestinationAddImage(destination!, frame.cgImage!, gifProperties  as CFDictionary)
+            if let cgImage = frame.cgImage {
+                CGImageDestinationAddImage(destination, cgImage, gifProperties  as CFDictionary)
+            }
         }
         
-        if (!CGImageDestinationFinalize(destination!)) {
-            print("Failed to generate gif")
+        if (!CGImageDestinationFinalize(destination)) {
+            return completionHandler(Result.Failure(VideoProcessorError.ProcessingFailed))
         }
         
         PHPhotoLibrary.shared().performChanges({ 
             PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: temporaryURL)
         }) { (success, error) in
             DispatchQueue.main.async {
-                completionHandler(temporaryURL, nil)
+                completionHandler(Result.Success(temporaryURL))
             }
         }
     }
