@@ -33,8 +33,8 @@ extension UIImage {
         let gcdResult = delays.reduce(0, gcd)
 
         let durationInSeconds = Double(duration) / 1000
-        information[GIFInformationKey.duration.rawValue] = durationInSeconds
-        information[GIFInformationKey.fps.rawValue] = Double(count) / Double(durationInSeconds)
+        information[GIFInformationKey.duration.rawValue] = durationInSeconds.roundToPlaces(2)
+        information[GIFInformationKey.fps.rawValue] = Int(Double(count) / Double(durationInSeconds))
 
         var frames = [UIImage]()
         for index in 0..<count {
@@ -49,17 +49,17 @@ extension UIImage {
     }
 
     class func delay(at index: Int, from source: CGImageSource) -> Double {
-        let defaultDelay = 0.1
+        let defaultDelay = 0.10
         let properties = CGImageSourceCopyPropertiesAtIndex(source, index, nil) as? Dictionary<String, Any>
         let GIFProperties = properties?[kCGImagePropertyGIFDictionary as String] as? Dictionary<String, Any>
         if let delay: Double = GIFProperties?[kCGImagePropertyGIFUnclampedDelayTime as String] as? Double {
             if delay != 0 {
-                return delay
+                return delay.roundToPlaces(2)
             }
         }
         if let delay: Double = GIFProperties?[kCGImagePropertyGIFDelayTime as String] as? Double {
             if delay != 0 {
-                return delay
+                return delay.roundToPlaces(2)
             }
         }
         return defaultDelay

@@ -35,7 +35,7 @@ class MediaDetailViewController: UIViewController {
             if let information = self.information {
                 message = message.appendingFormat(String.localizedString(for: "FILE_FRAMES"), information[UIImage.GIFInformationKey.frames.rawValue] as! Int)
                 message = message.appendingFormat(String.localizedString(for: "FILE_DURATION"), information[UIImage.GIFInformationKey.duration.rawValue] as! Double)
-                message = message.appendingFormat(String.localizedString(for: "FILE_FPS"), information[UIImage.GIFInformationKey.fps.rawValue] as! Double)
+                message = message.appendingFormat(String.localizedString(for: "FILE_FPS"), information[UIImage.GIFInformationKey.fps.rawValue] as! Int)
             }
             let controller = UIAlertController(title: String.localizedString(for: "INFORMATION"), message: message, preferredStyle: .alert)
             controller.addAction(UIAlertAction(title: String.localizedString(for: "DISMISS"), style: .default, handler: nil))

@@ -17,9 +17,12 @@ public class VideoProcessor {
     public func processVideo(with fileURL: URL, completionHandler: @escaping (Result<URL>) -> Void) {
         DispatchQueue.global().async {
             let asset = AVAsset(url: fileURL)
-            let videoLength = CMTimeGetSeconds(asset.duration)
-            let requiredFrames = Int(videoLength * 24)
-            let step = Float(asset.duration.value) / Float(requiredFrames)
+            let videoLength = asset.duration.value
+            print(String(format: "Video length (value): %d", videoLength))
+            let requiredFrames = Int(videoLength / 24)
+            print(String(format: "Required frames: %d", requiredFrames))
+            let step = 24
+            print(String(format: "Step: %d", step))
             var currentTime: Int64 = 0
             var frames = [UIImage]()
             for _ in 1...requiredFrames {
@@ -34,14 +37,14 @@ public class VideoProcessor {
                     frames.append(image)
                 }
 
-                currentTime += Int64(step)
+                currentTime += step
             }
 
             let temporaryDirectoryFilePath = URL(fileURLWithPath: NSTemporaryDirectory())
             let temporaryURL = temporaryDirectoryFilePath.appendingPathComponent(fileURL.lastPathComponent.replacingOccurrences(of: ".mp4", with: ".gif"))
 
             let fileProperties = [kCGImagePropertyGIFDictionary as String: [kCGImagePropertyGIFLoopCount as String: 0]]
-            let gifProperties = [kCGImagePropertyGIFDictionary as String: [kCGImagePropertyGIFDelayTime as String: Float(videoLength) / Float(requiredFrames)]]
+            let gifProperties = [kCGImagePropertyGIFDictionary as String: [kCGImagePropertyGIFDelayTime as String: CMTimeGetSeconds(asset.duration) / Double(requiredFrames)]]
             guard let destination = CGImageDestinationCreateWithURL(temporaryURL as CFURL, kUTTypeGIF, requiredFrames, nil) else {
                 return DispatchQueue.main.async { completionHandler(Result.Failure(VideoProcessorError.InvalidDestination)) }
             }
