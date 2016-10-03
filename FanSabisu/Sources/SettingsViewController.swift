@@ -114,8 +114,10 @@ extension SettingsViewController: UITableViewDataSource {
         cell.detailTextLabel?.text = setting.value
         if setting.type == .version {
             cell.selectionStyle = .none
+            cell.detailTextLabel?.textColor = .black
         } else {
             cell.selectionStyle = .default
+            cell.detailTextLabel?.textColor = UIColor.appearanceColor()
         }
         return cell
     }

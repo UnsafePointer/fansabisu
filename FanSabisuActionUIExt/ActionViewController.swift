@@ -10,6 +10,7 @@ class ActionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = String.localizedString(for: "DOWNLOADING")
+        self.navigationController?.navigationBar.tintColor = UIColor.appearanceColor()
     
         var found = false
         
