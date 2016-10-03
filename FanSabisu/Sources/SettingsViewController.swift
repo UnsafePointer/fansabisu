@@ -30,9 +30,10 @@ fileprivate struct Setting {
 
     static func settings() -> [Setting] {
         var settings = [Setting]()
+        let userDefaults = UserDefaults(suiteName: "group.com.ruenzuo.FanSabisu")!
 
         let twitter: Setting;
-        if let twitterAccount = UserDefaults.standard.string(forKey: SettingKey.twitter.rawValue) {
+        if let twitterAccount = userDefaults.string(forKey: SettingKey.twitter.rawValue) {
             twitter = Setting(type: .twitterAccount, value: twitterAccount)
         } else {
             twitter = Setting(type: .twitterAccount, value: String.localizedString(for: "TWITTER_ACCOUNT_NOT_FOUND"))
@@ -40,7 +41,7 @@ fileprivate struct Setting {
         settings.append(twitter)
 
         let fps: Setting;
-        let defaultFPS = UserDefaults.standard.integer(forKey: SettingKey.fps.rawValue)
+        let defaultFPS = userDefaults.integer(forKey: SettingKey.fps.rawValue)
         if defaultFPS != 0  {
             fps = Setting(type: .defaultFramesPerSecond, value: "~\(defaultFPS)")
         } else {

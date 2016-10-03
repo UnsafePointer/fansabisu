@@ -11,14 +11,16 @@ class TokenProvider {
     let consumerSecret: String = "wCoXxVimmhZkbO50pFV2SOkVbaOOdGWDAqIlpTjngqIwpLCGcm"
     let session: URLSession
     let responseParser: ResponseParser
+    let userDefaults: UserDefaults
     
     init(session: URLSession) {
         self.session = session
         self.responseParser = ResponseParser()
+        self.userDefaults = UserDefaults(suiteName: "group.com.ruenzuo.FanSabisu")!
     }
     
     func provideToken(with completionHandler: @escaping (Result<String>) -> Void) {
-        if let accessToken = UserDefaults.standard.string(forKey: "FanSabisuTwitterToken") {
+        if let accessToken = self.userDefaults.string(forKey: "FanSabisuTwitterToken") {
             return completionHandler(Result.Success(accessToken))
         }
         
@@ -40,7 +42,7 @@ class TokenProvider {
             }
             let result =  self.responseParser.parseToken(with: data)
             if let value = try? result.resolve() {
-                UserDefaults.standard.set(value, forKey: "FanSabisuTwitterToken")
+                self.userDefaults.set(value, forKey: "FanSabisuTwitterToken")
             }
             DispatchQueue.main.async { completionHandler(result) }
         }
