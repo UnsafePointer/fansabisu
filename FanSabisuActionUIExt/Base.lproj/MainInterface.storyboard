@@ -31,7 +31,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="erj-b7-gmd">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="S6A-oL-t3h"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="S6A-oL-t3h">
+                            <connections>
+                                <action selector="done" destination="ObA-dk-sSI" id="sT9-67-zHD"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="528"/>
