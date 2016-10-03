@@ -24,3 +24,9 @@
 "FILE_FRAMES" = "\nFrames %d";
 "FILE_DURATION" = "\nDuration %.2f";
 "FILE_FPS" = "\nFrames per second %d";
+"TWITTER_ACCOUNT" = "Twitter account";
+"TWITTER_ACCOUNT_NOT_FOUND" = "Not logged in";
+"DEFAULT_FPS" = "Default FPS";
+"CONTACT_DEVELOPER" = "Contact developer";
+"OPEN_SOURCE" = "Open-source";
+"VERSION" = "Version";
