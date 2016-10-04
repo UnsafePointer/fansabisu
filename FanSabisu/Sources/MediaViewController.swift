@@ -6,7 +6,6 @@ class MediaViewController: UIViewController {
 
     @IBOutlet var collectionView: UICollectionView?
     var itemsPerRow: CGFloat?
-    let sectionInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     var dataSource: [PHAsset] = []
     var activityIndicatorView: UIActivityIndicatorView?
 
@@ -14,9 +13,9 @@ class MediaViewController: UIViewController {
         super.viewDidLoad()
         self.title = String.localizedString(for: "MEDIA")
         if UIDevice.current.userInterfaceIdiom == .pad {
-            itemsPerRow = 6
+            itemsPerRow = 5
         } else {
-            itemsPerRow = 3
+            itemsPerRow = 4
         }
         automaticallyAdjustsScrollViewInsets = false
         setupActivityIndicator()
@@ -100,7 +99,7 @@ class MediaViewController: UIViewController {
     func loadAssets() {
         dataSource.removeAll()
         let options = PHFetchOptions()
-        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        options.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
         options.predicate = NSPredicate(format: "mediaType = %d", PHAssetMediaType.image.rawValue)
         let fetchResult = PHAsset.fetchAssets(with: options)
         fetchResult.enumerateObjects({ (asset, index, _) in
@@ -138,6 +137,11 @@ extension MediaViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AssetCell", for: indexPath) as! MediaCell
         cell.asset = dataSource[indexPath.row]
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            cell.imageView?.contentMode = .scaleAspectFit
+        } else {
+            cell.imageView?.contentMode = .scaleAspectFill
+        }
         return cell
     }
 
@@ -154,7 +158,13 @@ extension MediaViewController: UICollectionViewDelegate {
 extension MediaViewController: UICollectionViewDelegateFlowLayout {
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let paddingSpace = sectionInsets.left * (itemsPerRow! + 1)
+        let interItemSpace: CGFloat
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            interItemSpace = 20
+        } else {
+            interItemSpace = 1
+        }
+        let paddingSpace = interItemSpace * (itemsPerRow! + 1)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow!
 
@@ -162,11 +172,19 @@ extension MediaViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInsets
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return UIEdgeInsets.init(top: 16, left: 16, bottom: 16, right: 16)
+        } else {
+            return .zero
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return sectionInsets.left
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return 10
+        } else {
+            return 1
+        }
     }
 
 }
