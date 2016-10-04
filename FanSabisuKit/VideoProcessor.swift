@@ -16,10 +16,15 @@ public class VideoProcessor {
     
     public func processVideo(with fileURL: URL, completionHandler: @escaping (Result<URL>) -> Void) {
         DispatchQueue.global().async {
+            let userDefaults = UserDefaults(suiteName: "group.com.ruenzuo.FanSabisu")!
+            var fps = userDefaults.double(forKey: SettingKey.fps.rawValue)
+            if fps == 0 {
+                fps = 24
+            }
             let asset = AVAsset(url: fileURL)
             let videoLength = CMTimeGetSeconds(asset.duration)
             print(String(format: "Video length (value): %.2f", videoLength))
-            let requiredFrames = Int64(videoLength * 24)
+            let requiredFrames = Int64(videoLength * fps)
             print(String(format: "Required frames: %d", requiredFrames))
             let step = asset.duration.value / requiredFrames
             print(String(format: "Step: %d", step))

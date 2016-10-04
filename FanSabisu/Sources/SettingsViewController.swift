@@ -1,9 +1,5 @@
 import UIKit
-
-enum SettingKey: String {
-    case twitter = "TwitterAccount"
-    case fps = "FramesPerSecond"
-}
+import FanSabisuKit
 
 enum SettingType: Int {
     case twitterAccount
@@ -41,9 +37,9 @@ fileprivate struct Setting {
         settings.append(twitter)
 
         let fps: Setting;
-        let defaultFPS = userDefaults.integer(forKey: SettingKey.fps.rawValue)
+        let defaultFPS = userDefaults.double(forKey: SettingKey.fps.rawValue)
         if defaultFPS != 0  {
-            fps = Setting(type: .defaultFramesPerSecond, value: "~\(defaultFPS)")
+            fps = Setting(type: .defaultFramesPerSecond, value: "~\(Int(defaultFPS))")
         } else {
             fps = Setting(type: .defaultFramesPerSecond, value: "~24")
         }
@@ -68,7 +64,8 @@ fileprivate struct Setting {
 
 class SettingsViewController: UIViewController {
 
-    fileprivate let settings: [Setting]
+    fileprivate var settings: [Setting]
+    @IBOutlet var tableView: UITableView?
 
     required init?(coder aDecoder: NSCoder) {
         settings = Setting.settings()
@@ -87,7 +84,18 @@ class SettingsViewController: UIViewController {
     }
 
     func configureFPS() {
-
+        let controller = UIAlertController(title: "", message: String.localizedString(for: "DEFAULT_FPS_DESCRIPTION"), preferredStyle: .actionSheet)
+        controller.addAction(UIAlertAction(title: "~12", style: .default, handler: { (action) in
+            self.saveDefaultFPS(12)
+        }))
+        controller.addAction(UIAlertAction(title: "~24", style: .default, handler: { (action) in
+            self.saveDefaultFPS(24)
+        }))
+        controller.addAction(UIAlertAction(title: "~60", style: .default, handler: { (action) in
+            self.saveDefaultFPS(60)
+        }))
+        controller.addAction(UIAlertAction(title: String.localizedString(for: "CANCEL"), style: .cancel, handler: nil))
+        present(controller, animated: true, completion: nil)
     }
 
     func contactDeveloper () {
@@ -98,6 +106,16 @@ class SettingsViewController: UIViewController {
     func openSource() {
         let url = URL(string: "https://github.com/Ruenzuo/fansabisu")!
         UIApplication.shared.openURL(url)
+    }
+
+    func saveDefaultFPS(_ fps: Double) {
+        let userDefaults = UserDefaults(suiteName: "group.com.ruenzuo.FanSabisu")!
+        userDefaults.set(fps, forKey: SettingKey.fps.rawValue)
+        let index = SettingType.defaultFramesPerSecond.rawValue
+        let indexPath = IndexPath(row: index, section: 0)
+        let setting = Setting(type: SettingType.defaultFramesPerSecond, value: "~\(Int(fps))")
+        settings[index] = setting
+        self.tableView?.reloadRows(at: [indexPath], with: .automatic)
     }
 
 }

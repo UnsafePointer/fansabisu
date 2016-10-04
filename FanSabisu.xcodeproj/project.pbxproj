@@ -15,6 +15,7 @@
 		3F5117F51D9F03D900676E60 /* UIImage+GIF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5117F41D9F03D900676E60 /* UIImage+GIF.swift */; };
 		3F5117F71D9F23BB00676E60 /* UIViewController+PresentMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5117F61D9F23BB00676E60 /* UIViewController+PresentMessage.swift */; };
 		3F5117F91D9F251000676E60 /* URL+Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F5117F81D9F251000676E60 /* URL+Validator.swift */; };
+		3F6937971DA43B71008C7CFE /* SettingKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F6937961DA43B71008C7CFE /* SettingKey.swift */; };
 		3F78E8971D9D989B000361FF /* MediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F78E8961D9D989B000361FF /* MediaCell.swift */; };
 		3F78E8991D9DA573000361FF /* MediaDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F78E8981D9DA573000361FF /* MediaDetailViewController.swift */; };
 		3F8659061D9809DE00AEB39E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F8659081D9809DE00AEB39E /* LaunchScreen.storyboard */; };
@@ -94,6 +95,7 @@
 		3F5117F41D9F03D900676E60 /* UIImage+GIF.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+GIF.swift"; sourceTree = "<group>"; };
 		3F5117F61D9F23BB00676E60 /* UIViewController+PresentMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIViewController+PresentMessage.swift"; path = "Sources/UIViewController+PresentMessage.swift"; sourceTree = "<group>"; };
 		3F5117F81D9F251000676E60 /* URL+Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Validator.swift"; sourceTree = "<group>"; };
+		3F6937961DA43B71008C7CFE /* SettingKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingKey.swift; sourceTree = "<group>"; };
 		3F78E8961D9D989B000361FF /* MediaCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaCell.swift; path = Sources/MediaCell.swift; sourceTree = "<group>"; };
 		3F78E8981D9DA573000361FF /* MediaDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MediaDetailViewController.swift; path = Sources/MediaDetailViewController.swift; sourceTree = "<group>"; };
 		3F8659071D9809DE00AEB39E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				3FABB6361D9FD649003E4B02 /* String+Localization.swift */,
 				3FABB63C1DA03163003E4B02 /* Double+Round.swift */,
 				3FF2D1B91DA2C3880019E838 /* UIColor+Appearance.swift */,
+				3F6937961DA43B71008C7CFE /* SettingKey.swift */,
 			);
 			path = FanSabisuKit;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				3F5117F91D9F251000676E60 /* URL+Validator.swift in Sources */,
 				3FF2D1BA1DA2C3880019E838 /* UIColor+Appearance.swift in Sources */,
 				3FABB6301D9FBAA1003E4B02 /* ResponseParser.swift in Sources */,
+				3F6937971DA43B71008C7CFE /* SettingKey.swift in Sources */,
 				3FABB6371D9FD649003E4B02 /* String+Localization.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
