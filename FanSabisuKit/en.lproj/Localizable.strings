@@ -30,3 +30,7 @@
 "CONTACT_DEVELOPER" = "Contact developer";
 "OPEN_SOURCE" = "Open-source";
 "VERSION" = "Version";
+"AUTHORIZATION_NOT_GRANTED" = "Authorization not granted";
+"USAGE_DESCRIPTION" = "This app needs access to your photos in order to display and allow you to edit them";
+"EXTENSION_AUTHORIZATION_ERROR" = "This extension needs access to your photos in order to save GIFs";
+

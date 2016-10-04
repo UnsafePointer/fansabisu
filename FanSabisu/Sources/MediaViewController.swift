@@ -21,7 +21,9 @@ class MediaViewController: UIViewController {
         setupActivityIndicator()
         PHPhotoLibrary.requestAuthorization { (status) in
             if status != .authorized {
-                // TO-DO: Present error
+                DispatchQueue.main.async {
+                    self.presentAuthorizationError()
+                }
             } else {
                 self.loadAssets()
             }
@@ -40,10 +42,20 @@ class MediaViewController: UIViewController {
 
     @IBAction func checkPasteboard() {
         if PHPhotoLibrary.authorizationStatus() != .authorized {
-            // TO-DO: Present error
+            DispatchQueue.main.async {
+                self.presentAuthorizationError()
+            }
         } else {
             processPasteboard()
         }
+    }
+
+    func presentAuthorizationError() {
+        self.activityIndicatorView?.stopAnimating()
+        self.presentMessage(title: String.localizedString(for: "AUTHORIZATION_NOT_GRANTED"), message: String.localizedString(for: "USAGE_DESCRIPTION"), actionHandler: {
+            let url = URL(string: UIApplicationOpenSettingsURLString)!
+            UIApplication.shared.openURL(url)
+        })
     }
 
     func setupActivityIndicator() {

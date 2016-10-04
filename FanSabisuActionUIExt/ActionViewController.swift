@@ -1,6 +1,7 @@
 import UIKit
 import MobileCoreServices
 import FanSabisuKit
+import Photos
 
 class ActionViewController: UIViewController {
 
@@ -12,8 +13,16 @@ class ActionViewController: UIViewController {
         self.title = String.localizedString(for: "DOWNLOADING")
         self.navigationController?.navigationBar.tintColor = UIColor.appearanceColor()
     
+        if PHPhotoLibrary.authorizationStatus() != .authorized {
+            showError(message: String.localizedString(for: "EXTENSION_AUTHORIZATION_ERROR"))
+        } else {
+            processInput()
+        }
+    }
+
+    func processInput() {
         var found = false
-        
+
         outer:
             for item in self.extensionContext!.inputItems as! [NSExtensionItem] {
                 if let attachments = item.attachments {
@@ -36,7 +45,7 @@ class ActionViewController: UIViewController {
                     }
                 }
         }
-        
+
         if !found {
             self.done()
         }
