@@ -12,11 +12,7 @@ class MediaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = String.localizedString(for: "MEDIA")
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            itemsPerRow = 5
-        } else {
-            itemsPerRow = 4
-        }
+        setupItemsPerRow(with: self.view.frame.size)
         automaticallyAdjustsScrollViewInsets = false
         setupActivityIndicator()
         PHPhotoLibrary.requestAuthorization { (status) in
@@ -29,6 +25,18 @@ class MediaViewController: UIViewController {
             }
         }
         NotificationCenter.default.addObserver(self, selector: #selector(handleApplicationWillEnterForeground(notification:)), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if hasUserInterfaceIdiomPadTrait() {
+            self.collectionView?.reloadSections(IndexSet(integer: 0))
+        }
+    }
+
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        setupItemsPerRow(with: size)
+        self.collectionView?.collectionViewLayout.invalidateLayout()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -47,6 +55,23 @@ class MediaViewController: UIViewController {
             }
         } else {
             processPasteboard()
+        }
+    }
+
+    func setupItemsPerRow(with viewSize: CGSize) {
+        let landscape = viewSize.width > viewSize.height
+        if hasUserInterfaceIdiomPadTrait() {
+            if landscape {
+                itemsPerRow = 7
+            } else {
+                itemsPerRow = 5
+            }
+        } else {
+            if landscape {
+                itemsPerRow = 7
+            } else {
+                itemsPerRow = 4
+            }
         }
     }
 
@@ -125,7 +150,7 @@ class MediaViewController: UIViewController {
         })
         DispatchQueue.main.async {
             self.activityIndicatorView?.stopAnimating()
-            self.collectionView?.reloadData()
+            self.collectionView?.reloadSections(IndexSet(integer: 0))
         }
     }
 
@@ -149,10 +174,10 @@ extension MediaViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AssetCell", for: indexPath) as! MediaCell
         cell.asset = dataSource[indexPath.row]
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            cell.imageView?.contentMode = .scaleAspectFit
-        } else {
+        if hasCompactHorizontalTrait() {
             cell.imageView?.contentMode = .scaleAspectFill
+        } else {
+            cell.imageView?.contentMode = .scaleAspectFit
         }
         return cell
     }
@@ -171,11 +196,16 @@ extension MediaViewController: UICollectionViewDelegateFlowLayout {
 
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let interItemSpace: CGFloat
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            interItemSpace = 20
-        } else {
+        if hasCompactHorizontalTrait() {
             interItemSpace = 1
+        } else {
+            if hasUserInterfaceIdiomPadTrait() {
+                interItemSpace = 20
+            } else {
+                interItemSpace = 1
+            }
         }
+
         let paddingSpace = interItemSpace * (itemsPerRow! + 1)
         let availableWidth = view.frame.width - paddingSpace
         let widthPerItem = availableWidth / itemsPerRow!
@@ -184,18 +214,18 @@ extension MediaViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            return UIEdgeInsets.init(top: 16, left: 16, bottom: 16, right: 16)
-        } else {
+        if hasCompactHorizontalTrait() {
             return .zero
+        } else {
+            return UIEdgeInsets.init(top: 16, left: 16, bottom: 16, right: 16)
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            return 10
-        } else {
+        if hasCompactHorizontalTrait() {
             return 1
+        } else {
+            return 10
         }
     }
 
