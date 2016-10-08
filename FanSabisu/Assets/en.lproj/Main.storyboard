@@ -182,13 +182,7 @@
                             <constraint firstAttribute="leading" secondItem="xXH-1B-ZfW" secondAttribute="leading" id="ecV-HF-iex"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="ux6-xU-utU">
-                        <barButtonItem key="rightBarButtonItem" image="Clipboard" id="1wk-b4-b2n">
-                            <connections>
-                                <action selector="checkPasteboard" destination="BYZ-38-t0r" id="SNu-w0-JzZ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="ux6-xU-utU"/>
                     <connections>
                         <outlet property="collectionView" destination="xXH-1B-ZfW" id="BDj-KU-Du8"/>
                         <segue destination="ZZH-fC-8an" kind="show" identifier="MediaDetail" id="9P6-ry-tpY"/>
@@ -239,7 +233,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Clipboard" width="16" height="22"/>
         <image name="Media" width="28" height="22"/>
         <image name="Settings" width="28" height="28"/>
     </resources>

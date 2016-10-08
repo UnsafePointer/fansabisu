@@ -14,7 +14,7 @@ class MediaViewController: UIViewController {
         self.title = String.localizedString(for: "MEDIA")
         setupItemsPerRow(with: self.view.frame.size)
         automaticallyAdjustsScrollViewInsets = false
-        setupActivityIndicator()
+        setupNavigationItems()
         PHPhotoLibrary.requestAuthorization { (status) in
             if status != .authorized {
                 DispatchQueue.main.async {
@@ -24,7 +24,6 @@ class MediaViewController: UIViewController {
                 self.loadAssets()
             }
         }
-        NotificationCenter.default.addObserver(self, selector: #selector(handleApplicationWillEnterForeground(notification:)), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -48,7 +47,7 @@ class MediaViewController: UIViewController {
         }
     }
 
-    @IBAction func checkPasteboard() {
+    func checkPasteboard() {
         if PHPhotoLibrary.authorizationStatus() != .authorized {
             DispatchQueue.main.async {
                 self.presentAuthorizationError()
@@ -83,14 +82,14 @@ class MediaViewController: UIViewController {
         })
     }
 
-    func setupActivityIndicator() {
+    func setupNavigationItems() {
         activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
         activityIndicatorView?.startAnimating()
         navigationItem.setLeftBarButton(UIBarButtonItem(customView: activityIndicatorView!), animated: true)
-    }
 
-    func handleApplicationWillEnterForeground(notification: Notification) {
-        loadAssets()
+        let refreshBarButonItem = UIBarButtonItem(image: UIImage(named: "Refresh"), style: .plain, target: self, action: #selector(loadAssets))
+        let pasteboardBarButonItem = UIBarButtonItem(image: UIImage(named: "Clipboard"), style: .plain, target: self, action: #selector(checkPasteboard))
+        navigationItem.setRightBarButtonItems([refreshBarButonItem, pasteboardBarButonItem], animated: true)
     }
 
     func processPasteboard() {
