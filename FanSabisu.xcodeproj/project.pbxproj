@@ -22,6 +22,12 @@
 		3F8659091D9809E700AEB39E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F86590B1D9809E700AEB39E /* Main.storyboard */; };
 		3F8F813A1DA956E000D35552 /* UIViewController+TraitInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8F81391DA956E000D35552 /* UIViewController+TraitInformation.swift */; };
 		3F9E09B51DA2DBD70097747C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F9E09B41DA2DBD70097747C /* Assets.xcassets */; };
+		3FA9A79C1DB3F0E3002060EE /* CommonCrypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FA9A79A1DB3F0E3002060EE /* CommonCrypto.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3FA9A79F1DB3F0E3002060EE /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FA9A7981DB3F0E3002060EE /* CommonCrypto.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		3FA9A7A01DB3F0E3002060EE /* CommonCrypto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3FA9A7981DB3F0E3002060EE /* CommonCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3FA9A7AC1DB3F128002060EE /* Authorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA9A7A91DB3F128002060EE /* Authorizer.swift */; };
+		3FA9A7AD1DB3F128002060EE /* Signature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA9A7AA1DB3F128002060EE /* Signature.swift */; };
+		3FA9A7B11DB3F1ED002060EE /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FA9A7981DB3F0E3002060EE /* CommonCrypto.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3FABB6301D9FBAA1003E4B02 /* ResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FABB62F1D9FBAA1003E4B02 /* ResponseParser.swift */; };
 		3FABB6331D9FD0E9003E4B02 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3FABB6351D9FD0E9003E4B02 /* Localizable.strings */; };
 		3FABB6371D9FD649003E4B02 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FABB6361D9FD649003E4B02 /* String+Localization.swift */; };
@@ -46,6 +52,20 @@
 			remoteGlobalIDString = 3F3544DD1D98213A003941CB;
 			remoteInfo = FanSabisuKit;
 		};
+		3FA9A79D1DB3F0E3002060EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3FE447DF1D980799008E0B66 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3FA9A7971DB3F0E3002060EE;
+			remoteInfo = CommonCrypto;
+		};
+		3FA9A7AF1DB3F17D002060EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3FE447DF1D980799008E0B66 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3FA9A7971DB3F0E3002060EE;
+			remoteInfo = CommonCrypto;
+		};
 		3FF9726C1D992906002B9D1A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3FE447DF1D980799008E0B66 /* Project object */;
@@ -69,6 +89,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				3FA9A7A01DB3F0E3002060EE /* CommonCrypto.framework in Embed Frameworks */,
 				3F3544E61D98213A003941CB /* FanSabisuKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -105,6 +126,15 @@
 		3F9E09B41DA2DBD70097747C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F9E09B61DA2E0570097747C /* FanSabisu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FanSabisu.entitlements; sourceTree = "<group>"; };
 		3F9E09B71DA2E0770097747C /* FanSabisuActionUIExt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FanSabisuActionUIExt.entitlements; sourceTree = "<group>"; };
+		3FA9A7981DB3F0E3002060EE /* CommonCrypto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CommonCrypto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FA9A79A1DB3F0E3002060EE /* CommonCrypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonCrypto.h; sourceTree = "<group>"; };
+		3FA9A79B1DB3F0E3002060EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FA9A7A41DB3F103002060EE /* CommonCrypto.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = CommonCrypto.xcconfig; sourceTree = "<group>"; };
+		3FA9A7A51DB3F103002060EE /* iphoneos.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = iphoneos.modulemap; sourceTree = "<group>"; };
+		3FA9A7A61DB3F103002060EE /* iphonesimulator.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = iphonesimulator.modulemap; sourceTree = "<group>"; };
+		3FA9A7A71DB3F103002060EE /* macosx.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = macosx.modulemap; sourceTree = "<group>"; };
+		3FA9A7A91DB3F128002060EE /* Authorizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authorizer.swift; sourceTree = "<group>"; };
+		3FA9A7AA1DB3F128002060EE /* Signature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Signature.swift; sourceTree = "<group>"; };
 		3FABB62F1D9FBAA1003E4B02 /* ResponseParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseParser.swift; sourceTree = "<group>"; };
 		3FABB6361D9FD649003E4B02 /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		3FABB6391D9FD7EF003E4B02 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -129,6 +159,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FA9A7B11DB3F1ED002060EE /* CommonCrypto.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3FA9A7941DB3F0E3002060EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +174,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FA9A79F1DB3F0E3002060EE /* CommonCrypto.framework in Frameworks */,
 				3F3544E51D98213A003941CB /* FanSabisuKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -167,8 +206,23 @@
 				3FABB63C1DA03163003E4B02 /* Double+Round.swift */,
 				3FF2D1B91DA2C3880019E838 /* UIColor+Appearance.swift */,
 				3F6937961DA43B71008C7CFE /* SettingKey.swift */,
+				3FA9A7A91DB3F128002060EE /* Authorizer.swift */,
+				3FA9A7AA1DB3F128002060EE /* Signature.swift */,
 			);
 			path = FanSabisuKit;
+			sourceTree = "<group>";
+		};
+		3FA9A7991DB3F0E3002060EE /* CommonCrypto */ = {
+			isa = PBXGroup;
+			children = (
+				3FA9A7A41DB3F103002060EE /* CommonCrypto.xcconfig */,
+				3FA9A7A51DB3F103002060EE /* iphoneos.modulemap */,
+				3FA9A7A61DB3F103002060EE /* iphonesimulator.modulemap */,
+				3FA9A7A71DB3F103002060EE /* macosx.modulemap */,
+				3FA9A79A1DB3F0E3002060EE /* CommonCrypto.h */,
+				3FA9A79B1DB3F0E3002060EE /* Info.plist */,
+			);
+			path = CommonCrypto;
 			sourceTree = "<group>";
 		};
 		3FE447DE1D980799008E0B66 = {
@@ -177,6 +231,7 @@
 				3FE447E91D980799008E0B66 /* FanSabisu */,
 				3F3544DF1D98213A003941CB /* FanSabisuKit */,
 				3FF972651D992906002B9D1A /* FanSabisuActionUIExt */,
+				3FA9A7991DB3F0E3002060EE /* CommonCrypto */,
 				3FE447E81D980799008E0B66 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -187,6 +242,7 @@
 				3FE447E71D980799008E0B66 /* FanSabisu.app */,
 				3F3544DE1D98213A003941CB /* FanSabisuKit.framework */,
 				3FF972641D992906002B9D1A /* FanSabisuActionUIExt.appex */,
+				3FA9A7981DB3F0E3002060EE /* CommonCrypto.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -257,6 +313,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3FA9A7951DB3F0E3002060EE /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FA9A79C1DB3F0E3002060EE /* CommonCrypto.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -272,10 +336,29 @@
 			buildRules = (
 			);
 			dependencies = (
+				3FA9A7B01DB3F17D002060EE /* PBXTargetDependency */,
 			);
 			name = FanSabisuKit;
 			productName = FanSabisuKit;
 			productReference = 3F3544DE1D98213A003941CB /* FanSabisuKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		3FA9A7971DB3F0E3002060EE /* CommonCrypto */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3FA9A7A31DB3F0E3002060EE /* Build configuration list for PBXNativeTarget "CommonCrypto" */;
+			buildPhases = (
+				3FA9A7931DB3F0E3002060EE /* Sources */,
+				3FA9A7941DB3F0E3002060EE /* Frameworks */,
+				3FA9A7951DB3F0E3002060EE /* Headers */,
+				3FA9A7961DB3F0E3002060EE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CommonCrypto;
+			productName = CommonCrypto;
+			productReference = 3FA9A7981DB3F0E3002060EE /* CommonCrypto.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		3FE447E61D980799008E0B66 /* FanSabisu */ = {
@@ -293,6 +376,7 @@
 			dependencies = (
 				3F3544E41D98213A003941CB /* PBXTargetDependency */,
 				3FF9726D1D992906002B9D1A /* PBXTargetDependency */,
+				3FA9A79E1DB3F0E3002060EE /* PBXTargetDependency */,
 			);
 			name = FanSabisu;
 			productName = FanSabisu;
@@ -331,6 +415,11 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = M2Z2C2JVN5;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+					};
+					3FA9A7971DB3F0E3002060EE = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = M2Z2C2JVN5;
 						ProvisioningStyle = Automatic;
 					};
 					3FE447E61D980799008E0B66 = {
@@ -372,6 +461,7 @@
 				3FE447E61D980799008E0B66 /* FanSabisu */,
 				3F3544DD1D98213A003941CB /* FanSabisuKit */,
 				3FF972631D992906002B9D1A /* FanSabisuActionUIExt */,
+				3FA9A7971DB3F0E3002060EE /* CommonCrypto */,
 			);
 		};
 /* End PBXProject section */
@@ -382,6 +472,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FABB6331D9FD0E9003E4B02 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3FA9A7961DB3F0E3002060EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,13 +512,22 @@
 				3FABB63D1DA03163003E4B02 /* Double+Round.swift in Sources */,
 				3F3544F01D983050003941CB /* TokenProvider.swift in Sources */,
 				3F5117F51D9F03D900676E60 /* UIImage+GIF.swift in Sources */,
+				3FA9A7AC1DB3F128002060EE /* Authorizer.swift in Sources */,
 				3F3544EC1D982185003941CB /* MediaDownloader.swift in Sources */,
 				3FD87C0E1D9FB7BE00D778BA /* Result.swift in Sources */,
+				3FA9A7AD1DB3F128002060EE /* Signature.swift in Sources */,
 				3F5117F91D9F251000676E60 /* URL+Validator.swift in Sources */,
 				3FF2D1BA1DA2C3880019E838 /* UIColor+Appearance.swift in Sources */,
 				3FABB6301D9FBAA1003E4B02 /* ResponseParser.swift in Sources */,
 				3F6937971DA43B71008C7CFE /* SettingKey.swift in Sources */,
 				3FABB6371D9FD649003E4B02 /* String+Localization.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3FA9A7931DB3F0E3002060EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +560,16 @@
 			isa = PBXTargetDependency;
 			target = 3F3544DD1D98213A003941CB /* FanSabisuKit */;
 			targetProxy = 3F3544E31D98213A003941CB /* PBXContainerItemProxy */;
+		};
+		3FA9A79E1DB3F0E3002060EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3FA9A7971DB3F0E3002060EE /* CommonCrypto */;
+			targetProxy = 3FA9A79D1DB3F0E3002060EE /* PBXContainerItemProxy */;
+		};
+		3FA9A7B01DB3F17D002060EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3FA9A7971DB3F0E3002060EE /* CommonCrypto */;
+			targetProxy = 3FA9A7AF1DB3F17D002060EE /* PBXContainerItemProxy */;
 		};
 		3FF9726D1D992906002B9D1A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -548,6 +664,54 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ruenzuo.FanSabisuKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3FA9A7A11DB3F0E3002060EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3FA9A7A41DB3F103002060EE /* CommonCrypto.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = M2Z2C2JVN5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = CommonCrypto/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ruenzuo.CommonCrypto;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		3FA9A7A21DB3F0E3002060EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3FA9A7A41DB3F103002060EE /* CommonCrypto.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = M2Z2C2JVN5;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = CommonCrypto/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ruenzuo.CommonCrypto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -727,6 +891,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		3FA9A7A31DB3F0E3002060EE /* Build configuration list for PBXNativeTarget "CommonCrypto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3FA9A7A11DB3F0E3002060EE /* Debug */,
+				3FA9A7A21DB3F0E3002060EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		3FE447E21D980799008E0B66 /* Build configuration list for PBXProject "FanSabisu" */ = {
 			isa = XCConfigurationList;

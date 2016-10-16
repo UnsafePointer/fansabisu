@@ -80,7 +80,10 @@ class SettingsViewController: UIViewController {
     }
 
     func configureTwitter() {
-
+        let authorizer = Authorizer()
+        authorizer.requestToken { (result) in
+            
+        }
     }
 
     func configureFPS() {
