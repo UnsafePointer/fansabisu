@@ -5,8 +5,8 @@ import MobileCoreServices
 import Photos
 
 enum VideoProcessorError: Error {
-    case InvalidDestination
-    case ProcessingFailed
+    case invalidDestination
+    case processingFailed
 }
 
 public class VideoProcessor {
@@ -51,7 +51,7 @@ public class VideoProcessor {
             let fileProperties = [kCGImagePropertyGIFDictionary as String: [kCGImagePropertyGIFLoopCount as String: 0]]
             let gifProperties = [kCGImagePropertyGIFDictionary as String: [kCGImagePropertyGIFDelayTime as String: CMTimeGetSeconds(asset.duration) / Double(requiredFrames)]]
             guard let destination = CGImageDestinationCreateWithURL(temporaryURL as CFURL, kUTTypeGIF, Int(requiredFrames), nil) else {
-                return DispatchQueue.main.async { completionHandler(Result.Failure(VideoProcessorError.InvalidDestination)) }
+                return DispatchQueue.main.async { completionHandler(Result.failure(VideoProcessorError.invalidDestination)) }
             }
             CGImageDestinationSetProperties(destination, fileProperties as CFDictionary)
             for frame in frames {
@@ -61,7 +61,7 @@ public class VideoProcessor {
             }
 
             if (!CGImageDestinationFinalize(destination)) {
-                return DispatchQueue.main.async { completionHandler(Result.Failure(VideoProcessorError.ProcessingFailed)) }
+                return DispatchQueue.main.async { completionHandler(Result.failure(VideoProcessorError.processingFailed)) }
             }
 
             PHPhotoLibrary.shared().performChanges({
@@ -69,9 +69,9 @@ public class VideoProcessor {
             }) { (success, error) in
                 let result: Result<URL>
                 if let error = error {
-                    result = Result.Failure(error)
+                    result = Result.failure(error)
                 } else {
-                    result = Result.Success(temporaryURL)
+                    result = Result.success(temporaryURL)
                 }
                 DispatchQueue.main.async { completionHandler(result) }
             }

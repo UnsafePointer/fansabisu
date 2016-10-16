@@ -1,8 +1,8 @@
 import Foundation
 
 enum TokenProviderError: Error {
-    case InvalidInput
-    case RequestFailed
+    case invalidInput
+    case requestFailed
 }
 
 class TokenProvider {
@@ -19,12 +19,12 @@ class TokenProvider {
     
     func provideToken(with completionHandler: @escaping (Result<String>) -> Void) {
         if let accessToken = self.userDefaults.string(forKey: "FanSabisuTwitterToken") {
-            return completionHandler(Result.Success(accessToken))
+            return completionHandler(Result.success(accessToken))
         }
         
         let input = TwitterCredentials.consumerKey.appending(":").appending(TwitterCredentials.consumerSecret)
         guard let credentials = input.base64encode() else {
-            return completionHandler(Result.Failure(TokenProviderError.InvalidInput))
+            return completionHandler(Result.failure(TokenProviderError.invalidInput))
         }
         var request = URLRequest(url: URL(string: "https://api.twitter.com/oauth2/token")!)
         request.addValue("Basic ".appending(credentials), forHTTPHeaderField: "Authorization")
@@ -33,10 +33,10 @@ class TokenProvider {
         request.httpBody = "grant_type=client_credentials".data(using: String.Encoding.utf8)
         let dataTask = session.dataTask(with: request) { (data, response, error) in
             if let error = error {
-                return DispatchQueue.main.async { completionHandler(Result.Failure(error)) }
+                return DispatchQueue.main.async { completionHandler(Result.failure(error)) }
             }
             guard let data = data else {
-                return DispatchQueue.main.async { completionHandler(Result.Failure(TokenProviderError.RequestFailed)) }
+                return DispatchQueue.main.async { completionHandler(Result.failure(TokenProviderError.requestFailed)) }
             }
             let result =  self.responseParser.parseToken(with: data)
             if let value = try? result.resolve() {

@@ -1,8 +1,8 @@
 import Foundation
 
 enum ResponseParserError: Error {
-    case InvalidInput
-    case NotFound
+    case invalidInput
+    case notFound
 }
 
 class ResponseParser {
@@ -13,7 +13,7 @@ class ResponseParser {
         let media = extendedEntities?["media"] as? Array<Dictionary<String, Any>>
 
         guard let parsedMedia = media else {
-            return Result.Failure(ResponseParserError.InvalidInput)
+            return Result.failure(ResponseParserError.invalidInput)
         }
 
         for item in parsedMedia {
@@ -26,22 +26,22 @@ class ResponseParser {
                     let mediaUrl = variants?.first?["url"] as? String
                     if let mediaUrl = mediaUrl {
                         if let result = URL(string: mediaUrl) {
-                            return Result.Success(result)
+                            return Result.success(result)
                         }
                     }
                 }
             }
         }
 
-        return Result.Failure(ResponseParserError.NotFound)
+        return Result.failure(ResponseParserError.notFound)
     }
 
     func parseToken(with response: Data) -> Result<String> {
         let jsonObject = try? JSONSerialization.jsonObject(with: response, options: JSONSerialization.ReadingOptions.allowFragments) as? Dictionary<String, String>
         if let accessToken = jsonObject??["access_token"] {
-            return Result.Success(accessToken)
+            return Result.success(accessToken)
         } else {
-            return Result.Failure(ResponseParserError.InvalidInput)
+            return Result.failure(ResponseParserError.invalidInput)
         }
     }
 

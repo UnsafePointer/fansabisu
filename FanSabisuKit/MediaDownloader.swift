@@ -1,8 +1,8 @@
 import Foundation
 
 public enum MediaDownloaderError: Error {
-    case InvalidURL
-    case RequestFailed
+    case invalidURL
+    case requestFailed
 }
 
 public class MediaDownloader {
@@ -21,33 +21,33 @@ public class MediaDownloader {
     public func downloadMedia(with tweetURL: URL, completionHandler: @escaping (Result<URL>) -> Void) {
         tokenProvider.provideToken { (result) in
             guard let token = try? result.resolve() else {
-                return completionHandler(Result.Failure(MediaDownloaderError.RequestFailed))
+                return completionHandler(Result.failure(MediaDownloaderError.requestFailed))
             }
             guard let tweetID = tweetURL.pathComponents.last else {
-                return completionHandler(Result.Failure(MediaDownloaderError.InvalidURL))
+                return completionHandler(Result.failure(MediaDownloaderError.invalidURL))
             }
             let URLString = "https://api.twitter.com/1.1/statuses/show.json?id=".appending(tweetID)
             guard let requestURL = URL(string: URLString) else {
-                return completionHandler(Result.Failure(MediaDownloaderError.InvalidURL))
+                return completionHandler(Result.failure(MediaDownloaderError.invalidURL))
             }
             var request = URLRequest(url: requestURL)
             request.addValue("Bearer ".appending(token), forHTTPHeaderField: "Authorization")
             let dataTask = self.session.dataTask(with: request) { (data, URLResponse, error) in
                 if let error = error {
-                    return DispatchQueue.main.async { completionHandler(Result.Failure(error)) }
+                    return DispatchQueue.main.async { completionHandler(Result.failure(error)) }
                 }
                 guard let data = data else {
-                    return DispatchQueue.main.async { completionHandler(Result.Failure(MediaDownloaderError.RequestFailed)) }
+                    return DispatchQueue.main.async { completionHandler(Result.failure(MediaDownloaderError.requestFailed)) }
                 }
 
                 let url = self.responseParser.parseStatus(with: data)
                 switch url {
-                case .Success(let result):
+                case .success(let result):
                     self.downloadVideo(with: result, completionHandler: { (result) in
                         DispatchQueue.main.async { completionHandler(result) }
                     })
-                case .Failure(let error):
-                    return DispatchQueue.main.async { completionHandler(Result.Failure(error)) }
+                case .failure(let error):
+                    return DispatchQueue.main.async { completionHandler(Result.failure(error)) }
                 }
 
 
@@ -59,14 +59,14 @@ public class MediaDownloader {
     func downloadVideo(with videoUrl: URL, completionHandler: @escaping (Result<URL>) -> Void) {
         let task = session.downloadTask(with: videoUrl) { (location, response, error) in
             if let error = error {
-                return completionHandler(Result.Failure(error))
+                return completionHandler(Result.failure(error))
             }
             let temporaryDirectoryFilePath = URL(fileURLWithPath: NSTemporaryDirectory())
             guard let response = response else {
-                return completionHandler(Result.Failure(MediaDownloaderError.RequestFailed))
+                return completionHandler(Result.failure(MediaDownloaderError.requestFailed))
             }
             guard let location = location else {
-                return completionHandler(Result.Failure(MediaDownloaderError.RequestFailed))
+                return completionHandler(Result.failure(MediaDownloaderError.requestFailed))
             }
             let suggestedFilename: String
             if let value = response.suggestedFilename {
@@ -81,7 +81,7 @@ public class MediaDownloader {
                 let data = try? Data(contentsOf: location)
                 try? data?.write(to: destinationUrl, options: Data.WritingOptions.atomic)
             }
-            completionHandler(Result.Success(destinationUrl))
+            completionHandler(Result.success(destinationUrl))
         }
         task.resume()
     }
