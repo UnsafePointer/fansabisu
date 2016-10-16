@@ -30,6 +30,8 @@
 		3FA9A7B11DB3F1ED002060EE /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FA9A7981DB3F0E3002060EE /* CommonCrypto.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3FA9A7B91DB3F2FA002060EE /* FanSabisuKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA9A7B81DB3F2FA002060EE /* FanSabisuKitTests.swift */; };
 		3FA9A7BB1DB3F2FA002060EE /* FanSabisuKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F3544DE1D98213A003941CB /* FanSabisuKit.framework */; };
+		3FA9A7C21DB3F825002060EE /* String+PercentEncode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA9A7C11DB3F825002060EE /* String+PercentEncode.swift */; };
+		3FA9A7C41DB40961002060EE /* TwitterCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA9A7C31DB40961002060EE /* TwitterCredentials.swift */; };
 		3FABB6301D9FBAA1003E4B02 /* ResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FABB62F1D9FBAA1003E4B02 /* ResponseParser.swift */; };
 		3FABB6331D9FD0E9003E4B02 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3FABB6351D9FD0E9003E4B02 /* Localizable.strings */; };
 		3FABB6371D9FD649003E4B02 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FABB6361D9FD649003E4B02 /* String+Localization.swift */; };
@@ -147,6 +149,8 @@
 		3FA9A7B61DB3F2FA002060EE /* FanSabisuKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FanSabisuKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FA9A7B81DB3F2FA002060EE /* FanSabisuKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FanSabisuKitTests.swift; sourceTree = "<group>"; };
 		3FA9A7BA1DB3F2FA002060EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FA9A7C11DB3F825002060EE /* String+PercentEncode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+PercentEncode.swift"; sourceTree = "<group>"; };
+		3FA9A7C31DB40961002060EE /* TwitterCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterCredentials.swift; sourceTree = "<group>"; };
 		3FABB62F1D9FBAA1003E4B02 /* ResponseParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseParser.swift; sourceTree = "<group>"; };
 		3FABB6361D9FD649003E4B02 /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		3FABB6391D9FD7EF003E4B02 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -228,6 +232,8 @@
 				3F6937961DA43B71008C7CFE /* SettingKey.swift */,
 				3FA9A7A91DB3F128002060EE /* Authorizer.swift */,
 				3FA9A7AA1DB3F128002060EE /* Signature.swift */,
+				3FA9A7C11DB3F825002060EE /* String+PercentEncode.swift */,
+				3FA9A7C31DB40961002060EE /* TwitterCredentials.swift */,
 			);
 			path = FanSabisuKit;
 			sourceTree = "<group>";
@@ -570,6 +576,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FA9A7C41DB40961002060EE /* TwitterCredentials.swift in Sources */,
 				3FF9725D1D9917DA002B9D1A /* VideoProcessor.swift in Sources */,
 				3FABB63D1DA03163003E4B02 /* Double+Round.swift in Sources */,
 				3F3544F01D983050003941CB /* TokenProvider.swift in Sources */,
@@ -582,6 +589,7 @@
 				3FF2D1BA1DA2C3880019E838 /* UIColor+Appearance.swift in Sources */,
 				3FABB6301D9FBAA1003E4B02 /* ResponseParser.swift in Sources */,
 				3F6937971DA43B71008C7CFE /* SettingKey.swift in Sources */,
+				3FA9A7C21DB3F825002060EE /* String+PercentEncode.swift in Sources */,
 				3FABB6371D9FD649003E4B02 /* String+Localization.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

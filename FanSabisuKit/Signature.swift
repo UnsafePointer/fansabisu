@@ -21,7 +21,7 @@ class Signature {
 
     func parameterString() -> String {
         let sortedKeys = parameters.keys.map({
-            $0.urlEncodedString()
+            $0.percentEncoded()
         }).sorted {
             $0.localizedCaseInsensitiveCompare($1) == .orderedAscending
         }
@@ -32,7 +32,7 @@ class Signature {
             parameterString.append("=")
             let originalKey = key.removingPercentEncoding!
             let value = parameters[originalKey]!
-            parameterString.append(value.urlEncodedString())
+            parameterString.append(value.percentEncoded())
             signatureParameters.append(parameterString)
         }
         let parameterString = signatureParameters.joined(separator: "&")
@@ -42,19 +42,19 @@ class Signature {
     func signatureBase(with parameterString: String) -> String {
         var signatureBaseString = httpMethod.uppercased()
         signatureBaseString.append("&")
-        let percentEncodedURL = url.absoluteString.urlEncodedString()
+        let percentEncodedURL = url.absoluteString.percentEncoded()
         signatureBaseString.append(percentEncodedURL)
         signatureBaseString.append("&")
-        let percentEncodedParameterString = parameterString.urlEncodedString()
+        let percentEncodedParameterString = parameterString.percentEncoded()
         signatureBaseString.append(percentEncodedParameterString)
         return signatureBaseString
     }
 
     func signingKey() -> String {
-        var signingKey = consumerSecret.urlEncodedString()
+        var signingKey = consumerSecret.percentEncoded()
         signingKey.append("&")
         if let oauthTokenSecret = oauthTokenSecret {
-            signingKey.append(oauthTokenSecret.urlEncodedString())
+            signingKey.append(oauthTokenSecret.percentEncoded())
         }
         return signingKey
     }
@@ -84,15 +84,6 @@ class Signature {
         result.deallocate(capacity: digestLength)
 
         return String(hash)
-    }
-
-}
-
-extension String {
-
-    func urlEncodedString() -> String {
-        let characterSet = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._~")
-        return self.addingPercentEncoding(withAllowedCharacters: characterSet)!
     }
 
 }

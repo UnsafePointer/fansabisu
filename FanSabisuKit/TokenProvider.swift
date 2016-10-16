@@ -6,9 +6,7 @@ enum TokenProviderError: Error {
 }
 
 class TokenProvider {
-    
-    let consumerKey: String = "5aRrYugWlofJe1g1Wy5sZrBno"
-    let consumerSecret: String = "wCoXxVimmhZkbO50pFV2SOkVbaOOdGWDAqIlpTjngqIwpLCGcm"
+
     let session: URLSession
     let responseParser: ResponseParser
     let userDefaults: UserDefaults
@@ -24,7 +22,7 @@ class TokenProvider {
             return completionHandler(Result.Success(accessToken))
         }
         
-        let input = consumerKey.appending(":").appending(consumerSecret)
+        let input = TwitterCredentials.consumerKey.appending(":").appending(TwitterCredentials.consumerSecret)
         guard let credentials = input.base64encode() else {
             return completionHandler(Result.Failure(TokenProviderError.InvalidInput))
         }
