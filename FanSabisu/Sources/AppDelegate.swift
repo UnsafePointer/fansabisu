@@ -1,5 +1,4 @@
 import UIKit
-import FanSabisuKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -8,6 +7,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window?.tintColor = UIColor.appearanceColor()
+        return true
+    }
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        let userInfo = ["query": url.query]
+        NotificationCenter.default.post(name: .applicationDidReceiveOAuthCallback, object: nil, userInfo: userInfo)
         return true
     }
 

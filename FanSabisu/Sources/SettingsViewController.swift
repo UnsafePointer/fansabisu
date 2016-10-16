@@ -62,10 +62,15 @@ fileprivate struct Setting {
 
 }
 
+extension Notification.Name {
+    static let applicationDidReceiveOAuthCallback = Notification.Name("applicationDidReceiveOAuthCallback")
+}
+
 class SettingsViewController: UIViewController {
 
     fileprivate var settings: [Setting]
     @IBOutlet var tableView: UITableView?
+    var authorizer: Authorizer?
 
     required init?(coder aDecoder: NSCoder) {
         settings = Setting.settings()
@@ -77,13 +82,18 @@ class SettingsViewController: UIViewController {
 
         self.title = String.localizedString(for: "SETTINGS")
         automaticallyAdjustsScrollViewInsets = false
+        NotificationCenter.default.addObserver(self, selector: #selector(handleApplicationDidReceiveOAuthCallback(with:)), name: .applicationDidReceiveOAuthCallback, object: nil)
     }
 
     func configureTwitter() {
-        let authorizer = Authorizer()
-        authorizer.requestToken { (result) in
-            
+        authorizer = Authorizer(presentingViewController: self) { (result) in
+
         }
+        authorizer?.requestToken()
+    }
+
+    func handleApplicationDidReceiveOAuthCallback(with notification: Notification) {
+        authorizer?.continueTokenRequest(with: notification.userInfo)
     }
 
     func configureFPS() {
