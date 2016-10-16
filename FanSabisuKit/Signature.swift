@@ -1,6 +1,8 @@
 import Foundation
 import CommonCrypto
 
+// Class designed following: https://dev.twitter.com/oauth/overview/creating-signatures
+
 class Signature {
 
     let parameters: [String: String]
@@ -37,7 +39,7 @@ class Signature {
         return parameterString
     }
 
-    func signatureBaseString(with parameterString: String) -> String {
+    func signatureBase(with parameterString: String) -> String {
         var signatureBaseString = httpMethod.uppercased()
         signatureBaseString.append("&")
         let percentEncodedURL = url.absoluteString.urlEncodedString()
@@ -59,7 +61,7 @@ class Signature {
 
     func generate() -> String {
         let parameterString = self.parameterString()
-        let signatureBaseString = self.signatureBaseString(with: parameterString)
+        let signatureBaseString = self.signatureBase(with: parameterString)
         let signingKey = self.signingKey()
         let signature = hmac(with: signatureBaseString, key: signingKey)
         return signature.dataFromHexadecimalString().base64EncodedString()
@@ -99,15 +101,14 @@ extension String {
 
     func dataFromHexadecimalString() -> Data {
         var data = Data(capacity: characters.count / 2)
-
         let regex = try! NSRegularExpression(pattern: "[0-9a-f]{1,2}", options: .caseInsensitive)
         regex.enumerateMatches(in: self, options: [], range: NSMakeRange(0, characters.count)) { match, flags, stop in
             let byteString = (self as NSString).substring(with: match!.range)
             var num = UInt8(byteString, radix: 16)!
             data.append(&num, count: 1)
         }
-
         return data
     }
+
 }
 

@@ -28,6 +28,8 @@
 		3FA9A7AC1DB3F128002060EE /* Authorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA9A7A91DB3F128002060EE /* Authorizer.swift */; };
 		3FA9A7AD1DB3F128002060EE /* Signature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA9A7AA1DB3F128002060EE /* Signature.swift */; };
 		3FA9A7B11DB3F1ED002060EE /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FA9A7981DB3F0E3002060EE /* CommonCrypto.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		3FA9A7B91DB3F2FA002060EE /* FanSabisuKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA9A7B81DB3F2FA002060EE /* FanSabisuKitTests.swift */; };
+		3FA9A7BB1DB3F2FA002060EE /* FanSabisuKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F3544DE1D98213A003941CB /* FanSabisuKit.framework */; };
 		3FABB6301D9FBAA1003E4B02 /* ResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FABB62F1D9FBAA1003E4B02 /* ResponseParser.swift */; };
 		3FABB6331D9FD0E9003E4B02 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3FABB6351D9FD0E9003E4B02 /* Localizable.strings */; };
 		3FABB6371D9FD649003E4B02 /* String+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FABB6361D9FD649003E4B02 /* String+Localization.swift */; };
@@ -65,6 +67,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3FA9A7971DB3F0E3002060EE;
 			remoteInfo = CommonCrypto;
+		};
+		3FA9A7BC1DB3F2FA002060EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3FE447DF1D980799008E0B66 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F3544DD1D98213A003941CB;
+			remoteInfo = FanSabisuKit;
 		};
 		3FF9726C1D992906002B9D1A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -135,6 +144,9 @@
 		3FA9A7A71DB3F103002060EE /* macosx.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = macosx.modulemap; sourceTree = "<group>"; };
 		3FA9A7A91DB3F128002060EE /* Authorizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Authorizer.swift; sourceTree = "<group>"; };
 		3FA9A7AA1DB3F128002060EE /* Signature.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Signature.swift; sourceTree = "<group>"; };
+		3FA9A7B61DB3F2FA002060EE /* FanSabisuKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FanSabisuKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FA9A7B81DB3F2FA002060EE /* FanSabisuKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FanSabisuKitTests.swift; sourceTree = "<group>"; };
+		3FA9A7BA1DB3F2FA002060EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FABB62F1D9FBAA1003E4B02 /* ResponseParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseParser.swift; sourceTree = "<group>"; };
 		3FABB6361D9FD649003E4B02 /* String+Localization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Localization.swift"; sourceTree = "<group>"; };
 		3FABB6391D9FD7EF003E4B02 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -167,6 +179,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3FA9A7B31DB3F2FA002060EE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FA9A7BB1DB3F2FA002060EE /* FanSabisuKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +245,15 @@
 			path = CommonCrypto;
 			sourceTree = "<group>";
 		};
+		3FA9A7B71DB3F2FA002060EE /* FanSabisuKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				3FA9A7B81DB3F2FA002060EE /* FanSabisuKitTests.swift */,
+				3FA9A7BA1DB3F2FA002060EE /* Info.plist */,
+			);
+			path = FanSabisuKitTests;
+			sourceTree = "<group>";
+		};
 		3FE447DE1D980799008E0B66 = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +261,7 @@
 				3F3544DF1D98213A003941CB /* FanSabisuKit */,
 				3FF972651D992906002B9D1A /* FanSabisuActionUIExt */,
 				3FA9A7991DB3F0E3002060EE /* CommonCrypto */,
+				3FA9A7B71DB3F2FA002060EE /* FanSabisuKitTests */,
 				3FE447E81D980799008E0B66 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -243,6 +273,7 @@
 				3F3544DE1D98213A003941CB /* FanSabisuKit.framework */,
 				3FF972641D992906002B9D1A /* FanSabisuActionUIExt.appex */,
 				3FA9A7981DB3F0E3002060EE /* CommonCrypto.framework */,
+				3FA9A7B61DB3F2FA002060EE /* FanSabisuKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -361,6 +392,24 @@
 			productReference = 3FA9A7981DB3F0E3002060EE /* CommonCrypto.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		3FA9A7B51DB3F2FA002060EE /* FanSabisuKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3FA9A7BE1DB3F2FA002060EE /* Build configuration list for PBXNativeTarget "FanSabisuKitTests" */;
+			buildPhases = (
+				3FA9A7B21DB3F2FA002060EE /* Sources */,
+				3FA9A7B31DB3F2FA002060EE /* Frameworks */,
+				3FA9A7B41DB3F2FA002060EE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3FA9A7BD1DB3F2FA002060EE /* PBXTargetDependency */,
+			);
+			name = FanSabisuKitTests;
+			productName = FanSabisuKitTests;
+			productReference = 3FA9A7B61DB3F2FA002060EE /* FanSabisuKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		3FE447E61D980799008E0B66 /* FanSabisu */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3FE447F91D980799008E0B66 /* Build configuration list for PBXNativeTarget "FanSabisu" */;
@@ -422,6 +471,11 @@
 						DevelopmentTeam = M2Z2C2JVN5;
 						ProvisioningStyle = Automatic;
 					};
+					3FA9A7B51DB3F2FA002060EE = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = M2Z2C2JVN5;
+						ProvisioningStyle = Automatic;
+					};
 					3FE447E61D980799008E0B66 = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = M2Z2C2JVN5;
@@ -462,6 +516,7 @@
 				3F3544DD1D98213A003941CB /* FanSabisuKit */,
 				3FF972631D992906002B9D1A /* FanSabisuActionUIExt */,
 				3FA9A7971DB3F0E3002060EE /* CommonCrypto */,
+				3FA9A7B51DB3F2FA002060EE /* FanSabisuKitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -476,6 +531,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		3FA9A7961DB3F0E3002060EE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3FA9A7B41DB3F2FA002060EE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -531,6 +593,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3FA9A7B21DB3F2FA002060EE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FA9A7B91DB3F2FA002060EE /* FanSabisuKitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3FE447E31D980799008E0B66 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -570,6 +640,11 @@
 			isa = PBXTargetDependency;
 			target = 3FA9A7971DB3F0E3002060EE /* CommonCrypto */;
 			targetProxy = 3FA9A7AF1DB3F17D002060EE /* PBXContainerItemProxy */;
+		};
+		3FA9A7BD1DB3F2FA002060EE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3F3544DD1D98213A003941CB /* FanSabisuKit */;
+			targetProxy = 3FA9A7BC1DB3F2FA002060EE /* PBXContainerItemProxy */;
 		};
 		3FF9726D1D992906002B9D1A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -717,6 +792,30 @@
 				SWIFT_VERSION = 3.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		3FA9A7BF1DB3F2FA002060EE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = M2Z2C2JVN5;
+				INFOPLIST_FILE = FanSabisuKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ruenzuo.FanSabisuKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		3FA9A7C01DB3F2FA002060EE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = M2Z2C2JVN5;
+				INFOPLIST_FILE = FanSabisuKitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ruenzuo.FanSabisuKitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -897,6 +996,14 @@
 			buildConfigurations = (
 				3FA9A7A11DB3F0E3002060EE /* Debug */,
 				3FA9A7A21DB3F0E3002060EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3FA9A7BE1DB3F2FA002060EE /* Build configuration list for PBXNativeTarget "FanSabisuKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3FA9A7BF1DB3F2FA002060EE /* Debug */,
+				3FA9A7C01DB3F2FA002060EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
