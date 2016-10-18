@@ -48,6 +48,7 @@
 		3FF9726E1D992906002B9D1A /* FanSabisuActionUIExt.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3FF972641D992906002B9D1A /* FanSabisuActionUIExt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3FFB5A261DB6A4B400A9DD92 /* FSKNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FFB5A241DB6A4B400A9DD92 /* FSKNotificationCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3FFB5A271DB6A4B400A9DD92 /* FSKNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FFB5A251DB6A4B400A9DD92 /* FSKNotificationCenter.m */; };
+		3FFB5A291DB6B71400A9DD92 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFB5A281DB6B71400A9DD92 /* Keychain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +173,7 @@
 		3FF9726B1D992906002B9D1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FFB5A241DB6A4B400A9DD92 /* FSKNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSKNotificationCenter.h; sourceTree = "<group>"; };
 		3FFB5A251DB6A4B400A9DD92 /* FSKNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSKNotificationCenter.m; sourceTree = "<group>"; };
+		3FFB5A281DB6B71400A9DD92 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +242,7 @@
 				3FA9A7C31DB40961002060EE /* TwitterCredentials.swift */,
 				3FFB5A241DB6A4B400A9DD92 /* FSKNotificationCenter.h */,
 				3FFB5A251DB6A4B400A9DD92 /* FSKNotificationCenter.m */,
+				3FFB5A281DB6B71400A9DD92 /* Keychain.swift */,
 			);
 			path = FanSabisuKit;
 			sourceTree = "<group>";
@@ -583,6 +586,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FFB5A291DB6B71400A9DD92 /* Keychain.swift in Sources */,
 				3FA9A7C41DB40961002060EE /* TwitterCredentials.swift in Sources */,
 				3FF9725D1D9917DA002B9D1A /* VideoProcessor.swift in Sources */,
 				3FABB63D1DA03163003E4B02 /* Double+Round.swift in Sources */,

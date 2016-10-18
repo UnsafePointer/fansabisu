@@ -26,15 +26,17 @@ fileprivate struct Setting {
 
     static func settings() -> [Setting] {
         var settings = [Setting]()
-        let userDefaults = UserDefaults(suiteName: "group.com.ruenzuo.FanSabisu")!
 
-        let twitter: Setting;
-        if let twitterAccount = userDefaults.string(forKey: SettingKey.twitter.rawValue) {
-            twitter = Setting(type: .twitterAccount, value: twitterAccount)
-        } else {
-            twitter = Setting(type: .twitterAccount, value: String.localizedString(for: "TWITTER_ACCOUNT_NOT_FOUND"))
+        var twitter = Setting(type: .twitterAccount, value: String.localizedString(for: "TWITTER_ACCOUNT_NOT_FOUND"))
+        let keychain = Keychain()
+        if let screenName = try? keychain.retrieve().screenName {
+            if let screenName = screenName {
+                twitter = Setting(type: .twitterAccount, value: screenName)
+            }
         }
         settings.append(twitter)
+
+        let userDefaults = UserDefaults(suiteName: "group.com.ruenzuo.FanSabisu")!
 
         let fps: Setting;
         let defaultFPS = userDefaults.double(forKey: SettingKey.fps.rawValue)
@@ -84,8 +86,22 @@ class SettingsViewController: UIViewController {
         let authorizer = Authorizer()
         authorizer.requestOAuth(presentingViewController: self) { (result) in
             self.presentedViewController?.dismiss(animated: true, completion: nil)
-
-
+            guard let oauth = try? result.resolve() else {
+                return self.presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "OAUTH_ERROR"), actionHandler: nil)
+            }
+            let keychain = Keychain()
+            do {
+                try keychain.store(oauth: oauth)
+            } catch {
+                return self.presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "OAUTH_ERROR"), actionHandler: nil)
+            }
+            let index = SettingType.twitterAccount.rawValue
+            let indexPath = IndexPath(row: index, section: 0)
+            let setting = Setting(type: SettingType.twitterAccount, value: oauth.screenName!)
+            self.settings[index] = setting
+            DispatchQueue.main.async {
+                self.tableView?.reloadRows(at: [indexPath], with: .automatic)
+            }
         }
     }
 

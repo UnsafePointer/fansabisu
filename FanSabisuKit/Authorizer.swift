@@ -175,17 +175,24 @@ struct TokenVerifier {
 }
 
 public struct OAuth {
-    let oauthToken: String?
-    let oauthTokenSecret: String?
-    let userID: String?
-    let screenName: String?
+    public let oauthToken: String?
+    public let oauthTokenSecret: String?
+    public let userID: String?
+    public let screenName: String?
 
     init(response: String) {
         let parsedInfo = response.parse()
         self.oauthToken = parsedInfo["oauth_token"]
         self.oauthTokenSecret = parsedInfo["oauth_token_secret"]
-        self.userID = parsedInfo["userID"]
+        self.userID = parsedInfo["user_id"]
         self.screenName = parsedInfo["screen_name"]
+    }
+
+    init(oauthToken: String, oauthTokenSecret: String, userID: String, screenName: String) {
+        self.oauthToken = oauthToken
+        self.oauthTokenSecret = oauthTokenSecret
+        self.userID = userID
+        self.screenName = screenName
     }
 }
 
