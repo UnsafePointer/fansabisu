@@ -11,40 +11,17 @@ public enum AuthorizerError: Error {
 
 public class Authorizer {
 
+    public static let applicationDidReceiveOAuthCallback = "applicationDidReceiveOAuthCallback"
+
     let session: URLSession
     var oauthToken: String?
-    let presentingViewController: UIViewController
-    let completionHandler: ((Result<String>) -> Void)
 
-    public init(presentingViewController: UIViewController, completionHandler: @escaping (Result<String>) -> Void) {
+    public init() {
         let configuration = URLSessionConfiguration.default
         session = URLSession(configuration: configuration)
-        self.presentingViewController = presentingViewController
-        self.completionHandler = completionHandler
     }
 
-    public func continueTokenRequest(with userInfo: [AnyHashable: Any]?) {
-        guard let query = userInfo?["query"] as? String else {
-            return self.completionHandler(Result.failure(AuthorizerError.couldNotCompleteOAuth))
-        }
-        let tokenVerifier = TokenVerifier(query: query)
-        let url = URL(string: "https://api.twitter.com/oauth/access_token")!
-        let header = authorizationHeader(with: url, oauth_params: ["oauth_token": tokenVerifier.oauthToken])
-
-        var request = URLRequest(url: url)
-        request.addValue(header, forHTTPHeaderField: "Authorization")
-        request.addValue("*/*", forHTTPHeaderField: "Accept")
-        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        request.addValue(String(tokenVerifier.oauthVerififer.characters.count), forHTTPHeaderField: "Content-Length")
-        request.httpMethod = "POST"
-        request.httpBody = "oauth_verifier=".appending(tokenVerifier.oauthVerififer).data(using: .utf8)
-        let dataTask = session.dataTask(with: request) { (data, response, error) in
-            print(data)
-        }
-        dataTask.resume()
-    }
-
-    public func requestToken() {
+    public func requestOAuth(presentingViewController: UIViewController, completionHandler: @escaping (Result<OAuth>) -> Void) {
         let url = URL(string: "https://api.twitter.com/oauth/request_token")!
         let header = authorizationHeader(with: url, oauth_params: ["oauth_callback": "fansabisu://oauth"])
 
@@ -54,17 +31,55 @@ public class Authorizer {
         request.httpMethod = "POST"
         let dataTask = session.dataTask(with: request) { (data, response, error) in
             guard let data = data else {
-                return self.completionHandler(Result.failure(AuthorizerError.couldNotAuthenticate))
+                return completionHandler(Result.failure(AuthorizerError.couldNotAuthenticate))
             }
             guard let responseString = String(data: data, encoding: .utf8) else {
-                return self.completionHandler(Result.failure(AuthorizerError.couldNotParseResponse))
+                return completionHandler(Result.failure(AuthorizerError.couldNotParseResponse))
             }
             let accessToken = RequestToken(response: responseString)
-            guard let url = URL(string: "https://api.twitter.com/oauth/authenticate?oauth_token=".appending(accessToken.oauthToken)) else {
-                return self.completionHandler(Result.failure(AuthorizerError.couldNotBuildUrl))
+            guard let oauthToken = accessToken.oauthToken else {
+                return completionHandler(Result.failure(AuthorizerError.couldNotParseResponse))
+            }
+            guard let url = URL(string: "https://api.twitter.com/oauth/authenticate?oauth_token=".appending(oauthToken)) else {
+                return completionHandler(Result.failure(AuthorizerError.couldNotBuildUrl))
             }
             let safariViewController = SFSafariViewController(url: url)
-            self.presentingViewController.present(safariViewController, animated: true, completion: nil)
+            presentingViewController.present(safariViewController, animated: true, completion: nil)
+
+            FSKNotificationCenter.default.registerNotificationName(Authorizer.applicationDidReceiveOAuthCallback) { (parameters) in
+                FSKNotificationCenter.default.unregisterNotificationName(Authorizer.applicationDidReceiveOAuthCallback)
+
+                guard let query = parameters?["query"] as? String else {
+                    return completionHandler(Result.failure(AuthorizerError.couldNotCompleteOAuth))
+                }
+                let tokenVerifier = TokenVerifier(response: query)
+                let url = URL(string: "https://api.twitter.com/oauth/access_token")!
+
+                guard let oauthToken = tokenVerifier.oauthToken, let oauthVerififer = tokenVerifier.oauthVerififer else {
+                    return completionHandler(Result.failure(AuthorizerError.couldNotParseResponse))
+                }
+
+                let header = self.authorizationHeader(with: url, oauth_params: ["oauth_token": oauthToken])
+
+                var request = URLRequest(url: url)
+                request.addValue(header, forHTTPHeaderField: "Authorization")
+                request.addValue("*/*", forHTTPHeaderField: "Accept")
+                request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+                request.addValue(String(oauthVerififer.characters.count), forHTTPHeaderField: "Content-Length")
+                request.httpMethod = "POST"
+                request.httpBody = "oauth_verifier=".appending(oauthVerififer).data(using: .utf8)
+                let dataTask = self.session.dataTask(with: request) { (data, response, error) in
+                    guard let data = data else {
+                        return completionHandler(Result.failure(AuthorizerError.couldNotAuthenticate))
+                    }
+                    guard let responseString = String(data: data, encoding: .utf8) else {
+                        return completionHandler(Result.failure(AuthorizerError.couldNotParseResponse))
+                    }
+                    let oauth = OAuth(response: responseString)
+                    completionHandler(Result.success(oauth))
+                }
+                dataTask.resume()
+            }
         }
         dataTask.resume()
     }
@@ -136,36 +151,41 @@ public class Authorizer {
 
 struct RequestToken {
 
-    let oauthToken: String
-    let oauthTokenSecret: String
-    let oauthCallbackConfirmed: Bool
+    let oauthToken: String?
+    let oauthTokenSecret: String?
+    let oauthCallbackConfirmed: Bool?
 
     init(response: String) {
-        let components = response.components(separatedBy: "&")
-        var parsedInfo = [String: String]()
-        for component in components {
-            let parsedComponent = component.components(separatedBy: "=")
-            parsedInfo.updateValue(parsedComponent.last!, forKey: parsedComponent.first!)
-        }
-        self.oauthToken = parsedInfo["oauth_token"]!
-        self.oauthTokenSecret = parsedInfo["oauth_token_secret"]!
+        let parsedInfo = response.parse()
+        self.oauthToken = parsedInfo["oauth_token"]
+        self.oauthTokenSecret = parsedInfo["oauth_token_secret"]
         self.oauthCallbackConfirmed = parsedInfo["oauth_callback_confirmed"] == "true"
     }
 }
 
 struct TokenVerifier {
-    let oauthToken: String
-    let oauthVerififer: String
+    let oauthToken: String?
+    let oauthVerififer: String?
 
-    init(query: String) {
-        let components = query.components(separatedBy: "&")
-        var parsedInfo = [String: String]()
-        for component in components {
-            let parsedComponent = component.components(separatedBy: "=")
-            parsedInfo.updateValue(parsedComponent.last!, forKey: parsedComponent.first!)
-        }
-        self.oauthToken = parsedInfo["oauth_token"]!
-        self.oauthVerififer = parsedInfo["oauth_verifier"]!
+    init(response: String) {
+        let parsedInfo = response.parse()
+        self.oauthToken = parsedInfo["oauth_token"]
+        self.oauthVerififer = parsedInfo["oauth_verifier"]
+    }
+}
+
+public struct OAuth {
+    let oauthToken: String?
+    let oauthTokenSecret: String?
+    let userID: String?
+    let screenName: String?
+
+    init(response: String) {
+        let parsedInfo = response.parse()
+        self.oauthToken = parsedInfo["oauth_token"]
+        self.oauthTokenSecret = parsedInfo["oauth_token_secret"]
+        self.userID = parsedInfo["userID"]
+        self.screenName = parsedInfo["screen_name"]
     }
 }
 
@@ -181,6 +201,22 @@ extension Data {
         let encondedData = data.base64EncodedString()
         let alphanumeric = encondedData.components(separatedBy: CharacterSet.alphanumerics.inverted).joined(separator: "")
         return alphanumeric
+    }
+
+}
+
+extension String {
+
+    func parse() -> [String: String] {
+        let components = self.components(separatedBy: "&")
+        var parsedInfo = [String: String]()
+        for component in components {
+            let parsedComponent = component.components(separatedBy: "=")
+            if let value = parsedComponent.last, let key = parsedComponent.first {
+                parsedInfo.updateValue(value, forKey: key)
+            }
+        }
+        return parsedInfo
     }
 
 }

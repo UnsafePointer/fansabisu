@@ -46,6 +46,8 @@
 		3FF972671D992906002B9D1A /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF972661D992906002B9D1A /* ActionViewController.swift */; };
 		3FF9726A1D992906002B9D1A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FF972681D992906002B9D1A /* MainInterface.storyboard */; };
 		3FF9726E1D992906002B9D1A /* FanSabisuActionUIExt.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3FF972641D992906002B9D1A /* FanSabisuActionUIExt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3FFB5A261DB6A4B400A9DD92 /* FSKNotificationCenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FFB5A241DB6A4B400A9DD92 /* FSKNotificationCenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3FFB5A271DB6A4B400A9DD92 /* FSKNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FFB5A251DB6A4B400A9DD92 /* FSKNotificationCenter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -168,6 +170,8 @@
 		3FF972661D992906002B9D1A /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
 		3FF972691D992906002B9D1A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		3FF9726B1D992906002B9D1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FFB5A241DB6A4B400A9DD92 /* FSKNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSKNotificationCenter.h; sourceTree = "<group>"; };
+		3FFB5A251DB6A4B400A9DD92 /* FSKNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSKNotificationCenter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -234,6 +238,8 @@
 				3FA9A7AA1DB3F128002060EE /* Signature.swift */,
 				3FA9A7C11DB3F825002060EE /* String+PercentEncode.swift */,
 				3FA9A7C31DB40961002060EE /* TwitterCredentials.swift */,
+				3FFB5A241DB6A4B400A9DD92 /* FSKNotificationCenter.h */,
+				3FFB5A251DB6A4B400A9DD92 /* FSKNotificationCenter.m */,
 			);
 			path = FanSabisuKit;
 			sourceTree = "<group>";
@@ -347,6 +353,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F3544E21D98213A003941CB /* FanSabisuKit.h in Headers */,
+				3FFB5A261DB6A4B400A9DD92 /* FSKNotificationCenter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,6 +597,7 @@
 				3FABB6301D9FBAA1003E4B02 /* ResponseParser.swift in Sources */,
 				3F6937971DA43B71008C7CFE /* SettingKey.swift in Sources */,
 				3FA9A7C21DB3F825002060EE /* String+PercentEncode.swift in Sources */,
+				3FFB5A271DB6A4B400A9DD92 /* FSKNotificationCenter.m in Sources */,
 				3FABB6371D9FD649003E4B02 /* String+Localization.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1006,6 +1014,7 @@
 				3FA9A7A21DB3F0E3002060EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3FA9A7BE1DB3F2FA002060EE /* Build configuration list for PBXNativeTarget "FanSabisuKitTests" */ = {
 			isa = XCConfigurationList;
@@ -1014,6 +1023,7 @@
 				3FA9A7C01DB3F2FA002060EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3FE447E21D980799008E0B66 /* Build configuration list for PBXProject "FanSabisu" */ = {
 			isa = XCConfigurationList;

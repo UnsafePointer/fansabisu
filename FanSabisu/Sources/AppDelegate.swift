@@ -1,4 +1,5 @@
 import UIKit
+import FanSabisuKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -12,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         let userInfo = ["query": url.query]
-        NotificationCenter.default.post(name: .applicationDidReceiveOAuthCallback, object: nil, userInfo: userInfo)
+        FSKNotificationCenter.default.postNotificationName(Authorizer.applicationDidReceiveOAuthCallback, withParameters: userInfo)
         return true
     }
 
