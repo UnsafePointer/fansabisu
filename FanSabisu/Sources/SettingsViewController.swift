@@ -83,28 +83,13 @@ class SettingsViewController: UIViewController {
     }
 
     func configureTwitter() {
-        let authorizer = Authorizer()
-        authorizer.requestOAuth(presentingViewController: self) { (result) in
-            self.presentedViewController?.dismiss(animated: true, completion: nil)
-            guard let oauth = try? result.resolve() else {
-                return self.presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "OAUTH_ERROR"), actionHandler: nil)
-            }
-            let keychain = Keychain()
-            do {
-                try keychain.store(oauth: oauth)
-            } catch {
-                return self.presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "OAUTH_ERROR"), actionHandler: nil)
-            }
-            let index = SettingType.twitterAccount.rawValue
-            let indexPath = IndexPath(row: index, section: 0)
-            let setting = Setting(type: SettingType.twitterAccount, value: oauth.screenName!)
-            self.settings[index] = setting
-            DispatchQueue.main.async {
-                self.tableView?.reloadRows(at: [indexPath], with: .automatic)
-            }
+        let setting = settings[SettingType.twitterAccount.rawValue]
+        if setting.value == String.localizedString(for: "TWITTER_ACCOUNT_NOT_FOUND") {
+            authorize()
+        } else {
+            unauthorize()
         }
     }
-
 
     func configureFPS() {
         let controller = UIAlertController(title: "", message: String.localizedString(for: "DEFAULT_FPS_DESCRIPTION"), preferredStyle: .actionSheet)
@@ -139,6 +124,61 @@ class SettingsViewController: UIViewController {
         let setting = Setting(type: SettingType.defaultFramesPerSecond, value: "~\(Int(fps))")
         settings[index] = setting
         self.tableView?.reloadRows(at: [indexPath], with: .automatic)
+    }
+
+    func authorize() {
+        let authorizer = Authorizer()
+        authorizer.requestOAuth(presentingViewController: self) { (result) in
+            self.presentedViewController?.dismiss(animated: true, completion: nil)
+            guard let oauth = try? result.resolve() else {
+                return self.presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "OAUTH_ERROR"), actionHandler: nil)
+            }
+            let keychain = Keychain()
+            do {
+                try keychain.store(oauth: oauth)
+            } catch {
+                return self.presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "OAUTH_ERROR"), actionHandler: nil)
+            }
+            let index = SettingType.twitterAccount.rawValue
+            let indexPath = IndexPath(row: index, section: 0)
+            let setting = Setting(type: SettingType.twitterAccount, value: oauth.screenName!)
+            self.settings[index] = setting
+            DispatchQueue.main.async {
+                self.tableView?.reloadRows(at: [indexPath], with: .automatic)
+            }
+        }
+    }
+
+    func unauthorize() {
+        let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        controller.addAction(UIAlertAction(title: String.localizedString(for: "UNAUTHORIZE"), style: .destructive, handler: { (action) in
+            self.wipeKeychain()
+        }))
+        controller.addAction(UIAlertAction(title: String.localizedString(for: "CANCEL"), style: .cancel, handler: { (action) in
+        }))
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            let index = SettingType.twitterAccount.rawValue
+            let indexPath = IndexPath(row: index, section: 0)
+            let cell = tableView?.cellForRow(at: indexPath)
+            controller.popoverPresentationController?.sourceView = cell?.detailTextLabel
+        }
+        present(controller, animated: true, completion: nil)
+    }
+
+    func wipeKeychain() {
+        let keychain = Keychain()
+        do {
+            try keychain.wipe()
+        } catch {
+            return self.presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "OAUTH_ERROR"), actionHandler: nil)
+        }
+        let index = SettingType.twitterAccount.rawValue
+        let indexPath = IndexPath(row: index, section: 0)
+        let setting = Setting(type: .twitterAccount, value: String.localizedString(for: "TWITTER_ACCOUNT_NOT_FOUND"))
+        self.settings[index] = setting
+        DispatchQueue.main.async {
+            self.tableView?.reloadRows(at: [indexPath], with: .automatic)
+        }
     }
 
 }

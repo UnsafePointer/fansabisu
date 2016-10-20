@@ -50,13 +50,19 @@ public class Keychain {
         return OAuth(oauthToken: oauthToken, oauthTokenSecret: oauthTokenSecret, userID: userID, screenName: screenName)
     }
 
+    public func wipe() throws {
+        try delete(for: KeychainKey.oauthToken.rawValue)
+        try delete(for: KeychainKey.oauthTokenSecret.rawValue)
+        try delete(for: KeychainKey.userID.rawValue)
+        try delete(for: KeychainKey.screenName.rawValue)
+    }
+
     func store(value: Data, for key: String) throws {
         let query = [kSecClass as String: kSecClassGenericPassword as String,
                      kSecAttrService as String: "FanSabisu",
                      kSecAttrAccount as String: key,
                      kSecValueData as String: value,
                      kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlocked as String] as [String : Any]
-        SecItemDelete(query as CFDictionary)
         if errSecSuccess != SecItemAdd(query as CFDictionary, nil) {
             throw KeychainError.couldNotSave
         }
@@ -83,6 +89,16 @@ public class Keychain {
             throw KeychainError.couldNotRetrieve
         }
         return value
+    }
+
+    func delete(for key: String) throws {
+        let query = [kSecClass as String: kSecClassGenericPassword as String,
+                     kSecAttrService as String: "FanSabisu",
+                     kSecAttrAccount as String: key,
+                     kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlocked as String] as [String : Any]
+        if errSecSuccess != SecItemDelete(query as CFDictionary) {
+            throw KeychainError.couldNotSave
+        }
     }
 
 }

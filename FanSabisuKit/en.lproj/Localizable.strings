@@ -35,3 +35,4 @@
 "EXTENSION_AUTHORIZATION_ERROR" = "This extension needs access to your photos in order to save GIFs";
 "DEFAULT_FPS_DESCRIPTION" = "Frames per second used to generate GIFs";
 "OAUTH_ERROR" = "Couldn't request authorization";
+"UNAUTHORIZE" = "Unauthorize";
