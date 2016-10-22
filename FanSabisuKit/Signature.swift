@@ -42,7 +42,9 @@ class Signature {
     func signatureBase(with parameterString: String) -> String {
         var signatureBaseString = httpMethod.uppercased()
         signatureBaseString.append("&")
-        let percentEncodedURL = url.absoluteString.percentEncoded()
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        components?.query = nil
+        let percentEncodedURL = components!.string!.percentEncoded()
         signatureBaseString.append(percentEncodedURL)
         signatureBaseString.append("&")
         let percentEncodedParameterString = parameterString.percentEncoded()

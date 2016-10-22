@@ -7,6 +7,7 @@ public enum AuthorizerError: Error {
     case couldNotParseResponse
     case couldNotBuildUrl
     case couldNotCompleteOAuth
+    case couldNotBuildRequest
 }
 
 public class Authorizer {
@@ -15,20 +16,52 @@ public class Authorizer {
 
     let session: URLSession
     var oauthToken: String?
+    var oauthTokenSecret: String?
+    let tokenProvider: TokenProvider
 
     public init() {
         let configuration = URLSessionConfiguration.default
         session = URLSession(configuration: configuration)
+        let keychain = Keychain()
+        oauthToken = try? keychain.retrieve(for: KeychainKey.oauthToken.rawValue)
+        oauthTokenSecret = try? keychain.retrieve(for: KeychainKey.oauthTokenSecret.rawValue)
+        tokenProvider = TokenProvider(session: session)
+    }
+
+    public func buildRequest(for url: URL, completionHandler: @escaping (Result<URLRequest>) -> Void) {
+        if let _ = self.oauthToken, let _ = self.oauthTokenSecret {
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+            var params = [String: String]()
+            components?.queryItems?.forEach({ (item) in
+                if let value = item.value {
+                    params.updateValue(value, forKey: item.name)
+                }
+            })
+            let header = authorizationHeader(with: request, params: params)
+            request.addValue(header, forHTTPHeaderField: "Authorization")
+            request.addValue("*/*", forHTTPHeaderField: "Accept")
+            completionHandler(Result.success(request))
+        } else {
+            tokenProvider.provideToken(with: { (result) in
+                guard let token = try? result.resolve() else {
+                    return completionHandler(Result.failure(AuthorizerError.couldNotBuildUrl))
+                }
+                var request = URLRequest(url: url)
+                request.addValue("Bearer ".appending(token), forHTTPHeaderField: "Authorization")
+                completionHandler(Result.success(request))
+            })
+        }
     }
 
     public func requestOAuth(presentingViewController: UIViewController, completionHandler: @escaping (Result<OAuth>) -> Void) {
         let url = URL(string: "https://api.twitter.com/oauth/request_token")!
-        let header = authorizationHeader(with: url, oauth_params: ["oauth_callback": "fansabisu://oauth"])
-
         var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let header = authorizationHeader(with: request, params: ["oauth_callback": "fansabisu://oauth"])
         request.addValue(header, forHTTPHeaderField: "Authorization")
         request.addValue("*/*", forHTTPHeaderField: "Accept")
-        request.httpMethod = "POST"
         let dataTask = session.dataTask(with: request) { (data, response, error) in
             guard let data = data else {
                 return completionHandler(Result.failure(AuthorizerError.couldNotAuthenticate))
@@ -58,15 +91,13 @@ public class Authorizer {
                 guard let oauthToken = tokenVerifier.oauthToken, let oauthVerififer = tokenVerifier.oauthVerififer else {
                     return completionHandler(Result.failure(AuthorizerError.couldNotParseResponse))
                 }
-
-                let header = self.authorizationHeader(with: url, oauth_params: ["oauth_token": oauthToken])
-
                 var request = URLRequest(url: url)
+                request.httpMethod = "POST"
+                let header = self.authorizationHeader(with: request, params: ["oauth_token": oauthToken])
                 request.addValue(header, forHTTPHeaderField: "Authorization")
                 request.addValue("*/*", forHTTPHeaderField: "Accept")
                 request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
                 request.addValue(String(oauthVerififer.characters.count), forHTTPHeaderField: "Content-Length")
-                request.httpMethod = "POST"
                 request.httpBody = "oauth_verifier=".appending(oauthVerififer).data(using: .utf8)
                 let dataTask = self.session.dataTask(with: request) { (data, response, error) in
                     guard let data = data else {
@@ -84,7 +115,7 @@ public class Authorizer {
         dataTask.resume()
     }
 
-    func authorizationHeader(with url: URL, oauth_params: [String: String]?) -> String {
+    func authorizationHeader(with urlRequest: URLRequest, params: [String: String]?) -> String {
         let nonce = Data.nonce()
         let timestamp = String(Int64(Date().timeIntervalSince1970))
         var parameters = ["oauth_consumer_key": TwitterCredentials.consumerKey,
@@ -93,15 +124,21 @@ public class Authorizer {
                           "oauth_timestamp": timestamp,
                           "oauth_version": "1.0",
                           ]
-        oauth_params?.forEach { (key, value) in
+        params?.forEach { (key, value) in
             parameters.updateValue(value, forKey: key)
         }
+        if let oauthToken = oauthToken {
+            parameters.updateValue(oauthToken, forKey: "oauth_token")
+        }
 
-        let signature = Signature(with: parameters, url: url, httpMethod: "POST", consumerSecret: TwitterCredentials.consumerSecret, oauthTokenSecret: nil).generate()
+        var components = URLComponents(url: urlRequest.url!, resolvingAgainstBaseURL: false)
+        components?.query = nil
+        let signatureUrl = components?.url
+        let signature = Signature(with: parameters, url: signatureUrl!, httpMethod: urlRequest.httpMethod!, consumerSecret: TwitterCredentials.consumerSecret, oauthTokenSecret: self.oauthTokenSecret).generate()
         var header = ""
         header.append("OAuth ")
 
-        oauth_params?.forEach { (key, value) in
+        params?.forEach { (key, value) in
             header.append(key.percentEncoded())
             header.append("=\"")
             header.append(value.percentEncoded())

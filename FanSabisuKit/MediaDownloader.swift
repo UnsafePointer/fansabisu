@@ -8,30 +8,27 @@ public enum MediaDownloaderError: Error {
 public class MediaDownloader {
     
     let session: URLSession
-    let tokenProvider: TokenProvider
     let responseParser: ResponseParser
     
     public init() {
         let configuration = URLSessionConfiguration.default
         session = URLSession(configuration: configuration)
-        tokenProvider = TokenProvider(session: session)
         responseParser = ResponseParser()
     }
     
     public func downloadMedia(with tweetURL: URL, completionHandler: @escaping (Result<URL>) -> Void) {
-        tokenProvider.provideToken { (result) in
-            guard let token = try? result.resolve() else {
+        guard let tweetID = tweetURL.pathComponents.last else {
+            return completionHandler(Result.failure(MediaDownloaderError.invalidURL))
+        }
+        let URLString = "https://api.twitter.com/1.1/statuses/show.json?id=".appending(tweetID)
+        guard let requestURL = URL(string: URLString) else {
+            return completionHandler(Result.failure(MediaDownloaderError.invalidURL))
+        }
+        let authorizer = Authorizer()
+        authorizer.buildRequest(for: requestURL) { (result) in
+            guard let request = try? result.resolve() else {
                 return completionHandler(Result.failure(MediaDownloaderError.requestFailed))
             }
-            guard let tweetID = tweetURL.pathComponents.last else {
-                return completionHandler(Result.failure(MediaDownloaderError.invalidURL))
-            }
-            let URLString = "https://api.twitter.com/1.1/statuses/show.json?id=".appending(tweetID)
-            guard let requestURL = URL(string: URLString) else {
-                return completionHandler(Result.failure(MediaDownloaderError.invalidURL))
-            }
-            var request = URLRequest(url: requestURL)
-            request.addValue("Bearer ".appending(token), forHTTPHeaderField: "Authorization")
             let dataTask = self.session.dataTask(with: request) { (data, URLResponse, error) in
                 if let error = error {
                     return DispatchQueue.main.async { completionHandler(Result.failure(error)) }
@@ -49,13 +46,11 @@ public class MediaDownloader {
                 case .failure(let error):
                     return DispatchQueue.main.async { completionHandler(Result.failure(error)) }
                 }
-
-
             }
             dataTask.resume()
         }
     }
-    
+
     func downloadVideo(with videoUrl: URL, completionHandler: @escaping (Result<URL>) -> Void) {
         let task = session.downloadTask(with: videoUrl) { (location, response, error) in
             if let error = error {
