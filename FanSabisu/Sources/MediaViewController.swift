@@ -117,10 +117,12 @@ class MediaViewController: UIViewController {
                     let videoUrl = try result.resolve()
                     let videoProcessor = VideoProcessor()
                     videoProcessor.processVideo(with: videoUrl, completionHandler: { (result) in
-                        guard let _ = try? result.resolve() else {
+                        guard let url = try? result.resolve() else {
                             self.activityIndicatorView?.stopAnimating()
                             return self.presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "PROCESS_VIDEO_ERROR"), actionHandler: nil)
                         }
+                        let manager = FileManager.default
+                        try? manager.removeItem(at: url)
                         self.activityIndicatorView?.stopAnimating()
                         self.presentMessage(title: String.localizedString(for: "FINISHED"), message: String.localizedString(for: "GIF_STORED"), actionHandler: nil)
                         self.loadAssets()

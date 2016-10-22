@@ -7,6 +7,7 @@ class ActionViewController: UIViewController {
 
     @IBOutlet var activityIndicator: UIActivityIndicatorView?
     @IBOutlet var imageView: UIImageView?
+    var url: URL?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +71,7 @@ class ActionViewController: UIViewController {
                     guard let url = try? result.resolve() else {
                         return self.showError(message: String.localizedString(for: "PROCESS_VIDEO_ERROR"))
                     }
+                    self.url = url
                     if let data = try? Data(contentsOf: url) {
                         self.updateInterface(with: data)
                     } else {
@@ -95,8 +97,16 @@ class ActionViewController: UIViewController {
     }
 
     @IBAction func done() {
+        cleanup()
         self.activityIndicator?.stopAnimating()
         self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
+    }
+
+    func cleanup() {
+        if let url = url {
+            let manager = FileManager.default
+            try? manager.removeItem(at: url)
+        }
     }
 
 }
