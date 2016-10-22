@@ -37,7 +37,7 @@ public class Editor {
         let actualDelayPerFrame = duration / Double(frames.count)
 
         let temporaryDirectoryFilePath = URL(fileURLWithPath: NSTemporaryDirectory())
-        let temporaryURL = temporaryDirectoryFilePath.appendingPathComponent(UUID().uuidString)
+        let temporaryURL = temporaryDirectoryFilePath.appendingPathComponent(UUID().uuidString.appending(".gif"))
 
         let fileProperties = [kCGImagePropertyGIFDictionary as String: [kCGImagePropertyGIFLoopCount as String: 0]]
         let gifProperties = [kCGImagePropertyGIFDictionary as String: [kCGImagePropertyGIFDelayTime as String: actualDelayPerFrame * self.modifier()]]

@@ -8,6 +8,7 @@ class MediaDetailViewController: UIViewController {
     var asset: PHAsset?
     @IBOutlet var imageView: UIImageView?
     var information: Dictionary<String, Any>?
+    var temporaryEditorResults: URL?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +25,13 @@ class MediaDetailViewController: UIViewController {
                 self.information = result.1
             }
         }
+    }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "EditPreview" {
+            let controller = segue.destination as! PreviewViewController
+            controller.url = temporaryEditorResults
+        }
     }
 
     func displayInformation() {
@@ -97,11 +104,16 @@ class MediaDetailViewController: UIViewController {
 
     func previewChanges(edit: Edit) {
         guard let data = self.information?[UIImage.GIFInformationKey.data.rawValue] as? Data else {
-            //TODO: Present error
+            self.presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "EDIT_FAILED"), actionHandler: nil)
             return
         }
         let editor = Editor(data: data, edit: edit)
-        let result = editor.apply()
+        if let result = editor.apply() {
+            self.temporaryEditorResults = result
+            performSegue(withIdentifier: "EditPreview", sender: self)
+        } else {
+            self.presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "EDIT_FAILED"), actionHandler: nil)
+        }
     }
 
 }

@@ -40,3 +40,6 @@
 "EDIT" = "Edit";
 "2XSPEEDUP" = "2x Speed up";
 "2XSLOWDOWN" = "2x Slowdown";
+"PREVIEW" = "Preview";
+"EDIT_FAILED" = "Couldn't edit image";
+"SAVE_FAILED" = "Couldn't save image";

@@ -1,0 +1,31 @@
+import UIKit
+import FanSabisuKit
+import Photos
+
+class PreviewViewController: UIViewController {
+
+    var url: URL?
+    @IBOutlet var imageView: UIImageView?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = String.localizedString(for: "PREVIEW")
+        if let url = self.url {
+            let image = UIImage.animatedImage(with: url)
+            self.imageView?.image = image
+        }
+    }
+
+    @IBAction func save(with sender: UIBarButtonItem) {
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: self.url!)
+        }) { (success, error) in
+            if let _ = error {
+                self.presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "SAVE_FAILED"), actionHandler: nil)
+            } else {
+                DispatchQueue.main.async { self.performSegue(withIdentifier: "UnwindToMedia", sender: nil) }
+            }
+        }
+    }
+
+}

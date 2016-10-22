@@ -39,21 +39,21 @@
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="SettingCell" textLabel="Hyg-gy-bVl" detailTextLabel="a8D-SR-waG" style="IBUITableViewCellStyleValue1" id="Njz-T9-5gP">
-                                        <rect key="frame" x="0.0" y="119.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="120" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Njz-T9-5gP" id="hwo-zk-ktU">
-                                            <frame key="frameInset" width="375" height="43.5"/>
+                                            <frame key="frameInset" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hyg-gy-bVl">
-                                                    <frame key="frameInset" minX="15" minY="12" width="33.5" height="20.5"/>
+                                                    <frame key="frameInset" minX="15" minY="11" width="34" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="a8D-SR-waG">
-                                                    <frame key="frameInset" minX="316" minY="12" width="44" height="20.5"/>
+                                                    <frame key="frameInset" minX="316" minY="11" width="44" height="21"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.54901960780000003" green="0.3294117647" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
@@ -225,11 +225,50 @@
                     <connections>
                         <outlet property="imageView" destination="EH3-Se-poS" id="h5v-37-HS0"/>
                         <segue destination="2Sc-bF-zbT" kind="unwind" identifier="UnwindToMedia" unwindAction="unwindToMediaWithSender:" id="cwX-3X-aK9"/>
+                        <segue destination="C0M-hb-GnN" kind="show" identifier="EditPreview" id="N7i-WD-56A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1jM-Kt-vej" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1624.8" y="-476.31184407796104"/>
+        </scene>
+        <!--Preview View Controller-->
+        <scene sceneID="v4c-sd-EJJ">
+            <objects>
+                <viewController id="C0M-hb-GnN" customClass="PreviewViewController" customModule="FanSabisu" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="V8w-p3-G0h"/>
+                        <viewControllerLayoutGuide type="bottom" id="YBJ-Wg-D6f"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="CBX-kl-6is">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Xxt-b7-ZMI"/>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="YBJ-Wg-D6f" firstAttribute="top" secondItem="Xxt-b7-ZMI" secondAttribute="bottom" id="JCo-58-px4"/>
+                            <constraint firstItem="Xxt-b7-ZMI" firstAttribute="leading" secondItem="CBX-kl-6is" secondAttribute="leading" id="OxH-W3-Lhq"/>
+                            <constraint firstItem="Xxt-b7-ZMI" firstAttribute="top" secondItem="V8w-p3-G0h" secondAttribute="bottom" id="P9I-m8-iO1"/>
+                            <constraint firstAttribute="trailing" secondItem="Xxt-b7-ZMI" secondAttribute="trailing" id="m2l-RL-wSU"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="eCF-c7-PDP">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ZjF-im-IUR">
+                            <connections>
+                                <action selector="saveWith:" destination="C0M-hb-GnN" id="CVv-hS-1lN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="imageView" destination="Xxt-b7-ZMI" id="MaR-as-1Pe"/>
+                        <segue destination="2Sc-bF-zbT" kind="unwind" identifier="UnwindToMedia" unwindAction="unwindToMediaWithSender:" id="SUV-29-ASc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HbA-Gq-pbg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2676" y="-476.31184407796104"/>
         </scene>
     </scenes>
     <resources>

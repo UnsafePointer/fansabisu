@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3F32FDF71DBBDF0100350025 /* Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F32FDF61DBBDF0100350025 /* Editor.swift */; };
+		3F32FDF91DBBEA6100350025 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F32FDF81DBBEA6100350025 /* PreviewViewController.swift */; };
 		3F3544E21D98213A003941CB /* FanSabisuKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F3544E01D98213A003941CB /* FanSabisuKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F3544E51D98213A003941CB /* FanSabisuKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F3544DE1D98213A003941CB /* FanSabisuKit.framework */; };
 		3F3544E61D98213A003941CB /* FanSabisuKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3F3544DE1D98213A003941CB /* FanSabisuKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -125,6 +126,7 @@
 
 /* Begin PBXFileReference section */
 		3F32FDF61DBBDF0100350025 /* Editor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Editor.swift; sourceTree = "<group>"; };
+		3F32FDF81DBBEA6100350025 /* PreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreviewViewController.swift; path = Sources/PreviewViewController.swift; sourceTree = "<group>"; };
 		3F3544DE1D98213A003941CB /* FanSabisuKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FanSabisuKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F3544E01D98213A003941CB /* FanSabisuKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FanSabisuKit.h; sourceTree = "<group>"; };
 		3F3544E11D98213A003941CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				3F5117F61D9F23BB00676E60 /* UIViewController+PresentMessage.swift */,
 				3FABB63A1D9FE0CA003E4B02 /* SettingsViewController.swift */,
 				3F8F81391DA956E000D35552 /* UIViewController+TraitInformation.swift */,
+				3F32FDF81DBBEA6100350025 /* PreviewViewController.swift */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -636,6 +639,7 @@
 				3F5117F71D9F23BB00676E60 /* UIViewController+PresentMessage.swift in Sources */,
 				3F8F813A1DA956E000D35552 /* UIViewController+TraitInformation.swift in Sources */,
 				3FABB63B1D9FE0CA003E4B02 /* SettingsViewController.swift in Sources */,
+				3F32FDF91DBBEA6100350025 /* PreviewViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
