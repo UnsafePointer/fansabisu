@@ -19,9 +19,8 @@ public class Authorizer {
     var oauthTokenSecret: String?
     let tokenProvider: TokenProvider
 
-    public init() {
-        let configuration = URLSessionConfiguration.default
-        session = URLSession(configuration: configuration)
+    public init(session: URLSession) {
+        self.session = session
         let keychain = Keychain()
         oauthToken = try? keychain.retrieve(for: KeychainKey.oauthToken.rawValue)
         oauthTokenSecret = try? keychain.retrieve(for: KeychainKey.oauthTokenSecret.rawValue)

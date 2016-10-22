@@ -61,7 +61,7 @@ class ActionViewController: UIViewController {
     
     func itemLoadCompletedWithPreprocessingResults(_ urlPreprocessingResults: URL) {
         self.activityIndicator?.startAnimating()
-        let mediaDownloader = MediaDownloader()
+        let mediaDownloader = MediaDownloader(session: URLSession.shared)
         mediaDownloader.downloadMedia(with: urlPreprocessingResults, completionHandler: { (result) in
             guard let videoUrl = try? result.resolve() else {
                 return self.showError(message: String.localizedString(for: "DOWNLOAD_VIDEO_ERROR"))

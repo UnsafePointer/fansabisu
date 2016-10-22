@@ -10,9 +10,8 @@ public class MediaDownloader {
     let session: URLSession
     let responseParser: ResponseParser
     
-    public init() {
-        let configuration = URLSessionConfiguration.default
-        session = URLSession(configuration: configuration)
+    public init(session: URLSession) {
+        self.session = session
         responseParser = ResponseParser()
     }
     
@@ -24,7 +23,7 @@ public class MediaDownloader {
         guard let requestURL = URL(string: URLString) else {
             return completionHandler(Result.failure(MediaDownloaderError.invalidURL))
         }
-        let authorizer = Authorizer()
+        let authorizer = Authorizer(session: session)
         authorizer.buildRequest(for: requestURL) { (result) in
             guard let request = try? result.resolve() else {
                 return completionHandler(Result.failure(MediaDownloaderError.requestFailed))
