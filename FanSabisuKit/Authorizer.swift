@@ -62,6 +62,9 @@ public class Authorizer {
         request.addValue(header, forHTTPHeaderField: "Authorization")
         request.addValue("*/*", forHTTPHeaderField: "Accept")
         let dataTask = session.dataTask(with: request) { (data, response, error) in
+            if (response as? HTTPURLResponse)?.statusCode != 200 {
+                return completionHandler(Result.failure(AuthorizerError.couldNotAuthenticate))
+            }
             guard let data = data else {
                 return completionHandler(Result.failure(AuthorizerError.couldNotAuthenticate))
             }
@@ -99,6 +102,9 @@ public class Authorizer {
                 request.addValue(String(oauthVerififer.characters.count), forHTTPHeaderField: "Content-Length")
                 request.httpBody = "oauth_verifier=".appending(oauthVerififer).data(using: .utf8)
                 let dataTask = self.session.dataTask(with: request) { (data, response, error) in
+                    if (response as? HTTPURLResponse)?.statusCode != 200 {
+                        return completionHandler(Result.failure(AuthorizerError.couldNotAuthenticate))
+                    }
                     guard let data = data else {
                         return completionHandler(Result.failure(AuthorizerError.couldNotAuthenticate))
                     }

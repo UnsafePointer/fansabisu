@@ -3,6 +3,7 @@ import Foundation
 public enum MediaDownloaderError: Error {
     case invalidURL
     case requestFailed
+    case tooManyRequests
 }
 
 public class MediaDownloader {
@@ -28,7 +29,13 @@ public class MediaDownloader {
             guard let request = try? result.resolve() else {
                 return completionHandler(Result.failure(MediaDownloaderError.requestFailed))
             }
-            let dataTask = self.session.dataTask(with: request) { (data, URLResponse, error) in
+            let dataTask = self.session.dataTask(with: request) { (data, response, error) in
+                if (response as? HTTPURLResponse)?.statusCode == 429 {
+                    return DispatchQueue.main.async { completionHandler(Result.failure(MediaDownloaderError.tooManyRequests)) }
+                }
+                if (response as? HTTPURLResponse)?.statusCode != 200 {
+                    return DispatchQueue.main.async { completionHandler(Result.failure(MediaDownloaderError.requestFailed)) }
+                }
                 if let error = error {
                     return DispatchQueue.main.async { completionHandler(Result.failure(error)) }
                 }
@@ -51,7 +58,7 @@ public class MediaDownloader {
     }
 
     func downloadVideo(with videoUrl: URL, completionHandler: @escaping (Result<URL>) -> Void) {
-        let task = session.downloadTask(with: videoUrl) { (location, response, error) in
+        let dataTask = session.downloadTask(with: videoUrl) { (location, response, error) in
             if let error = error {
                 return completionHandler(Result.failure(error))
             }
@@ -77,7 +84,7 @@ public class MediaDownloader {
             }
             completionHandler(Result.success(destinationUrl))
         }
-        task.resume()
+        dataTask.resume()
     }
 
 }
