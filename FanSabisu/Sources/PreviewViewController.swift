@@ -17,13 +17,17 @@ class PreviewViewController: UIViewController {
     }
 
     @IBAction func save(with sender: UIBarButtonItem) {
-        PHPhotoLibrary.shared().performChanges({
-            PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: self.url!)
-        }) { (success, error) in
-            if let _ = error {
-                self.presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "SAVE_FAILED"), actionHandler: nil)
-            } else {
-                DispatchQueue.main.async { self.performSegue(withIdentifier: "UnwindToMedia", sender: nil) }
+        if let url = self.url {
+            PHPhotoLibrary.shared().performChanges({
+                PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: url)
+            }) { (success, error) in
+                if let _ = error {
+                    self.presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "SAVE_FAILED"), actionHandler: nil)
+                } else {
+                    let manager = FileManager.default
+                    try? manager.removeItem(at: url)
+                    DispatchQueue.main.async { self.performSegue(withIdentifier: "UnwindToMedia", sender: nil) }
+                }
             }
         }
     }
