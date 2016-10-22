@@ -3,6 +3,7 @@ import Foundation
 enum TokenProviderError: Error {
     case invalidInput
     case requestFailed
+    case tooManyRequests
 }
 
 class TokenProvider {
@@ -32,6 +33,9 @@ class TokenProvider {
         request.httpMethod = "POST"
         request.httpBody = "grant_type=client_credentials".data(using: String.Encoding.utf8)
         let dataTask = session.dataTask(with: request) { (data, response, error) in
+            if (response as? HTTPURLResponse)?.statusCode == 429 {
+                return DispatchQueue.main.async { completionHandler(Result.failure(TokenProviderError.tooManyRequests)) }
+            }
             if (response as? HTTPURLResponse)?.statusCode != 200 {
                 return DispatchQueue.main.async { completionHandler(Result.failure(TokenProviderError.requestFailed)) }
             }

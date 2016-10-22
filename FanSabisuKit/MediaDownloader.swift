@@ -26,34 +26,38 @@ public class MediaDownloader {
         }
         let authorizer = Authorizer(session: session)
         authorizer.buildRequest(for: requestURL) { (result) in
-            guard let request = try? result.resolve() else {
+            do {
+                let request = try result.resolve()
+                let dataTask = self.session.dataTask(with: request) { (data, response, error) in
+                    if (response as? HTTPURLResponse)?.statusCode == 429 {
+                        return DispatchQueue.main.async { completionHandler(Result.failure(MediaDownloaderError.tooManyRequests)) }
+                    }
+                    if (response as? HTTPURLResponse)?.statusCode != 200 {
+                        return DispatchQueue.main.async { completionHandler(Result.failure(MediaDownloaderError.requestFailed)) }
+                    }
+                    if let error = error {
+                        return DispatchQueue.main.async { completionHandler(Result.failure(error)) }
+                    }
+                    guard let data = data else {
+                        return DispatchQueue.main.async { completionHandler(Result.failure(MediaDownloaderError.requestFailed)) }
+                    }
+
+                    let url = self.responseParser.parseStatus(with: data)
+                    switch url {
+                    case .success(let result):
+                        self.downloadVideo(with: result, completionHandler: { (result) in
+                            DispatchQueue.main.async { completionHandler(result) }
+                        })
+                    case .failure(let error):
+                        return DispatchQueue.main.async { completionHandler(Result.failure(error)) }
+                    }
+                }
+                dataTask.resume()
+            } catch TokenProviderError.tooManyRequests {
+                return completionHandler(Result.failure(MediaDownloaderError.tooManyRequests))
+            } catch {
                 return completionHandler(Result.failure(MediaDownloaderError.requestFailed))
             }
-            let dataTask = self.session.dataTask(with: request) { (data, response, error) in
-                if (response as? HTTPURLResponse)?.statusCode == 429 {
-                    return DispatchQueue.main.async { completionHandler(Result.failure(MediaDownloaderError.tooManyRequests)) }
-                }
-                if (response as? HTTPURLResponse)?.statusCode != 200 {
-                    return DispatchQueue.main.async { completionHandler(Result.failure(MediaDownloaderError.requestFailed)) }
-                }
-                if let error = error {
-                    return DispatchQueue.main.async { completionHandler(Result.failure(error)) }
-                }
-                guard let data = data else {
-                    return DispatchQueue.main.async { completionHandler(Result.failure(MediaDownloaderError.requestFailed)) }
-                }
-
-                let url = self.responseParser.parseStatus(with: data)
-                switch url {
-                case .success(let result):
-                    self.downloadVideo(with: result, completionHandler: { (result) in
-                        DispatchQueue.main.async { completionHandler(result) }
-                    })
-                case .failure(let error):
-                    return DispatchQueue.main.async { completionHandler(Result.failure(error)) }
-                }
-            }
-            dataTask.resume()
         }
     }
 

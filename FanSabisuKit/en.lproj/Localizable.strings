@@ -36,3 +36,4 @@
 "DEFAULT_FPS_DESCRIPTION" = "Frames per second used to generate GIFs";
 "OAUTH_ERROR" = "Couldn't request authorization";
 "UNAUTHORIZE" = "Unauthorize";
+"TOO_MANY_REQUESTS" = "Application reached maximum number of requests. Please sign in with your Twitter account to keep using CYaRon! or try again later";

@@ -113,20 +113,24 @@ class MediaViewController: UIViewController {
             self.activityIndicatorView?.startAnimating()
             let mediaDownloader = MediaDownloader(session: URLSession.shared)
             mediaDownloader.downloadMedia(with: url, completionHandler: { (result) in
-                guard let videoUrl = try? result.resolve() else {
+                do {
+                    let videoUrl = try result.resolve()
+                    let videoProcessor = VideoProcessor()
+                    videoProcessor.processVideo(with: videoUrl, completionHandler: { (result) in
+                        guard let _ = try? result.resolve() else {
+                            self.activityIndicatorView?.stopAnimating()
+                            return self.presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "PROCESS_VIDEO_ERROR"), actionHandler: nil)
+                        }
+                        self.activityIndicatorView?.stopAnimating()
+                        self.presentMessage(title: String.localizedString(for: "FINISHED"), message: String.localizedString(for: "GIF_STORED"), actionHandler: nil)
+                        self.loadAssets()
+                    })
+                } catch MediaDownloaderError.tooManyRequests {
                     self.activityIndicatorView?.stopAnimating()
+                    return self.presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "TOO_MANY_REQUESTS"), actionHandler: nil)
+                } catch {
                     return self.presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "DOWNLOAD_VIDEO_ERROR"), actionHandler: nil)
                 }
-                let videoProcessor = VideoProcessor()
-                videoProcessor.processVideo(with: videoUrl, completionHandler: { (result) in
-                    guard let _ = try? result.resolve() else {
-                        self.activityIndicatorView?.stopAnimating()
-                        return self.presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "PROCESS_VIDEO_ERROR"), actionHandler: nil)
-                    }
-                    self.activityIndicatorView?.stopAnimating()
-                    self.presentMessage(title: String.localizedString(for: "FINISHED"), message: String.localizedString(for: "GIF_STORED"), actionHandler: nil)
-                    self.loadAssets()
-                })
             })
         }))
         present(controller, animated: true, completion: nil)

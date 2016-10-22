@@ -63,20 +63,24 @@ class ActionViewController: UIViewController {
         self.activityIndicator?.startAnimating()
         let mediaDownloader = MediaDownloader(session: URLSession.shared)
         mediaDownloader.downloadMedia(with: urlPreprocessingResults, completionHandler: { (result) in
-            guard let videoUrl = try? result.resolve() else {
+            do {
+                let videoUrl = try result.resolve()
+                let videoProcessor = VideoProcessor()
+                videoProcessor.processVideo(with: videoUrl, completionHandler: { (result) in
+                    guard let url = try? result.resolve() else {
+                        return self.showError(message: String.localizedString(for: "PROCESS_VIDEO_ERROR"))
+                    }
+                    if let data = try? Data(contentsOf: url) {
+                        self.updateInterface(with: data)
+                    } else {
+                        self.done()
+                    }
+                })
+            } catch MediaDownloaderError.tooManyRequests {
+                return self.showError(message: String.localizedString(for: "TOO_MANY_REQUESTS"))
+            } catch {
                 return self.showError(message: String.localizedString(for: "DOWNLOAD_VIDEO_ERROR"))
             }
-            let videoProcessor = VideoProcessor()
-            videoProcessor.processVideo(with: videoUrl, completionHandler: { (result) in
-                guard let url = try? result.resolve() else {
-                    return self.showError(message: String.localizedString(for: "PROCESS_VIDEO_ERROR"))
-                }
-                if let data = try? Data(contentsOf: url) {
-                    self.updateInterface(with: data)
-                } else {
-                    self.done()
-                }
-            })
         })
     }
 
