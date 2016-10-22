@@ -103,6 +103,12 @@ class SettingsViewController: UIViewController {
             self.saveDefaultFPS(60)
         }))
         controller.addAction(UIAlertAction(title: String.localizedString(for: "CANCEL"), style: .cancel, handler: nil))
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            let index = SettingType.defaultFramesPerSecond.rawValue
+            let indexPath = IndexPath(row: index, section: 0)
+            let cell = tableView?.cellForRow(at: indexPath)
+            controller.popoverPresentationController?.sourceView = cell?.detailTextLabel
+        }
         present(controller, animated: true, completion: nil)
     }
 
