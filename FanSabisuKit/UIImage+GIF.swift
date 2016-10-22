@@ -7,6 +7,15 @@ extension UIImage {
         case frames = "Frames"
         case fps = "FramesPerSecond"
         case duration = "Duration"
+        case data = "Data"
+    }
+
+    public class func animatedImage(with url: URL) -> UIImage? {
+        guard let data = try? Data(contentsOf: url) else {
+            return nil
+        }
+        let result = animatedImage(with: data)
+        return result.0
     }
 
     public class func animatedImage(with data: Data) -> (UIImage?, Dictionary<String, Any>?) {
@@ -14,6 +23,7 @@ extension UIImage {
             return (nil, nil)
         }
         var information = Dictionary<String, Any>()
+        information[GIFInformationKey.data.rawValue] = data
 
         let count = CGImageSourceGetCount(source)
         information[GIFInformationKey.frames.rawValue] = count

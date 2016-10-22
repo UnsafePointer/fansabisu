@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F32FDF71DBBDF0100350025 /* Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F32FDF61DBBDF0100350025 /* Editor.swift */; };
 		3F3544E21D98213A003941CB /* FanSabisuKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F3544E01D98213A003941CB /* FanSabisuKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F3544E51D98213A003941CB /* FanSabisuKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F3544DE1D98213A003941CB /* FanSabisuKit.framework */; };
 		3F3544E61D98213A003941CB /* FanSabisuKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3F3544DE1D98213A003941CB /* FanSabisuKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -123,6 +124,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3F32FDF61DBBDF0100350025 /* Editor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Editor.swift; sourceTree = "<group>"; };
 		3F3544DE1D98213A003941CB /* FanSabisuKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FanSabisuKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F3544E01D98213A003941CB /* FanSabisuKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FanSabisuKit.h; sourceTree = "<group>"; };
 		3F3544E11D98213A003941CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 				3FFB5A241DB6A4B400A9DD92 /* FSKNotificationCenter.h */,
 				3FFB5A251DB6A4B400A9DD92 /* FSKNotificationCenter.m */,
 				3FFB5A281DB6B71400A9DD92 /* Keychain.swift */,
+				3F32FDF61DBBDF0100350025 /* Editor.swift */,
 			);
 			path = FanSabisuKit;
 			sourceTree = "<group>";
@@ -590,6 +593,7 @@
 				3FA9A7C41DB40961002060EE /* TwitterCredentials.swift in Sources */,
 				3FF9725D1D9917DA002B9D1A /* VideoProcessor.swift in Sources */,
 				3FABB63D1DA03163003E4B02 /* Double+Round.swift in Sources */,
+				3F32FDF71DBBDF0100350025 /* Editor.swift in Sources */,
 				3F3544F01D983050003941CB /* TokenProvider.swift in Sources */,
 				3F5117F51D9F03D900676E60 /* UIImage+GIF.swift in Sources */,
 				3FA9A7AC1DB3F128002060EE /* Authorizer.swift in Sources */,

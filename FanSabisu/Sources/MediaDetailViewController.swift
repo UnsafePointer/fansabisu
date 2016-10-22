@@ -53,6 +53,9 @@ class MediaDetailViewController: UIViewController {
         controller.addAction(UIAlertAction(title: String.localizedString(for: "INFORMATION"), style: .default, handler: { (action) in
             self.displayInformation()
         }))
+        controller.addAction(UIAlertAction(title: String.localizedString(for: "EDIT"), style: .default, handler: { (action) in
+            self.edit(sender: sender)
+        }))
         if UIDevice.current.userInterfaceIdiom == .pad {
             controller.popoverPresentationController?.barButtonItem = sender
         }
@@ -74,6 +77,31 @@ class MediaDetailViewController: UIViewController {
                 }
             }
         }
+    }
+
+    func edit(sender: UIBarButtonItem) {
+        let controller = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        controller.addAction(UIAlertAction(title: String.localizedString(for: "CANCEL"), style: .cancel, handler: { (action) in
+        }))
+        controller.addAction(UIAlertAction(title: String.localizedString(for: "2XSPEEDUP"), style: .default, handler: { (action) in
+            self.previewChanges(edit: .speedup)
+        }))
+        controller.addAction(UIAlertAction(title: String.localizedString(for: "2XSLOWDOWN"), style: .default, handler: { (action) in
+            self.previewChanges(edit: .slowdown)
+        }))
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            controller.popoverPresentationController?.barButtonItem = sender
+        }
+        present(controller, animated: true, completion: nil)
+    }
+
+    func previewChanges(edit: Edit) {
+        guard let data = self.information?[UIImage.GIFInformationKey.data.rawValue] as? Data else {
+            //TODO: Present error
+            return
+        }
+        let editor = Editor(data: data, edit: edit)
+        let result = editor.apply()
     }
 
 }

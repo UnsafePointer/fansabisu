@@ -38,7 +38,7 @@ fileprivate struct Setting {
 
         let userDefaults = UserDefaults(suiteName: "group.com.ruenzuo.FanSabisu")!
 
-        let fps: Setting;
+        let fps: Setting
         let defaultFPS = userDefaults.double(forKey: SettingKey.fps.rawValue)
         if defaultFPS != 0  {
             fps = Setting(type: .defaultFramesPerSecond, value: "~\(Int(defaultFPS))")
