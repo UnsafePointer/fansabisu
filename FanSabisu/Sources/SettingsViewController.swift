@@ -4,6 +4,7 @@ import FanSabisuKit
 enum SettingType: Int {
     case twitterAccount
     case defaultFramesPerSecond
+    case clearCache
     case contactDeveloper
     case openSource
     case version
@@ -12,6 +13,7 @@ enum SettingType: Int {
         switch self {
         case .twitterAccount: return String.localizedString(for: "TWITTER_ACCOUNT")
         case .defaultFramesPerSecond: return String.localizedString(for: "DEFAULT_FPS")
+        case .clearCache: return String.localizedString(for: "CLEAR_CACHE")
         case .contactDeveloper: return String.localizedString(for: "CONTACT_DEVELOPER")
         case .openSource: return String.localizedString(for: "OPEN_SOURCE")
         case .version: return String.localizedString(for: "VERSION")
@@ -46,6 +48,9 @@ fileprivate struct Setting {
             fps = Setting(type: .defaultFramesPerSecond, value: "~24")
         }
         settings.append(fps)
+
+        let clearCache = Setting(type: .clearCache, value: "")
+        settings.append(clearCache)
 
         let developer = Setting(type: .contactDeveloper, value: "@Ruenzuo")
         settings.append(developer)
@@ -187,6 +192,15 @@ class SettingsViewController: UIViewController {
         }
     }
 
+    func clearCache() {
+        let manager = FileManager.default
+        let contents = try? manager.contentsOfDirectory(atPath: NSTemporaryDirectory())
+        contents?.forEach({ (file) in
+            let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(file)
+            try? manager.removeItem(at: url)
+        })
+    }
+
 }
 
 extension SettingsViewController: UITableViewDataSource {
@@ -219,13 +233,12 @@ extension SettingsViewController: UITableViewDelegate {
         switch settingType {
         case .twitterAccount: configureTwitter()
         case .defaultFramesPerSecond: configureFPS()
+        case .clearCache: clearCache()
         case .contactDeveloper: contactDeveloper()
         case .openSource: openSource()
         case .version: break
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
-
 
 }
