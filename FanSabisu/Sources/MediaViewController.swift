@@ -111,7 +111,7 @@ class MediaViewController: UIViewController {
         controller.addAction(UIAlertAction(title: String.localizedString(for: "CANCEL"), style: .cancel, handler: nil))
         controller.addAction(UIAlertAction(title: String.localizedString(for: "DOWNLOAD"), style: .default, handler: { (action) in
             self.activityIndicatorView?.startAnimating()
-            let mediaDownloader = MediaDownloader(session: URLSession.shared)
+            let mediaDownloader = MediaDownloader(session: Session.shared)
             mediaDownloader.downloadMedia(with: url, completionHandler: { (result) in
                 do {
                     let videoUrl = try result.resolve()

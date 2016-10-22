@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3F32FDF71DBBDF0100350025 /* Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F32FDF61DBBDF0100350025 /* Editor.swift */; };
 		3F32FDF91DBBEA6100350025 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F32FDF81DBBEA6100350025 /* PreviewViewController.swift */; };
+		3F32FDFB1DBBFD0600350025 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F32FDFA1DBBFD0600350025 /* Session.swift */; };
 		3F3544E21D98213A003941CB /* FanSabisuKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F3544E01D98213A003941CB /* FanSabisuKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F3544E51D98213A003941CB /* FanSabisuKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F3544DE1D98213A003941CB /* FanSabisuKit.framework */; };
 		3F3544E61D98213A003941CB /* FanSabisuKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3F3544DE1D98213A003941CB /* FanSabisuKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -127,6 +128,7 @@
 /* Begin PBXFileReference section */
 		3F32FDF61DBBDF0100350025 /* Editor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Editor.swift; sourceTree = "<group>"; };
 		3F32FDF81DBBEA6100350025 /* PreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreviewViewController.swift; path = Sources/PreviewViewController.swift; sourceTree = "<group>"; };
+		3F32FDFA1DBBFD0600350025 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		3F3544DE1D98213A003941CB /* FanSabisuKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FanSabisuKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F3544E01D98213A003941CB /* FanSabisuKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FanSabisuKit.h; sourceTree = "<group>"; };
 		3F3544E11D98213A003941CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				3FFB5A251DB6A4B400A9DD92 /* FSKNotificationCenter.m */,
 				3FFB5A281DB6B71400A9DD92 /* Keychain.swift */,
 				3F32FDF61DBBDF0100350025 /* Editor.swift */,
+				3F32FDFA1DBBFD0600350025 /* Session.swift */,
 			);
 			path = FanSabisuKit;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 				3F3544EC1D982185003941CB /* MediaDownloader.swift in Sources */,
 				3FD87C0E1D9FB7BE00D778BA /* Result.swift in Sources */,
 				3FA9A7AD1DB3F128002060EE /* Signature.swift in Sources */,
+				3F32FDFB1DBBFD0600350025 /* Session.swift in Sources */,
 				3F5117F91D9F251000676E60 /* URL+Validator.swift in Sources */,
 				3FF2D1BA1DA2C3880019E838 /* UIColor+Appearance.swift in Sources */,
 				3FABB6301D9FBAA1003E4B02 /* ResponseParser.swift in Sources */,

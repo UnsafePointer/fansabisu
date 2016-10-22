@@ -138,7 +138,7 @@ class SettingsViewController: UIViewController {
     }
 
     func authorize() {
-        let authorizer = Authorizer(session: URLSession.shared)
+        let authorizer = Authorizer(session: Session.shared)
         authorizer.requestOAuth(presentingViewController: self) { (result) in
             self.presentedViewController?.dismiss(animated: true, completion: nil)
             guard let oauth = try? result.resolve() else {
