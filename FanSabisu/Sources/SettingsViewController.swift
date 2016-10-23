@@ -69,7 +69,7 @@ fileprivate struct Setting {
 
 }
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: GAITrackedViewController {
 
     fileprivate var settings: [Setting]
     @IBOutlet var tableView: UITableView?
@@ -81,8 +81,8 @@ class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.title = String.localizedString(for: "SETTINGS")
+        self.screenName = "Settings"
         automaticallyAdjustsScrollViewInsets = false
 
     }

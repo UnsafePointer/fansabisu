@@ -2,7 +2,7 @@ import UIKit
 import FanSabisuKit
 import Photos
 
-class PreviewViewController: UIViewController {
+class PreviewViewController: GAITrackedViewController {
 
     var url: URL?
     @IBOutlet var imageView: UIImageView?
@@ -10,6 +10,7 @@ class PreviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = String.localizedString(for: "PREVIEW")
+        self.screenName = "Preview"
         if let url = self.url {
             let image = UIImage.animatedImage(with: url)
             self.imageView?.image = image

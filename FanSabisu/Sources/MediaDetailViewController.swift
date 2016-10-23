@@ -3,7 +3,7 @@ import Foundation
 import Photos
 import FanSabisuKit
 
-class MediaDetailViewController: UIViewController {
+class MediaDetailViewController: GAITrackedViewController {
 
     var asset: PHAsset?
     @IBOutlet var imageView: UIImageView?
@@ -13,6 +13,7 @@ class MediaDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = String.localizedString(for: "DETAILS")
+        self.screenName = "Details"
         let manager = PHImageManager.default()
         let options = PHImageRequestOptions()
         options.version = .original

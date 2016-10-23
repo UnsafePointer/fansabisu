@@ -2,7 +2,7 @@ import UIKit
 import Photos
 import FanSabisuKit
 
-class MediaViewController: UIViewController {
+class MediaViewController: GAITrackedViewController {
 
     @IBOutlet var collectionView: UICollectionView?
     var itemsPerRow: CGFloat?
@@ -12,6 +12,7 @@ class MediaViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = String.localizedString(for: "MEDIA")
+        self.screenName = "Media"
         setupItemsPerRow(with: self.view.frame.size)
         automaticallyAdjustsScrollViewInsets = false
         setupNavigationItems()

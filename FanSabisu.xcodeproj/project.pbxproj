@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F19B28E1DBCDD9F0009DA1D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F19B28D1DBCDD9F0009DA1D /* SystemConfiguration.framework */; };
+		3F19B2901DBCDDA90009DA1D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F19B28F1DBCDDA90009DA1D /* CoreData.framework */; };
+		3F19B2921DBCDDB40009DA1D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F19B2911DBCDDB40009DA1D /* libz.tbd */; };
+		3F19B2941DBCDDC00009DA1D /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F19B2931DBCDDC00009DA1D /* libsqlite3.tbd */; };
+		3F1CADA21DBCD90800C7DCB8 /* libGoogleAnalyticsServices.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F1CADA11DBCD90800C7DCB8 /* libGoogleAnalyticsServices.a */; };
 		3F32FDF71DBBDF0100350025 /* Editor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F32FDF61DBBDF0100350025 /* Editor.swift */; };
 		3F32FDF91DBBEA6100350025 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F32FDF81DBBEA6100350025 /* PreviewViewController.swift */; };
 		3F32FDFB1DBBFD0600350025 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F32FDFA1DBBFD0600350025 /* Session.swift */; };
@@ -126,6 +131,22 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3F19B28D1DBCDD9F0009DA1D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3F19B28F1DBCDDA90009DA1D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3F19B2911DBCDDB40009DA1D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		3F19B2931DBCDDC00009DA1D /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		3F1CADA11DBCD90800C7DCB8 /* libGoogleAnalyticsServices.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAnalyticsServices.a; path = GoogleAnalytics/libGoogleAnalyticsServices.a; sourceTree = "<group>"; };
+		3F1CADA31DBCD91500C7DCB8 /* GAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAI.h; path = GoogleAnalytics/Headers/GAI.h; sourceTree = "<group>"; };
+		3F1CADA41DBCD91500C7DCB8 /* GAIDictionaryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIDictionaryBuilder.h; path = GoogleAnalytics/Headers/GAIDictionaryBuilder.h; sourceTree = "<group>"; };
+		3F1CADA51DBCD91500C7DCB8 /* GAIEcommerceFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceFields.h; path = GoogleAnalytics/Headers/GAIEcommerceFields.h; sourceTree = "<group>"; };
+		3F1CADA61DBCD91500C7DCB8 /* GAIEcommerceProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceProduct.h; path = GoogleAnalytics/Headers/GAIEcommerceProduct.h; sourceTree = "<group>"; };
+		3F1CADA71DBCD91500C7DCB8 /* GAIEcommerceProductAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommerceProductAction.h; path = GoogleAnalytics/Headers/GAIEcommerceProductAction.h; sourceTree = "<group>"; };
+		3F1CADA81DBCD91500C7DCB8 /* GAIEcommercePromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIEcommercePromotion.h; path = GoogleAnalytics/Headers/GAIEcommercePromotion.h; sourceTree = "<group>"; };
+		3F1CADA91DBCD91500C7DCB8 /* GAIFields.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAIFields.h; path = GoogleAnalytics/Headers/GAIFields.h; sourceTree = "<group>"; };
+		3F1CADAA1DBCD91500C7DCB8 /* GAILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAILogger.h; path = GoogleAnalytics/Headers/GAILogger.h; sourceTree = "<group>"; };
+		3F1CADAB1DBCD91500C7DCB8 /* GAITrackedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITrackedViewController.h; path = GoogleAnalytics/Headers/GAITrackedViewController.h; sourceTree = "<group>"; };
+		3F1CADAC1DBCD91500C7DCB8 /* GAITracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GAITracker.h; path = GoogleAnalytics/Headers/GAITracker.h; sourceTree = "<group>"; };
+		3F1CADAF1DBCD99200C7DCB8 /* FanSabisu-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FanSabisu-Bridging-Header.h"; sourceTree = "<group>"; };
 		3F32FDF61DBBDF0100350025 /* Editor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Editor.swift; sourceTree = "<group>"; };
 		3F32FDF81DBBEA6100350025 /* PreviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PreviewViewController.swift; path = Sources/PreviewViewController.swift; sourceTree = "<group>"; };
 		3F32FDFA1DBBFD0600350025 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -210,8 +231,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F19B2941DBCDDC00009DA1D /* libsqlite3.tbd in Frameworks */,
+				3F19B2921DBCDDB40009DA1D /* libz.tbd in Frameworks */,
+				3F19B2901DBCDDA90009DA1D /* CoreData.framework in Frameworks */,
+				3F19B28E1DBCDD9F0009DA1D /* SystemConfiguration.framework in Frameworks */,
 				3FA9A79F1DB3F0E3002060EE /* CommonCrypto.framework in Frameworks */,
 				3F3544E51D98213A003941CB /* FanSabisuKit.framework in Frameworks */,
+				3F1CADA21DBCD90800C7DCB8 /* libGoogleAnalyticsServices.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,6 +251,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F19B28A1DBCDD6C0009DA1D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3F19B2931DBCDDC00009DA1D /* libsqlite3.tbd */,
+				3F19B2911DBCDDB40009DA1D /* libz.tbd */,
+				3F19B28F1DBCDDA90009DA1D /* CoreData.framework */,
+				3F19B28D1DBCDD9F0009DA1D /* SystemConfiguration.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3F1CAD991DBCD8D200C7DCB8 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				3F1CADA11DBCD90800C7DCB8 /* libGoogleAnalyticsServices.a */,
+				3F1CADA01DBCD90100C7DCB8 /* Headers */,
+			);
+			name = Vendor;
+			sourceTree = "<group>";
+		};
+		3F1CADA01DBCD90100C7DCB8 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				3F1CADA31DBCD91500C7DCB8 /* GAI.h */,
+				3F1CADA41DBCD91500C7DCB8 /* GAIDictionaryBuilder.h */,
+				3F1CADA51DBCD91500C7DCB8 /* GAIEcommerceFields.h */,
+				3F1CADA61DBCD91500C7DCB8 /* GAIEcommerceProduct.h */,
+				3F1CADA71DBCD91500C7DCB8 /* GAIEcommerceProductAction.h */,
+				3F1CADA81DBCD91500C7DCB8 /* GAIEcommercePromotion.h */,
+				3F1CADA91DBCD91500C7DCB8 /* GAIFields.h */,
+				3F1CADAA1DBCD91500C7DCB8 /* GAILogger.h */,
+				3F1CADAB1DBCD91500C7DCB8 /* GAITrackedViewController.h */,
+				3F1CADAC1DBCD91500C7DCB8 /* GAITracker.h */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
 		3F3544DF1D98213A003941CB /* FanSabisuKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +349,7 @@
 				3FA9A7991DB3F0E3002060EE /* CommonCrypto */,
 				3FA9A7B71DB3F2FA002060EE /* FanSabisuKitTests */,
 				3FE447E81D980799008E0B66 /* Products */,
+				3F19B28A1DBCDD6C0009DA1D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -304,6 +368,7 @@
 		3FE447E91D980799008E0B66 /* FanSabisu */ = {
 			isa = PBXGroup;
 			children = (
+				3F1CAD991DBCD8D200C7DCB8 /* Vendor */,
 				3F9E09B61DA2E0570097747C /* FanSabisu.entitlements */,
 				3FE447FE1D98080D008E0B66 /* Assets */,
 				3FE447FC1D980800008E0B66 /* Sources */,
@@ -323,6 +388,7 @@
 				3FABB63A1D9FE0CA003E4B02 /* SettingsViewController.swift */,
 				3F8F81391DA956E000D35552 /* UIViewController+TraitInformation.swift */,
 				3F32FDF81DBBEA6100350025 /* PreviewViewController.swift */,
+				3F1CADAF1DBCD99200C7DCB8 /* FanSabisu-Bridging-Header.h */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -955,8 +1021,13 @@
 				INFOPLIST_FILE = "$(SRCROOT)/FanSabisu/Other sources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FanSabisu/GoogleAnalytics",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ruenzuo.FanSabisu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FanSabisu/FanSabisu-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
@@ -973,8 +1044,13 @@
 				INFOPLIST_FILE = "$(SRCROOT)/FanSabisu/Other sources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FanSabisu/GoogleAnalytics",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ruenzuo.FanSabisu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "FanSabisu/FanSabisu-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
