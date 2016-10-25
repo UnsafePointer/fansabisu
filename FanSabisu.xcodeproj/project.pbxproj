@@ -553,19 +553,17 @@
 				TargetAttributes = {
 					3F3544DD1D98213A003941CB = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = M2Z2C2JVN5;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					3FA9A7971DB3F0E3002060EE = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = M2Z2C2JVN5;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					3FA9A7B51DB3F2FA002060EE = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = M2Z2C2JVN5;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 7A5BJMR95M;
+						ProvisioningStyle = Manual;
 					};
 					3FE447E61D980799008E0B66 = {
 						CreatedOnToolsVersion = 8.0;
@@ -802,7 +800,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = M2Z2C2JVN5;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -828,7 +826,7 @@
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = M2Z2C2JVN5;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -853,12 +851,13 @@
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = M2Z2C2JVN5;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = CommonCrypto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ruenzuo.CommonCrypto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -877,12 +876,13 @@
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = M2Z2C2JVN5;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = CommonCrypto/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ruenzuo.CommonCrypto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -896,7 +896,7 @@
 		3FA9A7BF1DB3F2FA002060EE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = M2Z2C2JVN5;
+				DEVELOPMENT_TEAM = 7A5BJMR95M;
 				INFOPLIST_FILE = FanSabisuKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ruenzuo.FanSabisuKitTests;
@@ -908,7 +908,7 @@
 		3FA9A7C01DB3F2FA002060EE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = M2Z2C2JVN5;
+				DEVELOPMENT_TEAM = 7A5BJMR95M;
 				INFOPLIST_FILE = FanSabisuKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ruenzuo.FanSabisuKitTests;
