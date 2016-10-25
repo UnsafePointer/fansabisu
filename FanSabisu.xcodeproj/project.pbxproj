@@ -569,9 +569,9 @@
 					};
 					3FE447E61D980799008E0B66 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = M2Z2C2JVN5;
+						DevelopmentTeam = 7A5BJMR95M;
 						LastSwiftMigration = 0800;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -580,8 +580,8 @@
 					};
 					3FF972631D992906002B9D1A = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = M2Z2C2JVN5;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 7A5BJMR95M;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -1017,7 +1017,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FanSabisu/FanSabisu.entitlements;
-				DEVELOPMENT_TEAM = M2Z2C2JVN5;
+				DEVELOPMENT_TEAM = 7A5BJMR95M;
 				INFOPLIST_FILE = "$(SRCROOT)/FanSabisu/Other sources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1025,8 +1025,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/FanSabisu/GoogleAnalytics",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ruenzuo.FanSabisu;
+				PRODUCT_BUNDLE_IDENTIFIER = de.ruenzuo.fansabisu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "347dfc05-d249-4160-85a8-677e5cfa2f0b";
+				PROVISIONING_PROFILE_SPECIFIER = "Fan Sabisu Development Profile";
 				SWIFT_OBJC_BRIDGING_HEADER = "FanSabisu/FanSabisu-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1040,7 +1042,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FanSabisu/FanSabisu.entitlements;
-				DEVELOPMENT_TEAM = M2Z2C2JVN5;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 7A5BJMR95M;
 				INFOPLIST_FILE = "$(SRCROOT)/FanSabisu/Other sources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1048,8 +1051,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/FanSabisu/GoogleAnalytics",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ruenzuo.FanSabisu;
+				PRODUCT_BUNDLE_IDENTIFIER = de.ruenzuo.fansabisu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "33c1230c-1efd-4fe6-9e23-e12e0977df46";
+				PROVISIONING_PROFILE_SPECIFIER = "Fan Sabisu Distribution Profile";
 				SWIFT_OBJC_BRIDGING_HEADER = "FanSabisu/FanSabisu-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
@@ -1060,12 +1065,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FanSabisuActionUIExt/FanSabisuActionUIExt.entitlements;
-				DEVELOPMENT_TEAM = M2Z2C2JVN5;
+				DEVELOPMENT_TEAM = 7A5BJMR95M;
 				INFOPLIST_FILE = FanSabisuActionUIExt/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ruenzuo.FanSabisu.FanSabisuActionUIExt;
+				PRODUCT_BUNDLE_IDENTIFIER = de.ruenzuo.fansabisu.actionuiext;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6d512ebe-d2ff-4996-9bf2-7000e7f8d4f7";
+				PROVISIONING_PROFILE_SPECIFIER = "Fan Sabisu Action UI Extension Development Profile";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
@@ -1076,12 +1083,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FanSabisuActionUIExt/FanSabisuActionUIExt.entitlements;
-				DEVELOPMENT_TEAM = M2Z2C2JVN5;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 7A5BJMR95M;
 				INFOPLIST_FILE = FanSabisuActionUIExt/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.ruenzuo.FanSabisu.FanSabisuActionUIExt;
+				PRODUCT_BUNDLE_IDENTIFIER = de.ruenzuo.fansabisu.actionuiext;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6b548540-d6b8-4cb9-bbbf-ce0b6c129008";
+				PROVISIONING_PROFILE_SPECIFIER = "Fan Sabisu Action UI Extension Distribution Profil";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
