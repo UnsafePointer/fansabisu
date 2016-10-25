@@ -44,3 +44,4 @@
 "EDIT_FAILED" = "Couldn't edit image";
 "SAVE_FAILED" = "Couldn't save image";
 "CLEAR_CACHE" = "Clear cache";
+"CACHE_CLEARED" = "Cache cleared";

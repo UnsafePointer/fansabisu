@@ -199,6 +199,7 @@ class SettingsViewController: GAITrackedViewController {
             let url = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(file)
             try? manager.removeItem(at: url)
         })
+        self.presentMessage(title: nil, message: String.localizedString(for: "CACHE_CLEARED"), actionHandler: nil)
     }
 
 }
