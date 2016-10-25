@@ -1,0 +1,18 @@
+fastlane_version "1.106.2"
+
+default_platform :ios
+
+platform :ios do
+  desc "Submit a new Beta Build to Apple TestFlight"
+  desc "This will also make sure the profile is up to date"
+  lane :beta do
+    gym(scheme: "FanSabisu") # Build your app - more options available
+    pilot
+  end
+
+  desc "Deploy a new version to the App Store"
+  lane :release do
+    gym(scheme: "FanSabisu")
+    deliver(force: true)
+  end
+end
