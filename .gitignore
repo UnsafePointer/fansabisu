@@ -1,7 +1,7 @@
 # Sensitive information
 
-FanSabisuKit/TwitterCredentials.swift
-FanSabisuKit/GoogleAnalyticsCredentials.swift
+FanSabisuKit/Sources/TwitterCredentials.swift
+FanSabisuKit/Sources/GoogleAnalyticsCredentials.swift
 
 # Created by https://www.gitignore.io/api/xcode,macos,swift
 
