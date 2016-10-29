@@ -1107,7 +1107,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.ruenzuo.fansabisu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "347dfc05-d249-4160-85a8-677e5cfa2f0b";
+				PROVISIONING_PROFILE = "204e54fb-3030-4c17-84c2-8b709bfb27c4";
 				PROVISIONING_PROFILE_SPECIFIER = "Fan Sabisu Development Profile";
 				SWIFT_OBJC_BRIDGING_HEADER = "FanSabisu/Other sources/FanSabisu-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1151,7 +1151,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.ruenzuo.fansabisu.actionuiext;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6d512ebe-d2ff-4996-9bf2-7000e7f8d4f7";
+				PROVISIONING_PROFILE = "6a3da7c9-63af-42a1-8718-03eb1cf8d7a0";
 				PROVISIONING_PROFILE_SPECIFIER = "Fan Sabisu Action UI Extension Development Profile";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
