@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        let userInfo = ["query": url.query]
+        let userInfo = ["query": url.query as Any]
         FSKNotificationCenter.default.postNotificationName(Authorizer.applicationDidReceiveOAuthCallback, withParameters: userInfo)
         return true
     }
