@@ -80,6 +80,8 @@ class ActionViewController: UIViewController {
                 })
             } catch MediaDownloaderError.tooManyRequests {
                 return self.showError(message: String.localizedString(for: "TOO_MANY_REQUESTS"))
+            } catch MediaDownloaderError.forbidden {
+                return self.showError(message: String.localizedString(for: "FORBIDDEN"))
             } catch {
                 return self.showError(message: String.localizedString(for: "DOWNLOAD_VIDEO_ERROR"))
             }
