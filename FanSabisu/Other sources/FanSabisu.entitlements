@@ -6,5 +6,9 @@
 	<array>
 		<string>group.de.ruenzuo.fansabisu</string>
 	</array>
+	<key>keychain-access-groups</key>
+	<array>
+		<string>$(AppIdentifierPrefix)de.ruenzuo.fansabisu</string>
+	</array>
 </dict>
 </plist>
