@@ -4,6 +4,7 @@ public enum MediaDownloaderError: Error {
     case invalidURL
     case requestFailed
     case tooManyRequests
+    case forbidden
 }
 
 public class MediaDownloader {
@@ -31,6 +32,9 @@ public class MediaDownloader {
                 let dataTask = self.session.dataTask(with: request) { (data, response, error) in
                     if (response as? HTTPURLResponse)?.statusCode == 429 {
                         return DispatchQueue.main.async { completionHandler(Result.failure(MediaDownloaderError.tooManyRequests)) }
+                    }
+                    if (response as? HTTPURLResponse)?.statusCode == 403 {
+                        return DispatchQueue.main.async { completionHandler(Result.failure(MediaDownloaderError.forbidden)) }
                     }
                     if (response as? HTTPURLResponse)?.statusCode != 200 {
                         return DispatchQueue.main.async { completionHandler(Result.failure(MediaDownloaderError.requestFailed)) }

@@ -131,6 +131,9 @@ class MediaViewController: GAITrackedViewController {
                 } catch MediaDownloaderError.tooManyRequests {
                     self.activityIndicatorView?.stopAnimating()
                     return self.presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "TOO_MANY_REQUESTS"), actionHandler: nil)
+                } catch MediaDownloaderError.forbidden {
+                    self.activityIndicatorView?.stopAnimating()
+                    return self.presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "FORBIDDEN"), actionHandler: nil)
                 } catch {
                     return self.presentMessage(title: String.localizedString(for: "ERROR_TITLE"), message: String.localizedString(for: "DOWNLOAD_VIDEO_ERROR"), actionHandler: nil)
                 }

@@ -45,3 +45,4 @@
 "SAVE_FAILED" = "Couldn't save image";
 "CLEAR_CACHE" = "Clear cache";
 "CACHE_CLEARED" = "Cache cleared";
+"FORBIDDEN" = "You're not allowed to see this tweet. Try using a Twitter account following this user.";
